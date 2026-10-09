@@ -32,6 +32,8 @@ const DEFAULTS = {
   Badge: { inverted: 'false', showIcon: 'false' },
   Chip: { disabled: 'false' },
   TextField: { showSearchIcon: 'false', showClearButton: 'false' },
+  NavigationLink: { isSelected: 'false', variant: "'default'", size: "'md'" },
+  SkipLink: { href: "'#main-content'", children: "'Hyppää pääsisältöön'" },
 };
 
 const parser = docgen.withCustomConfig('tsconfig.json', {

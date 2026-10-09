@@ -1,0 +1,179 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+
+# TextArea
+
+<ComponentBadges name="TextArea" lang="fi" />
+
+Tekstialueeseen käyttäjä kirjoittaa pidemmän, useampirivisen vastauksen.
+
+<ComponentLinks name="TextArea" lang="fi" />
+
+<Example name="text-area/Hero" lang="fi" />
+
+## Milloin käyttää
+
+Käytä tekstialuetta, kun vastaus voi olla useamman lauseen tai kappaleen mittainen, esimerkiksi palaute, kuvaus tai perustelu.
+
+**Älä käytä tekstialuetta, kun**
+
+- vastaus on lyhyt ja mahtuu yhdelle riville, kuten nimi tai sähköposti – käytä <ComponentRef name="TextField" lang="fi">TextField-komponenttia</ComponentRef>
+- käyttäjä valitsee vastauksen valmiista vaihtoehdoista – käytä <ComponentRef name="Select" lang="fi">Select-</ComponentRef>, <ComponentRef name="RadioButton" lang="fi">RadioButton-</ComponentRef> tai <ComponentRef name="Checkbox" lang="fi">Checkbox-komponenttia</ComponentRef>
+
+## Variantit ja käyttötilanteet
+
+### Ohjeteksti
+
+`helperText` näkyy otsikon alla, kuten sivun alun esimerkissä. Kerro siinä, mitä vastaukseen kannattaa kirjoittaa ja mitä siihen ei saa kirjoittaa.
+
+### Kasvaa tekstin mukana
+
+`autosize` kasvattaa tekstialuetta sitä mukaa, kun tekstiä tulee lisää. `minRows` ja `maxRows` rajaavat korkeuden. Käyttäjä voi myös itse vetää tekstialuetta isommaksi oikean alakulman kahvasta.
+
+<Example name="text-area/Autosize" lang="fi" />
+
+### Pakollinen kenttä
+
+`required` lisää otsikon perään tähden ja tekstialueelle natiivin `required`-attribuutin.
+
+<Example name="text-area/Required" lang="fi" />
+
+### Virhe
+
+`error` näyttää virheviestin ja värittää tekstialueen virheväreillä. Kerro viestissä, mikä on vialla ja miten sen korjaa.
+
+<Example name="text-area/Error" lang="fi" />
+
+### Ei käytettävissä
+
+`disabled` estää kirjoittamisen. Harkitse ensin, voisiko tekstin näyttää tavallisena tekstinä, sillä käytöstä poistettua tekstialuetta ei voi kohdistaa näppäimistöllä.
+
+<Example name="text-area/Disabled" lang="fi" />
+
+### Valmis teksti
+
+Anna valmis teksti `value`-propsilla ja pidä arvo tilassa, kuten virhe-esimerkissä. `defaultValue` näyttää tekstin, mutta vain sattumalta: komponentti asettaa aina myös oman `value`-arvonsa, ja React varoittaa kehitystilassa (#200).
+
+## Sisältöohjeet
+
+- Kirjoita otsikko lyhyeksi ja kerro siinä, mitä kysytään: "Palaute", "Kuvaus vahingosta".
+- Kerro ohjetekstissä, millaista vastausta odotat, ja mitä tietoja vastaukseen ei saa kirjoittaa, esimerkiksi henkilötunnusta.
+- Jos vastauksen pituus on rajattu, kerro raja ohjetekstissä. Komponentti ei näytä merkkilaskuria.
+- Älä käytä paikkamerkkitekstiä (`placeholder`) ohjeen sijaan. Se katoaa, kun käyttäjä alkaa kirjoittaa.
+
+## Saavutettavuus
+
+**Komponentti hoitaa**
+
+- `inputLabel` on tekstialueen `<label>`, joten ruudunlukija lukee sen tekstialueen nimenä.
+- Ohjeteksti ja virheviesti on kytketty tekstialueeseen `aria-describedby`-attribuutilla.
+- Virhe asettaa tekstialueelle `aria-invalid="true"`.
+- `required` asettaa natiivin `required`-attribuutin. Tähti on piilotettu ruudunlukijalta, joka ilmoittaa pakollisuuden itse.
+- Kohdistettu tekstialue saa TREDSin kohdistuskehyksen.
+
+**Sinun vastuullasi**
+
+- Anna tekstialueelle aina näkyvä `inputLabel`. Jos se ei ole mahdollista, anna `aria-label`. Mantinen `label`- ja `description`-propsit eivät toimi: käytä niiden sijaan `inputLabel`- ja `helperText`-propseja (#178).
+- Jos rajaat pituutta `maxLength`-attribuutilla, kerro raja ohjetekstissä. Selain lopettaa kirjoittamisen rajalla ilmoittamatta siitä.
+- Virheviesti ei ilmoita itseään ruudunlukijalle ilmestyessään. Kun lomake lähetetään virheellisenä, siirrä fokus ensimmäiseen virheelliseen kenttään tai virheiden yhteenvetoon.
+
+WCAG-kriteerit: [1.3.1 Informaatio ja suhteet](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [3.3.1 Virheen tunnistaminen](https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html), [3.3.2 Nimilaput tai ohjeet](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html), [3.3.3 Korjausehdotus](https://www.w3.org/WAI/WCAG21/Understanding/error-suggestion.html)
+
+## API
+
+<PropsTable
+  label="TextArean propsit"
+  lang="fi"
+  props={[
+    {
+      name: 'inputLabel',
+      type: 'string',
+      required: false,
+      description: 'Tekstialueen näkyvä otsikko. Ilman sitä anna `aria-label`.',
+    },
+    {
+      name: 'helperText',
+      type: 'string',
+      required: false,
+      description: 'Ohjeteksti otsikon alla.',
+    },
+    {
+      name: 'error',
+      type: 'string',
+      required: false,
+      description: 'Virheviesti. Asettaa myös `aria-invalid`-attribuutin.',
+    },
+    {
+      name: 'value',
+      type: 'string',
+      required: false,
+      description: 'Tekstialueen arvo, kun arvo on tilassa.',
+    },
+    {
+      name: 'onChange',
+      type: 'ChangeEventHandler<HTMLTextAreaElement>',
+      required: false,
+      description: 'Kutsutaan, kun arvo muuttuu.',
+    },
+    {
+      name: 'autosize',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Kasvattaa tekstialuetta tekstin mukana.',
+    },
+    {
+      name: 'minRows',
+      type: 'number',
+      required: false,
+      description: 'Pienin korkeus riveinä, kun `autosize` on käytössä.',
+    },
+    {
+      name: 'maxRows',
+      type: 'number',
+      required: false,
+      description: 'Suurin korkeus riveinä, kun `autosize` on käytössä.',
+    },
+    {
+      name: 'required',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Pakollinen kenttä.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Estää kirjoittamisen.',
+    },
+    {
+      name: 'classNames',
+      type: 'Partial<Record<…, string>>',
+      required: false,
+      description:
+        'Lisäluokat osille `root`, `wrapper`, `input`, `label`, `description` ja `error`.',
+    },
+  ]}
+/>
+
+Muut Mantinen `Textarea`-propsit ja `<textarea>`-elementin attribuutit, kuten `name`, `maxLength` ja `aria-label`, välitetään tekstialueelle.
+
+## Tunnetut ongelmat
+
+- [#178 Mantinen `label`- ja `description`-propsit hyväksytään, mutta niitä ei näytetä](https://github.com/Tampere/Tampere-design-system/issues/178)
+- [#200 `defaultValue` toimii vain sattumalta, ja React varoittaa kehitystilassa](https://github.com/Tampere/Tampere-design-system/issues/200)
+
+## Liittyvät komponentit
+
+<RelatedComponents names={['TextField', 'Fieldset']} lang="fi" />
+
+<ComponentChanges name="TextArea" lang="fi" />

@@ -1,0 +1,179 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+
+# TextArea
+
+<ComponentBadges name="TextArea" lang="en" />
+
+A text area is where the user writes a longer answer over several lines.
+
+<ComponentLinks name="TextArea" lang="en" />
+
+<Example name="text-area/Hero" lang="en" />
+
+## When to use
+
+Use a text area when the answer can run to several sentences or paragraphs, for example feedback, a description or a justification.
+
+**Don't use a text area when**
+
+- the answer is short and fits on one line, like a name or an email address – use <ComponentRef name="TextField" lang="en" />
+- the user picks the answer from given options – use <ComponentRef name="Select" lang="en" />, <ComponentRef name="RadioButton" lang="en" /> or <ComponentRef name="Checkbox" lang="en" />
+
+## Variants and situations
+
+### Helper text
+
+`helperText` appears below the label, as in the example at the top of the page. Use it to say what the answer should contain and what it must not contain.
+
+### Grows with the text
+
+`autosize` makes the text area taller as the text grows. `minRows` and `maxRows` limit the height. Users can also drag the handle in the bottom right corner to make the text area bigger.
+
+<Example name="text-area/Autosize" lang="en" />
+
+### Required field
+
+`required` adds an asterisk after the label and the native `required` attribute to the text area.
+
+<Example name="text-area/Required" lang="en" />
+
+### Error
+
+`error` shows an error message and colours the text area in error colours. Say in the message what is wrong and how to fix it.
+
+<Example name="text-area/Error" lang="en" />
+
+### Disabled
+
+`disabled` prevents typing. First consider showing the text as plain text instead, since a disabled text area can't be focused with the keyboard.
+
+<Example name="text-area/Disabled" lang="en" />
+
+### Pre-filled text
+
+Give pre-filled text with `value` and keep the value in state, as in the error example. `defaultValue` shows the text, but only by accident: the component always sets its own `value` too, and React warns in development (#200).
+
+## Content guidelines
+
+- Keep the label short and say what is asked: "Feedback", "Description of the damage".
+- Use the helper text to say what kind of answer you expect and what the answer must not include, for example a personal identity code.
+- If the length is limited, give the limit in the helper text. The component doesn't show a character counter.
+- Don't use placeholder text (`placeholder`) instead of a hint. It disappears when the user starts typing.
+
+## Accessibility
+
+**The component handles**
+
+- `inputLabel` is the text area's `<label>`, so screen readers read it as the text area's name.
+- The helper text and the error message are linked to the text area with `aria-describedby`.
+- An error sets `aria-invalid="true"` on the text area.
+- `required` sets the native `required` attribute. The asterisk is hidden from screen readers, which announce the requirement themselves.
+- A focused text area gets the TREDS focus ring.
+
+**Your responsibility**
+
+- Always give the text area a visible `inputLabel`. If that isn't possible, give `aria-label`. Mantine's `label` and `description` props don't work: use `inputLabel` and `helperText` instead (#178).
+- If you limit the length with `maxLength`, give the limit in the helper text. The browser stops input at the limit without saying so.
+- The error message doesn't announce itself when it appears. When a form is submitted with errors, move focus to the first invalid field or to an error summary.
+
+WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [3.3.1 Error Identification](https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html), [3.3.2 Labels or Instructions](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html), [3.3.3 Error Suggestion](https://www.w3.org/WAI/WCAG21/Understanding/error-suggestion.html)
+
+## API
+
+<PropsTable
+  label="TextArea props"
+  lang="en"
+  props={[
+    {
+      name: 'inputLabel',
+      type: 'string',
+      required: false,
+      description: "The text area's visible label. Without it, give `aria-label`.",
+    },
+    {
+      name: 'helperText',
+      type: 'string',
+      required: false,
+      description: 'Helper text below the label.',
+    },
+    {
+      name: 'error',
+      type: 'string',
+      required: false,
+      description: 'Error message. Also sets `aria-invalid`.',
+    },
+    {
+      name: 'value',
+      type: 'string',
+      required: false,
+      description: "The text area's value, when you keep it in state.",
+    },
+    {
+      name: 'onChange',
+      type: 'ChangeEventHandler<HTMLTextAreaElement>',
+      required: false,
+      description: 'Called when the value changes.',
+    },
+    {
+      name: 'autosize',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Grows the text area with the text.',
+    },
+    {
+      name: 'minRows',
+      type: 'number',
+      required: false,
+      description: 'Minimum height in rows when `autosize` is on.',
+    },
+    {
+      name: 'maxRows',
+      type: 'number',
+      required: false,
+      description: 'Maximum height in rows when `autosize` is on.',
+    },
+    {
+      name: 'required',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Required field.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Prevents typing.',
+    },
+    {
+      name: 'classNames',
+      type: 'Partial<Record<…, string>>',
+      required: false,
+      description:
+        'Extra classes for the parts `root`, `wrapper`, `input`, `label`, `description` and `error`.',
+    },
+  ]}
+/>
+
+Mantine's other `Textarea` props and the `<textarea>` element's attributes, such as `name`, `maxLength` and `aria-label`, are passed to the text area.
+
+## Known issues
+
+- [#178 Mantine's `label` and `description` props are accepted but not shown](https://github.com/Tampere/Tampere-design-system/issues/178)
+- [#200 `defaultValue` works only by accident, and React warns in development](https://github.com/Tampere/Tampere-design-system/issues/200)
+
+## Related components
+
+<RelatedComponents names={['TextField', 'Fieldset']} lang="en" />
+
+<ComponentChanges name="TextArea" lang="en" />

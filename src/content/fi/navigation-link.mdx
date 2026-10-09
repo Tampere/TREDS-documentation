@@ -1,0 +1,127 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import navigationLinkProps from '@/generated/NavigationLink.props.json';
+
+# NavigationLink
+
+<ComponentBadges name="NavigationLink" lang="fi" />
+
+Navigaatiolinkki vie palvelun toiselle sivulle navigaatiossa, ja se näyttää, millä sivulla käyttäjä on.
+
+<ComponentLinks name="NavigationLink" lang="fi" />
+
+<Example name="navigation-link/Hero" lang="fi" />
+
+## Milloin käyttää
+
+Käytä navigaatiolinkkiä linkkilistoissa, joilla käyttäjä liikkuu palvelun sivujen välillä: sivunavigaatiossa, alatunnisteessa ja omissa navigaatiovalikoissa. <ComponentRef name="AppHeader" lang="fi">AppHeader-</ComponentRef> ja <ComponentRef name="Footer" lang="fi">Footer-komponentit</ComponentRef> käyttävät sitä valmiiksi.
+
+**Älä käytä navigaatiolinkkiä, kun**
+
+- linkki on leipätekstin keskellä – käytä <ComponentRef name="TextLink" lang="fi">TextLink-komponenttia</ComponentRef>
+- linkki nostaa esiin sisältöä, jolla on otsikko ja kuvaus – käytä <ComponentRef name="Linkbox" lang="fi">Linkbox-komponenttia</ComponentRef>
+- painallus tekee jotain nykyisellä sivulla – käytä <ComponentRef name="Button" lang="fi">Button-komponenttia</ComponentRef>
+- näytät sivun paikan hierarkiassa – käytä <ComponentRef name="Breadcrumbs" lang="fi">Breadcrumbs-komponenttia</ComponentRef>
+
+## Variantit ja käyttötilanteet
+
+### Linkkilista
+
+Navigaatiolinkki on rivinsisäinen elementti, eikä sillä ole omia välejä. Asettele linkit itse, esimerkiksi flexillä ja TREDSin välistystokenilla, kuten esimerkeissä. Ilman asettelua linkit asettuvat samalle riville ilman välejä.
+
+### Nykyinen sivu
+
+`isSelected` alleviivaa linkin ja asettaa sille `aria-current="page"`, kuten sivun alun esimerkissä. Merkitse yhdessä navigaatiossa valituksi vain yksi linkki.
+
+### Pieni koko
+
+`size="sm"` on pienempi ja ohuempi. Käytä sitä toissijaisissa linkkilistoissa, kuten alatunnisteen lakisääteisissä linkeissä.
+
+<Example name="navigation-link/Small" lang="fi" />
+
+### Ikonit
+
+`startIcon` lisää ikonin tekstin eteen ja `endIcon` sen perään. Ikoni on aina 18 px riippumatta koosta.
+
+<Example name="navigation-link/WithIcons" lang="fi" />
+
+### Tummalla taustalla
+
+`variant="inverted"` tekee tekstistä, alleviivauksesta ja kohdistuskehyksestä vaaleat. Käytä sitä vain tummalla tai värillisellä taustalla.
+
+<Example name="navigation-link/Inverted" lang="fi" />
+
+### Reitittimen linkki
+
+`renderLink` korvaa oletuksena piirrettävän `<a>`-elementin, esimerkiksi Next.js:n `Link`-komponentilla. Funktio saa luokan ja `aria-current`-arvon, ja ne on asetettava itse. `href`, `startIcon` ja `endIcon` eivät toimi `renderLink`-propsin kanssa: anna osoite ja ikonit omalle elementillesi.
+
+<Example name="navigation-link/RouterLink" lang="fi" />
+
+## Sisältöohjeet
+
+- Kirjoita linkin teksti kohdesivun nimeksi: "Asumisneuvonta", ei "Lue lisää".
+- Käytä samaa nimeä linkissä ja kohdesivun otsikossa.
+
+## Saavutettavuus
+
+**Komponentti hoitaa**
+
+- Navigaatiolinkki on natiivi `<a>`-elementti, joten se toimii näppäimistöllä ja selaimen linkkitoiminnoilla.
+- `isSelected` asettaa `aria-current="page"`, joten ruudunlukija kertoo nykyisen sivun. Valinta näkyy alleviivauksena, ei pelkkänä värinä.
+- Kohdistettu linkki saa TREDSin kohdistuskehyksen. `inverted`-variantissa kehys on vaalea.
+
+**Sinun vastuullasi**
+
+- Kääri navigaatiolinkit `<nav>`-elementtiin ja anna sille `aria-label`, joka erottaa sen sivun muista navigaatioista.
+- Anna aina `href` tai `renderLink`. Ilman niitä linkki on `<a>` ilman osoitetta: sitä ei voi kohdistaa, eikä ruudunlukija tunnista sitä linkiksi (#161).
+- `renderLink`-propsia käyttäessäsi aseta funktion saama `aria-current` omalle elementillesi. Muuten nykyinen sivu ei kuulu ruudunlukijalle.
+- `startIcon`- ja `endIcon`-ikonit näkyvät ruudunlukijalle nimettöminä kuvina (#209). Anna ikonille `aria-hidden`, kuten esimerkissä.
+
+WCAG-kriteerit: [1.1.1 Ei-tekstuaalinen sisältö](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html), [1.3.1 Informaatio ja suhteet](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.4.4 Linkin tarkoitus (kontekstissa)](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html), [2.4.7 Näkyvä kohdistus](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html), [4.1.2 Nimi, rooli, arvo](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  props={navigationLinkProps}
+  label="NavigationLinkin propsit"
+  lang="fi"
+  overrides={{
+    href: {
+      requiredWhen: '`renderLink` puuttuu',
+      description: 'Kohdesivun osoite.',
+    },
+    isSelected: {
+      description: 'Nykyinen sivu. Alleviivaa linkin ja asettaa `aria-current="page"`.',
+    },
+    className: { description: 'Lisäluokka linkille.' },
+    variant: { description: '`inverted` tummalle tai värilliselle taustalle.' },
+    size: { description: '`sm` toissijaisiin linkkilistoihin.' },
+    startIcon: { description: 'Ikoni tekstin edessä, aina 18 px.' },
+    endIcon: { description: 'Ikoni tekstin perässä, aina 18 px.' },
+    renderLink: {
+      type: '(className, ariaCurrent) => ReactElement',
+      description:
+        'Piirtää oman linkkielementin, esimerkiksi reitittimen linkin. Aseta luokka ja `aria-current` itse.',
+    },
+  }}
+/>
+
+Kaikki `<a>`-elementin attribuutit, kuten `target` ja `aria-current`, välitetään linkille. Itse annettu `aria-current` ohittaa `isSelected`-propsin arvon.
+
+## Tunnetut ongelmat
+
+- [#209 Ikonit näkyvät ruudunlukijalle nimettöminä kuvina](https://github.com/Tampere/Tampere-design-system/issues/209)
+- [#161 Ilman `href`- ja `renderLink`-propseja linkki on toimimaton (kohta 2)](https://github.com/Tampere/Tampere-design-system/issues/161)
+
+## Liittyvät komponentit
+
+<RelatedComponents names={['TextLink', 'AppHeader', 'Footer', 'Breadcrumbs']} lang="fi" />
+
+<ComponentChanges name="NavigationLink" lang="fi" />

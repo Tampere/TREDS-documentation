@@ -1,0 +1,117 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import breadcrumbsProps from '@/generated/Breadcrumbs.props.json';
+
+# Breadcrumbs
+
+<ComponentBadges name="Breadcrumbs" lang="en" />
+
+A breadcrumb shows where in the service's page hierarchy the user is, and leads to the levels above.
+
+<ComponentLinks name="Breadcrumbs" lang="en" />
+
+<Example name="breadcrumbs/Hero" lang="en" />
+
+## When to use
+
+Use a breadcrumb in services whose pages are at least two levels deep. Place it at the top of the page, below the header and before the page's main heading. This site's breadcrumb is an example.
+
+**Don't use a breadcrumb when**
+
+- the service has only one level, for example a home page and its subpages
+- the user moves through a step-by-step form. A breadcrumb shows location, not steps.
+- you want to link to pages on the same level – use <ComponentRef name="NavigationLink" lang="en" />
+
+## Variants and situations
+
+### Trail
+
+Give `items` in order from the top level to the current page, as in the example at the top of the page. Leave `href` out of the current page: it shows as bold text, not a link.
+
+A breadcrumb shows at most the last five levels. The first levels, the home page included, are dropped without any marker.
+
+The list keeps the browser's default spacing: it is indented by 40px with a 16px gap above and below (#181). Wrap the breadcrumb in your own element and reset the `ol` element's `margin` and `padding`, since `className` doesn't work in the default mode.
+
+### Mobile view
+
+`isMobile` shows only a link to the previous level, with an arrow. The component doesn't detect the screen width, so you decide the mode (#146).
+
+<Example name="breadcrumbs/Mobile" lang="en" />
+
+With more than five levels, the mobile view's link points to the wrong page (#206).
+
+### Router links
+
+`linkComponent` renders the link with your own component, for example Next.js's `Link`. Pass the props the function receives to the link: they carry the class and the text.
+
+<Example name="breadcrumbs/RouterLink" lang="en" />
+
+## Content guidelines
+
+- Use the pages' headings, or short forms of them, as the level names.
+- Keep the names short. A long trail doesn't wrap, it spills out of its container in a narrow view (#208).
+- Set `ariaLabel` to "Breadcrumb" ("Murupolku" in Finnish).
+
+## Accessibility
+
+**The component handles**
+
+- The breadcrumb is a `<nav>` region with the levels in an ordered list `<ol>`. Screen readers announce the number of levels.
+- The upper levels are native links.
+
+**Your responsibility**
+
+- Always give `ariaLabel`. Without it the breadcrumb is an unnamed navigation region that can't be told apart from the page's other navigations (#207).
+- Leave `href` out of the current page. If you give it, the current page is a focusable link without `aria-current` (#207).
+- Screen readers read the "›" separators aloud after each level (#207).
+- A focused link gets Mantine's default blue outline, not the TREDS focus ring (#188).
+- Check that the trail fits the narrowest view, or use `isMobile` there (#208).
+
+WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.10 Reflow](https://www.w3.org/WAI/WCAG21/Understanding/reflow.html), [2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html), [2.4.8 Location](https://www.w3.org/WAI/WCAG21/Understanding/location.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  props={breadcrumbsProps}
+  label="Breadcrumbs props"
+  lang="en"
+  overrides={{
+    items: {
+      type: '{ label: string; href?: string; linkComponent?: (props) => ReactNode }[]',
+      description:
+        'The levels from the top to the current page. At most the last five are shown. Leave `href` out of the current page.',
+    },
+    ariaLabel: {
+      description: 'The navigation region\'s name, for example "Breadcrumb". Required in practice.',
+    },
+    className: { description: 'Extra class. Works only in `isMobile` mode (#181).' },
+    isMobile: {
+      defaultValue: 'false',
+      description: 'Shows only a link to the previous level.',
+    },
+  }}
+/>
+
+Breadcrumbs passes no other props on.
+
+## Known issues
+
+- [#207 The current page lacks `aria-current`, separators are read aloud, and the region is unnamed by default](https://github.com/Tampere/Tampere-design-system/issues/207)
+- [#206 The mobile view's link points to the wrong page with more than five levels](https://github.com/Tampere/Tampere-design-system/issues/206)
+- [#208 A long trail doesn't wrap and spills out of its container](https://github.com/Tampere/Tampere-design-system/issues/208)
+- [#181 The list keeps the browser's default spacing, and `className` doesn't work in the default mode](https://github.com/Tampere/Tampere-design-system/issues/181)
+- [#188 Links use Mantine's default outline instead of the TREDS focus ring](https://github.com/Tampere/Tampere-design-system/issues/188)
+- [#146 You have to decide `isMobile` yourself from the screen width](https://github.com/Tampere/Tampere-design-system/issues/146)
+
+## Related components
+
+<RelatedComponents names={['NavigationLink', 'AppHeader', 'TextLink']} lang="en" />
+
+<ComponentChanges name="Breadcrumbs" lang="en" />

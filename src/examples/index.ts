@@ -118,10 +118,58 @@ import EnGroupedSE from './en/select/Grouped';
 import EnSearchSE from './en/select/Search';
 import EnDisabledSE from './en/select/Disabled';
 import EnControlledSE from './en/select/Controlled';
+import FiHeroTA from './fi/text-area/Hero';
+import EnHeroTA from './en/text-area/Hero';
+import FiAutosizeTA from './fi/text-area/Autosize';
+import EnAutosizeTA from './en/text-area/Autosize';
+import FiRequiredTA from './fi/text-area/Required';
+import EnRequiredTA from './en/text-area/Required';
+import FiErrorTA from './fi/text-area/Error';
+import EnErrorTA from './en/text-area/Error';
+import FiDisabledTA from './fi/text-area/Disabled';
+import EnDisabledTA from './en/text-area/Disabled';
+import FiHeroSW from './fi/switch/Hero';
+import EnHeroSW from './en/switch/Hero';
+import FiGroupSW from './fi/switch/Group';
+import EnGroupSW from './en/switch/Group';
+import FiHeroNL from './fi/navigation-link/Hero';
+import EnHeroNL from './en/navigation-link/Hero';
+import FiSmallNL from './fi/navigation-link/Small';
+import EnSmallNL from './en/navigation-link/Small';
+import FiWithIconsNL from './fi/navigation-link/WithIcons';
+import EnWithIconsNL from './en/navigation-link/WithIcons';
+import FiInvertedNL from './fi/navigation-link/Inverted';
+import EnInvertedNL from './en/navigation-link/Inverted';
+import FiRouterLinkNL from './fi/navigation-link/RouterLink';
+import EnRouterLinkNL from './en/navigation-link/RouterLink';
+import FiHeroSL from './fi/skip-link/Hero';
+import EnHeroSL from './en/skip-link/Hero';
+import FiHeroBC from './fi/breadcrumbs/Hero';
+import EnHeroBC from './en/breadcrumbs/Hero';
+import FiMobileBC from './fi/breadcrumbs/Mobile';
+import EnMobileBC from './en/breadcrumbs/Mobile';
+import FiRouterLinkBC from './fi/breadcrumbs/RouterLink';
+import EnRouterLinkBC from './en/breadcrumbs/RouterLink';
 
 // Static maps: the bundler must see every example import to include it. Each language has
 // its own files so the code a reader copies carries labels in the page language.
 const fi = {
+  'text-area/Hero': FiHeroTA,
+  'text-area/Autosize': FiAutosizeTA,
+  'text-area/Required': FiRequiredTA,
+  'text-area/Error': FiErrorTA,
+  'text-area/Disabled': FiDisabledTA,
+  'switch/Hero': FiHeroSW,
+  'switch/Group': FiGroupSW,
+  'navigation-link/Hero': FiHeroNL,
+  'navigation-link/Small': FiSmallNL,
+  'navigation-link/WithIcons': FiWithIconsNL,
+  'navigation-link/Inverted': FiInvertedNL,
+  'navigation-link/RouterLink': FiRouterLinkNL,
+  'skip-link/Hero': FiHeroSL,
+  'breadcrumbs/Hero': FiHeroBC,
+  'breadcrumbs/Mobile': FiMobileBC,
+  'breadcrumbs/RouterLink': FiRouterLinkBC,
   'icon-button/Hero': FiHeroIB,
   'icon-button/Sizes': FiSizesIB,
   'icon-button/Inverted': FiInvertedIB,
@@ -188,6 +236,22 @@ export type ExampleName = keyof typeof fi;
 export const examples: Record<Lang, Record<ExampleName, ComponentType>> = {
   fi,
   en: {
+    'text-area/Hero': EnHeroTA,
+    'text-area/Autosize': EnAutosizeTA,
+    'text-area/Required': EnRequiredTA,
+    'text-area/Error': EnErrorTA,
+    'text-area/Disabled': EnDisabledTA,
+    'switch/Hero': EnHeroSW,
+    'switch/Group': EnGroupSW,
+    'navigation-link/Hero': EnHeroNL,
+    'navigation-link/Small': EnSmallNL,
+    'navigation-link/WithIcons': EnWithIconsNL,
+    'navigation-link/Inverted': EnInvertedNL,
+    'navigation-link/RouterLink': EnRouterLinkNL,
+    'skip-link/Hero': EnHeroSL,
+    'breadcrumbs/Hero': EnHeroBC,
+    'breadcrumbs/Mobile': EnMobileBC,
+    'breadcrumbs/RouterLink': EnRouterLinkBC,
     'icon-button/Hero': EnHeroIB,
     'icon-button/Sizes': EnSizesIB,
     'icon-button/Inverted': EnInvertedIB,

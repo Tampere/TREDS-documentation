@@ -1,0 +1,97 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import skipLinkProps from '@/generated/SkipLink.props.json';
+
+# SkipLink
+
+<ComponentBadges name="SkipLink" lang="en" />
+
+A skip link lets keyboard users jump over the repeated header and navigation straight to the page's main content.
+
+<ComponentLinks name="SkipLink" lang="en" />
+
+<Example name="skip-link/Hero" lang="en" />
+
+## When to use
+
+Use a skip link on every page where a repeated header or navigation comes before the main content. In practice, in every service that uses <ComponentRef name="AppHeader" lang="en" />. This site uses one too: press Tab right after the page loads.
+
+**Don't use a skip link**
+
+- for in-page navigation, like a table of contents – use <ComponentRef name="TextLink" lang="en" />
+- more than once on a page. One link to the main content is enough.
+
+## Variants and situations
+
+### Page structure
+
+The skip link is the page's first focusable element, before the header. The main content element must have the same `id` as the link's `href`, `main-content` by default.
+
+```tsx
+<ThemeProvider>
+  <SkipLink>Skip to main content</SkipLink>
+  <AppHeader /* … */ />
+  <main id="main-content">{children}</main>
+  <Footer /* … */ />
+</ThemeProvider>
+```
+
+The skip link is hidden until it gets focus. Then it appears at the top centre of the page, above everything else.
+
+### Own target and text
+
+`href` changes the target and `children` the text. The default text is Finnish, so always give the text in other languages: "Skip to main content", "Hoppa till huvudinnehållet".
+
+## Content guidelines
+
+- Use the standard text "Skip to main content" ("Hyppää pääsisältöön" in Finnish), so the link is familiar from one service to the next.
+- If the target isn't the main content, name the target: "Skip to search results".
+
+## Accessibility
+
+**The component handles**
+
+- The link is hidden only visually. It stays in the tab order and readable by screen readers.
+- A focused link appears at the top of the page with the TREDS focus ring.
+- The link moves focus to the target and makes the target focusable if needed (`tabindex="-1"`), so screen readers continue from the target too.
+- In development the component logs an error to the console if the target isn't found.
+
+**Your responsibility**
+
+- Put the skip link first among the page's focusable elements.
+- Give the main content an `id` that matches the link's `href`. Without a target the link does nothing.
+- Give the text in the page's language if the page isn't in Finnish.
+- Test the link with the keyboard: press Tab after the page loads, then Enter. The next Tab should go to the first link or field in the main content.
+
+WCAG criteria: [2.4.1 Bypass Blocks](https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html), [2.4.3 Focus Order](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html), [2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html)
+
+## API
+
+<PropsTable
+  props={skipLinkProps}
+  label="SkipLink props"
+  lang="en"
+  overrides={{
+    href: {
+      description:
+        'The target as a `#` address. The component moves focus to the element whose `id` matches it.',
+    },
+    children: { description: "The link's visible text and accessible name." },
+    className: { description: 'Extra class for the link.' },
+  }}
+/>
+
+SkipLink passes no other props to the link.
+
+## Related components
+
+<RelatedComponents names={['AppHeader', 'Footer', 'TextLink']} lang="en" />
+
+<ComponentChanges name="SkipLink" lang="en" />

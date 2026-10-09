@@ -1,0 +1,101 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import switchProps from '@/generated/Switch.props.json';
+
+# Switch
+
+<ComponentBadges name="Switch" lang="en" />
+
+A switch turns a setting on or off. The change takes effect immediately.
+
+<ComponentLinks name="Switch" lang="en" />
+
+<Example name="switch/Hero" lang="en" />
+
+## When to use
+
+Use a switch for a setting that is either on or off and takes effect immediately, without a save or submit button. For example, a filter that narrows a list on the page.
+
+**Don't use a switch when**
+
+- the choice is saved only when a form is submitted – use <ComponentRef name="Checkbox" lang="en" />
+- the options have names of their own, like "In Finnish" and "In English" – use <ComponentRef name="RadioButton" lang="en" />
+- the user filters content with several parallel choices – use <ComponentRef name="Chip" lang="en" />
+
+## Variants and situations
+
+### Single switch
+
+The label is to the left of the switch, as in the example at the top of the page. You always own the switch's state: give `checked` and update it in the `onChange` handler.
+
+### Switch group
+
+Group related switches with <ComponentRef name="Fieldset" lang="en" />. The `legend` says what the settings are about, and the `fieldsetSelectionGroup` class stacks the switches. A switch follows its label, so switches with labels of different lengths don't line up.
+
+<Example name="switch/Group" lang="en" />
+
+### Disabled
+
+The switch has no disabled state: it doesn't accept the `disabled` prop (#205). If a setting can't be changed, show its state as text.
+
+## Content guidelines
+
+- Write the label as the name of the setting, not an action: "Show open places only", not "Click to filter".
+- Don't change the label with the state. The switch shows the state itself.
+- Write the label positively, so that "on" means what the label says.
+
+## Accessibility
+
+**The component handles**
+
+- The switch is a native `<input type="checkbox">` with the role `switch`, and `label` is its `<label>`. Screen readers announce the name and the state "on" or "off".
+- Space toggles the state, and clicking the label toggles it too.
+- The state is also shown by an icon and the thumb's position, not by colour alone.
+
+**Your responsibility**
+
+- Always give `label`. If the visible label is elsewhere, give `ariaLabel`. Note the name: `ariaLabel`, not `aria-label`.
+- A focused switch gets Mantine's default blue outline, not the TREDS focus ring (#204). The outline shows on a white background, but test it on yours.
+- If the switch changes content elsewhere on the page, tell screen reader users, for example with the number of results in a `role="status"` region.
+- The switch doesn't submit its value with a form, because it doesn't pass on the `name` attribute (#205). In forms, use a Checkbox.
+
+WCAG criteria: [1.4.1 Use of Color](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html), [2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html), [3.3.2 Labels or Instructions](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html), [4.1.3 Status Messages](https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html)
+
+## API
+
+<PropsTable
+  props={switchProps}
+  label="Switch props"
+  lang="en"
+  overrides={{
+    checked: { description: 'Whether the switch is on. You always own the state.' },
+    onChange: {
+      description: 'Called when the state changes. The new state is `e.currentTarget.checked`.',
+    },
+    label: { description: "The switch's visible label and accessible name." },
+    ariaLabel: { description: 'Accessible name when there is no visible label.' },
+    classNames: {
+      description: 'Extra classes for the parts `body`, `track`, `thumb`, `label` and `input`.',
+    },
+  }}
+/>
+
+Switch passes no other props on. For example `disabled`, `name`, `id` and `aria-describedby` are TypeScript errors and don't reach the element (#205).
+
+## Known issues
+
+- [#204 A focused switch gets Mantine's default blue outline](https://github.com/Tampere/Tampere-design-system/issues/204)
+- [#205 `disabled`, `name`, `id` and other props are not passed on](https://github.com/Tampere/Tampere-design-system/issues/205)
+
+## Related components
+
+<RelatedComponents names={['Checkbox', 'RadioButton', 'Chip', 'Fieldset']} lang="en" />
+
+<ComponentChanges name="Switch" lang="en" />

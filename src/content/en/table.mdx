@@ -1,0 +1,138 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+
+# Table
+
+<ComponentBadges name="Table" lang="en" />
+
+Table shows data in rows and columns that can be read and compared in both directions.
+
+<ComponentLinks name="Table" lang="en" />
+
+<Example name="table/Hero" lang="en" />
+
+## When to use
+
+Use a table when the items share the same attributes and the user compares them, for example opening hours or application statuses.
+
+**Don't use a table when**
+
+- you only want to place content side by side – use CSS layout
+- each item has only one piece of data – use a list
+- the items differ in content and link onwards – use <ComponentRef name="Card" lang="en" /> or <ComponentRef name="Linkbox" lang="en" />
+
+## Variants and situations
+
+### Structure
+
+Table is made of parts that match the HTML table elements: `Table`, `TableHeader` (`<thead>`), `TableBody` (`<tbody>`), `TableRow` (`<tr>`), `TableHeaderCell` (`<th>`) and `TableCell` (`<td>`). Give every header cell a `scope`: `col` for a column header and `row` for a row header. A row header gets a line on its right edge.
+
+### Title
+
+The `title` of `TableHeader` is shown above the table as a `<caption>` and is the table's name, as in the example at the top of the page. If a heading already sits above the table, name the table with `aria-label` on `Table`. The visible caption can't be hidden (#176).
+
+### Wide table
+
+Table doesn't scroll itself. A wide table overflows the page, so wrap it in a scrollable element (#176). Give the wrapper `tabIndex={0}` so it can be scrolled with the keyboard, plus `role="region"` and a name.
+
+<Example name="table/Scroll" lang="en" />
+
+### Pagination
+
+A long table can be split into pages with <ComponentRef name="Pagination" lang="en" />. Put it after the table in a `TableFooter` with `variant="div"`. State the page number in the table's title, and move focus when the page changes, as the <ComponentRef name="Pagination" lang="en">Pagination page</ComponentRef> explains.
+
+<Example name="table/WithPagination" lang="en" />
+
+`TableFooter` is a `<tfoot>` by default, but that breaks the table's columns: the footer row doesn't line up with the columns (#220). Put a totals row, for example, in `TableBody` instead.
+
+### Selectable rows
+
+`TableRow` takes `selected` and `onSelectedChange` props that make the row clickable. Selection only works with a mouse, because the row can't be focused with the keyboard (#221). Don't use it. If users need to select rows, put a <ComponentRef name="Checkbox" lang="en" /> or a button in the row. The table's interactive features are still being designed (#69).
+
+## Content guidelines
+
+- Keep column headers short and unambiguous.
+- Don't leave cells empty. Write, for example, "Closed" or "No data".
+- Keep the number of columns low. If there is a lot of data, consider whether the user needs all of it.
+
+## Accessibility
+
+**The component handles**
+
+- Table is an HTML table, and the `title` of `TableHeader` is its name.
+- Rows are separated by lines and header cells are bold, so the structure doesn't rely on colour alone.
+
+**Your responsibility**
+
+- Name the table: `title` or `aria-label`.
+- Give every header cell a `scope`.
+- Wrap a wide table in a scrollable region with a name and `tabIndex={0}`.
+- Don't use selectable rows (#221).
+- Every row changes its background under the mouse, even though it can't be clicked. Don't let that mislead users: for example, don't write "click a row".
+
+WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.10 Reflow](https://www.w3.org/WAI/WCAG21/Understanding/reflow.html), [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  label="Props of the Table parts"
+  lang="en"
+  props={[
+    {
+      name: 'TableHeader: title',
+      type: 'string',
+      required: false,
+      description: "Visible title in a `<caption>`. Also the table's name.",
+    },
+    {
+      name: 'TableHeaderCell: scope',
+      type: "'col' | 'row'",
+      required: false,
+      description: 'Column or row header. `row` adds a line on the right edge.',
+    },
+    {
+      name: 'TableRow: selected',
+      type: 'boolean',
+      required: false,
+      requiredWhen: 'onSelectedChange is set',
+      description: 'Whether the row is selected. Mouse only (#221).',
+    },
+    {
+      name: 'TableRow: onSelectedChange',
+      type: '(selected: boolean) => void',
+      required: false,
+      requiredWhen: 'selected is set',
+      description: 'Called when the row is clicked.',
+    },
+    {
+      name: 'TableFooter: variant',
+      type: "'tfoot' | 'div'",
+      required: false,
+      defaultValue: "'tfoot'",
+      description:
+        '`div` after the table, for example for pagination. `tfoot` breaks the columns (#220).',
+    },
+  ]}
+/>
+
+Each part passes other props to its HTML element, for example `aria-label` to the table and `colSpan` to a cell.
+
+## Known issues
+
+- [#176 Dense size, scroll container and a hideable caption](https://github.com/Tampere/Tampere-design-system/issues/176)
+- [#69 Table use cases and scope](https://github.com/Tampere/Tampere-design-system/issues/69)
+- [#220 `TableFooter` breaks the columns](https://github.com/Tampere/Tampere-design-system/issues/220)
+- [#221 Selectable rows only work with a mouse](https://github.com/Tampere/Tampere-design-system/issues/221)
+
+## Related components
+
+<RelatedComponents names={['Pagination', 'Checkbox']} lang="en" />
+
+<ComponentChanges name="Table" lang="en" />

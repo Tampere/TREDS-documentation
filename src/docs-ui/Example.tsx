@@ -6,7 +6,15 @@ import type { Lang } from '@/i18n';
 import { CodeBlock } from './CodeBlock';
 
 // The preview and the code block come from the same file, so they cannot drift apart.
-export async function Example({ name, lang }: { name: ExampleName; lang: Lang }) {
+export async function Example({
+  name,
+  lang,
+  scroll = false,
+}: {
+  name: ExampleName;
+  lang: Lang;
+  scroll?: boolean;
+}) {
   const Component = examples[lang][name];
   const source = await readFile(
     path.join(process.cwd(), 'src/examples', lang, `${name}.tsx`),
@@ -17,7 +25,7 @@ export async function Example({ name, lang }: { name: ExampleName; lang: Lang })
 
   return (
     <div className="example">
-      <div className="example-preview">
+      <div className={scroll ? 'example-preview scroll' : 'example-preview'}>
         <Component />
       </div>
       <CodeBlock>

@@ -1,0 +1,103 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import typographyProps from '@/generated/Typography.props.json';
+
+# Typography
+
+<ComponentBadges name="Typography" lang="en" />
+
+Typography renders TREDS's text styles: five heading levels, a subheader, two body text sizes and a caption.
+
+<ComponentLinks name="Typography" lang="en" />
+
+<Example name="typography/Hero" lang="en" />
+
+## When to use
+
+Use Typography for every heading and text that TREDS components don't already style. Font, size, weight, line height and colour then come from tokens and scale with the screen width. The sizes are listed on the [Typography](/en/foundations/typography/) page.
+
+**Don't use Typography when**
+
+- the text is a link – use <ComponentRef name="TextLink" lang="en" />, which takes its size from the `size` prop
+- the text is a field's label or hint – use the field's own `label` and `description` props
+- the component has its own title prop, such as the `title` of <ComponentRef name="Card" lang="en" />
+
+## Variants and situations
+
+### Styles
+
+`variant` picks the style. It is required.
+
+<Example name="typography/Scale" lang="en" />
+
+Each style picks a default element: `h1`–`h5` the matching heading, and `subheader`, `p1`, `p2` and `caption` a `<p>`. The style also sets the colour: `h1` is brand blue, `p2` and `caption` are grey, the rest are dark.
+
+### Look and heading level are separate
+
+`component` changes the element without changing the look. Choose the heading level from the page structure and the size separately. In the example the heading is an `h2` in the structure but looks like an `h4`.
+
+<Example name="typography/Level" lang="en" />
+
+`component` only accepts `span`, `p` and `h1`–`h5`. For other elements, such as a list item, wrap Typography or use the element directly.
+
+### Spacing
+
+Typography removes the element's default margins. Space between texts comes from the layout, for example a flex or grid `gap`, not from the text component.
+
+## Content guidelines
+
+- Write headings in sentence case: a capital letter only at the start.
+- Don't end a heading with a full stop.
+- Keep body text lines to about 80 characters at most.
+
+## Accessibility
+
+**The component handles**
+
+- Each style uses the right element by default, so headings show up in the screen reader's heading list.
+- Text contrast on a white background is at least 7.7:1 (`p2` and `caption`).
+- Sizes are set in rem, so they grow with the browser's text size.
+
+**Your responsibility**
+
+- Keep heading levels in order: one `h1` per page, and no skipped levels. Choose the level with `component`, not by the look.
+- Long Finnish compound words don't wrap and can overflow a narrow screen (#184). Check long headings at a 320px width.
+- The text colour doesn't change on a coloured background. Check the contrast yourself.
+
+WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.3 Contrast (Minimum)](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html), [1.4.4 Resize Text](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html), [1.4.10 Reflow](https://www.w3.org/WAI/WCAG21/Understanding/reflow.html), [2.4.6 Headings and Labels](https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html)
+
+## API
+
+<PropsTable
+  props={typographyProps}
+  label="Typography props"
+  lang="en"
+  overrides={{
+    variant: {
+      description: 'Text style.',
+    },
+    component: {
+      description:
+        'Element. The default depends on the style: headings are `h1`–`h5`, the rest `<p>`.',
+    },
+  }}
+/>
+
+Other props, such as `id`, `className`, `ref` and `aria-*` attributes, are passed to the element.
+
+## Known issues
+
+- [#184 Long words overflow narrow screens](https://github.com/Tampere/Tampere-design-system/issues/184)
+
+## Related components
+
+<RelatedComponents names={['TextLink', 'Card']} lang="en" />
+
+<ComponentChanges name="Typography" lang="en" />

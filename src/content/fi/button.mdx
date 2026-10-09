@@ -95,7 +95,7 @@ Ikoni voi olla tekstin vasemmalla (`leftIcon`) tai oikealla (`rightIcon`) puolel
 **Sinun vastuullasi**
 
 - Painikkeen teksti tai `aria-label` kertoo toiminnon myös irrallaan ympäröivästä sisällöstä.
-- Painikkeen `type` on oletuksena `"button"`. Lomakkeen lähetyspainikkeeseen tarvitaan `type="submit"`.
+- Painikkeen `type` on oletuksena `"button"`, eikä Button vielä hyväksy `type="submit"`-propsia (#223). Lähetä lomake painikkeen `onClick`-käsittelijässä ja Enter-näppäimellä lomakkeen `onSubmit`-käsittelijässä.
 - `disabled` poistaa painikkeen fokusjärjestyksestä, eikä ruudunlukijan käyttäjä välttämättä löydä sitä. Kerro muualla, miksi toiminto ei ole käytettävissä.
 - Älä käytä painiketta siirtymiseen toiselle sivulle. Ruudunlukija ilmoittaa sen painikkeena, ja käyttäjä odottaa toimintoa eikä siirtymää.
 
@@ -134,6 +134,11 @@ WCAG-kriteerit: [2.1.1 Näppäimistö](https://www.w3.org/WAI/WCAG21/Understandi
 />
 
 Muut propsit, kuten `type` ja `id`, välitetään `<button>`-elementille.
+
+## Tunnetut ongelmat
+
+- [#223 Button ei hyväksy natiiveja button-attribuutteja, kuten `type`](https://github.com/Tampere/Tampere-design-system/issues/223)
+- [#112 `iconOnly` ei rajaa sisältöä](https://github.com/Tampere/Tampere-design-system/issues/112)
 
 ## Liittyvät komponentit
 

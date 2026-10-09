@@ -95,7 +95,7 @@ An icon can sit on the left (`leftIcon`) or right (`rightIcon`) of the label. Th
 **Your responsibility**
 
 - The label or `aria-label` describes the action even out of context.
-- The button's `type` defaults to `"button"`. A form's submit button needs `type="submit"`.
+- The button's `type` defaults to `"button"`, and Button doesn't accept `type="submit"` yet (#223). Submit the form in the button's `onClick` handler, and for the Enter key in the form's `onSubmit` handler.
 - `disabled` removes the button from the focus order, so screen reader users may not find it. Explain elsewhere why the action is unavailable.
 - Don't use a button to move to another page. Screen readers announce it as a button, and users expect an action, not navigation.
 
@@ -134,6 +134,11 @@ WCAG criteria: [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyb
 />
 
 Other props, such as `type` and `id`, are passed to the `<button>` element.
+
+## Known issues
+
+- [#223 Button doesn't accept native button attributes such as `type`](https://github.com/Tampere/Tampere-design-system/issues/223)
+- [#112 `iconOnly` doesn't constrain the content](https://github.com/Tampere/Tampere-design-system/issues/112)
 
 ## Related components
 

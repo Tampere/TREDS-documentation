@@ -187,9 +187,55 @@ import EnCenteredTB from './en/tabs/Centered';
 import FiScrollableTB from './fi/tabs/Scrollable';
 import EnScrollableTB from './en/tabs/Scrollable';
 
+import FiHeroTY from './fi/typography/Hero';
+import EnHeroTY from './en/typography/Hero';
+import FiScaleTY from './fi/typography/Scale';
+import EnScaleTY from './en/typography/Scale';
+import FiLevelTY from './fi/typography/Level';
+import EnLevelTY from './en/typography/Level';
+import FiHeroLSP from './fi/loading-spinner/Hero';
+import EnHeroLSP from './en/loading-spinner/Hero';
+import FiSizesLSP from './fi/loading-spinner/Sizes';
+import EnSizesLSP from './en/loading-spinner/Sizes';
+import FiStatusLSP from './fi/loading-spinner/Status';
+import EnStatusLSP from './en/loading-spinner/Status';
+import FiHeroMOD from './fi/modal/Hero';
+import EnHeroMOD from './en/modal/Hero';
+import FiFormMOD from './fi/modal/Form';
+import EnFormMOD from './en/modal/Form';
+import FiSizeMOD from './fi/modal/Size';
+import EnSizeMOD from './en/modal/Size';
+import FiHeroPGN from './fi/pagination/Hero';
+import EnHeroPGN from './en/pagination/Hero';
+import FiResultsPGN from './fi/pagination/Results';
+import EnResultsPGN from './en/pagination/Results';
+import FiMaxVisiblePGN from './fi/pagination/MaxVisible';
+import EnMaxVisiblePGN from './en/pagination/MaxVisible';
+import FiHeroTBL from './fi/table/Hero';
+import EnHeroTBL from './en/table/Hero';
+import FiScrollTBL from './fi/table/Scroll';
+import EnScrollTBL from './en/table/Scroll';
+import FiWithPaginationTBL from './fi/table/WithPagination';
+import EnWithPaginationTBL from './en/table/WithPagination';
+
 // Static maps: the bundler must see every example import to include it. Each language has
 // its own files so the code a reader copies carries labels in the page language.
 const fi = {
+  'typography/Hero': FiHeroTY,
+  'typography/Scale': FiScaleTY,
+  'typography/Level': FiLevelTY,
+  'loading-spinner/Hero': FiHeroLSP,
+  'loading-spinner/Sizes': FiSizesLSP,
+  'loading-spinner/Status': FiStatusLSP,
+  'modal/Hero': FiHeroMOD,
+  'modal/Form': FiFormMOD,
+  'modal/Size': FiSizeMOD,
+  'pagination/Hero': FiHeroPGN,
+  'pagination/Results': FiResultsPGN,
+  'pagination/MaxVisible': FiMaxVisiblePGN,
+  'table/Hero': FiHeroTBL,
+  'table/Scroll': FiScrollTBL,
+  'table/WithPagination': FiWithPaginationTBL,
   'paper/Hero': FiHeroPA,
   'paper/Border': FiBorderPA,
   'paper/Padding': FiPaddingPA,
@@ -290,6 +336,21 @@ export type ExampleName = keyof typeof fi;
 export const examples: Record<Lang, Record<ExampleName, ComponentType>> = {
   fi,
   en: {
+    'typography/Hero': EnHeroTY,
+    'typography/Scale': EnScaleTY,
+    'typography/Level': EnLevelTY,
+    'loading-spinner/Hero': EnHeroLSP,
+    'loading-spinner/Sizes': EnSizesLSP,
+    'loading-spinner/Status': EnStatusLSP,
+    'modal/Hero': EnHeroMOD,
+    'modal/Form': EnFormMOD,
+    'modal/Size': EnSizeMOD,
+    'pagination/Hero': EnHeroPGN,
+    'pagination/Results': EnResultsPGN,
+    'pagination/MaxVisible': EnMaxVisiblePGN,
+    'table/Hero': EnHeroTBL,
+    'table/Scroll': EnScrollTBL,
+    'table/WithPagination': EnWithPaginationTBL,
     'paper/Hero': EnHeroPA,
     'paper/Border': EnBorderPA,
     'paper/Padding': EnPaddingPA,

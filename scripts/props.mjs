@@ -50,6 +50,7 @@ const DEFAULTS = {
     externalLabel: "'(avautuu uuteen välilehteen)'",
   },
   Accordion: { transitionDuration: '0' },
+  Pagination: { maxVisiblePages: '5' },
 };
 
 const parser = docgen.withCustomConfig('tsconfig.json', {

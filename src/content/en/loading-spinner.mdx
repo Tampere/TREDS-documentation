@@ -1,0 +1,103 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+
+# LoadingSpinner
+
+<ComponentBadges name="LoadingSpinner" lang="en" />
+
+LoadingSpinner is a spinning loading indicator. It shows that something is happening, but not how long it will take.
+
+<ComponentLinks name="LoadingSpinner" lang="en" />
+
+<Example name="loading-spinner/Hero" lang="en" />
+
+## When to use
+
+Use LoadingSpinner when content is loading or an action is in progress and the duration is unknown, for example while fetching search results.
+
+**Don't use LoadingSpinner when**
+
+- loading takes less than a second – a brief flash is more distracting than the wait
+- the action has steps or a known duration – tell the user the step or the progress in text
+- the whole page is loading – show the page structure straight away and load the content in parts
+
+## Variants and situations
+
+### Always with text
+
+A spinning shape alone doesn't say what is loading. Write a short text next to it, as in the example at the top of the page. LoadingSpinner has no name of its own and can't be given one (#219), so hide it from screen readers with an `aria-hidden` wrapper and let the text tell the state.
+
+### Sizes
+
+`size` is `xs`, `sm`, `md` (default), `lg` or `xl`. Use a small size next to a button or a line of text, and a large one when it is the only content of an area.
+
+<Example name="loading-spinner/Sizes" lang="en" />
+
+### Loading state for screen readers
+
+When loading starts from a user action, announce its start and end to screen readers in a `role="status"` region. The region must be on the page before loading starts, and only its content changes. Otherwise the screen reader may miss the change. Try the example.
+
+<Example name="loading-spinner/Status" lang="en" />
+
+## Content guidelines
+
+- Say what is loading: "Finding events…", not "Loading…".
+- When loading ends, tell the result: "Found 12 events."
+- If loading fails, remove the indicator and say what went wrong and what the user can do.
+
+## Accessibility
+
+**The component handles**
+
+- The indicator's blue arc has a 3.2:1 contrast against a white background.
+- The component is a `progressbar` element with no value, which means an unknown duration.
+
+**Your responsibility**
+
+- The component has no name and can't be given one (#219). Hide it with an `aria-hidden` wrapper and tell the state in visible text.
+- Announce the start and result of loading in a `role="status"` region when loading starts from a user action.
+- Don't disable the button the user just pressed: focus is lost from the page. Ignore repeats in the handler, as in the example.
+
+WCAG criteria: [1.1.1 Non-text Content](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html), [1.4.11 Non-text Contrast](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html), [4.1.3 Status Messages](https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html)
+
+## API
+
+<PropsTable
+  label="LoadingSpinner props"
+  lang="en"
+  props={[
+    {
+      name: 'size',
+      type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number",
+      required: false,
+      defaultValue: "'md'",
+      description: 'Size. A number means pixels.',
+    },
+    {
+      name: 'style',
+      type: 'CSSProperties',
+      required: false,
+      description:
+        "Extra styles for the root element. The colour comes from tokens, and `color` doesn't change it.",
+    },
+  ]}
+/>
+
+No other props can be passed. The root element is a `<span role="progressbar">`.
+
+## Known issues
+
+- [#219 LoadingSpinner can't be given a name](https://github.com/Tampere/Tampere-design-system/issues/219)
+
+## Related components
+
+<RelatedComponents names={['Button']} lang="en" />
+
+<ComponentChanges name="LoadingSpinner" lang="en" />

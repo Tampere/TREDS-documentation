@@ -53,12 +53,12 @@ export function PropsTable({
   lang: Lang;
   overrides?: Record<string, PropOverride>;
   /** Key props inherited from Mantine, which the generated list leaves out. */
-  inherited?: Omit<PropMeta, 'required'>[];
+  inherited?: (Omit<PropMeta, 'required'> & { required?: boolean })[];
 }) {
   const t = text[lang];
   const rows: (PropMeta & PropOverride)[] = [
     ...props.map((p) => ({ ...p, ...overrides[p.name] })).filter((p) => !p.hidden),
-    ...inherited.map((p) => ({ ...p, required: false })),
+    ...inherited.map((p) => ({ ...p, required: p.required ?? false })),
   ];
   return (
     <div className="table-wrap">

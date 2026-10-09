@@ -1,0 +1,112 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import paginationProps from '@/generated/Pagination.props.json';
+
+# Pagination
+
+<ComponentBadges name="Pagination" lang="fi" />
+
+Pagination jakaa pitkän listan tai taulukon sivuiksi. Sillä siirrytään sivujen välillä numeroilla tai edellinen- ja seuraava-painikkeilla.
+
+<ComponentLinks name="Pagination" lang="fi" />
+
+<Example name="pagination/Hero" lang="fi" scroll />
+
+## Milloin käyttää
+
+Käytä Paginationia, kun lista tai <ComponentRef name="Table" lang="fi">taulukko</ComponentRef> on liian pitkä yhdelle näkymälle ja käyttäjä etsii siitä tiettyä kohtaa, esimerkiksi hakutuloksissa.
+
+**Älä käytä Paginationia, kun**
+
+- sivuja on vain yksi – piilota sivutus kokonaan
+- käyttäjä selaa sisältöä alusta loppuun – näytä kaikki tai lisää "Näytä lisää" -painike
+- käyttäjä etenee vaiheittain lomakkeessa
+
+## Variantit ja käyttötilanteet
+
+### Tila sinulla
+
+Pagination ei pidä tilaa itse. `activePageIndex` on valitun sivun indeksi ja `onPageChange` kertoo uuden indeksin. **Indeksit alkavat nollasta:** ensimmäinen sivu on `0`, vaikka painikkeessa lukee 1.
+
+Painikkeet ovat `<button>`-elementtejä, eivät linkkejä. Jos sivuilla on omat osoitteet, päivitä osoite itse `onPageChange`-funktiossa.
+
+### Sivun vaihtuminen
+
+Kun sivu vaihtuu, siirrä kohdistus sisällön otsikkoon. Silloin näppäimistön ja ruudunlukijan käyttäjä aloittaa uuden sivun alusta, eikä kohdistus katoa, kun viimeisen sivun seuraava-painike poistuu käytöstä (#218). Esimerkissä otsikolla on `tabIndex={-1}`, jotta sen voi kohdistaa ohjelmallisesti. Otsikko kertoo myös sivunumeron.
+
+<Example name="pagination/Results" lang="fi" scroll />
+
+### Monta sivua
+
+`maxVisiblePages` on näkyvien kohtien enimmäismäärä (oletus 5). Siihen lasketaan ensimmäinen ja viimeinen sivu sekä kolmen pisteen merkit. Oletusarvolla keskellä listaa näkyy vain valittu sivu, esimerkiksi "1 … 10 … 20" (#216). Arvolla 7 näkyvät myös viereiset sivut.
+
+<Example name="pagination/MaxVisible" lang="fi" scroll />
+
+Seitsemän kohtaa ei mahdu 320 pikselin levyiselle näytölle. Jo oletusarvon viisi kohtaa on siinä noin 300 pikseliä leveä, joten sivutus levenee palstan yli (#217).
+
+## Sisältöohjeet
+
+- Anna sivupainikkeille nimet muodossa "Sivu 3 / 10" `getAriaLabelForButton`-funktiolla.
+- Nimeä nuolipainikkeet "Edellinen sivu" ja "Seuraava sivu".
+- Kerro sisällön otsikossa tai sen alla, millä sivulla käyttäjä on ja montako tulosta on yhteensä.
+
+## Saavutettavuus
+
+**Komponentti hoitaa**
+
+- Pagination on `nav`-elementti, ja sivut ovat listana.
+- Valitulla sivulla on `aria-current="page"`, ja se erottuu muista täytetyllä taustalla.
+- Nuolipainikkeiden nimet ovat pakollisia. Ensimmäisellä ja viimeisellä sivulla nuolipainike poistuu käytöstä.
+- Kohdistetussa painikkeessa on TREDSin kohdistuskehys.
+
+**Sinun vastuullasi**
+
+- Anna sivupainikkeille nimet `getAriaLabelForButton`-funktiolla. Ilman sitä niiden nimet ovat pelkkiä numeroita.
+- Siirrä kohdistus sisällön otsikkoon, kun sivu vaihtuu.
+- `nav`-elementille ei voi antaa nimeä (#218). Jos sivulla on muitakin navigaatioita, ruudunlukijan käyttäjä ei erota niitä toisistaan.
+- Tarkista sivutus 320 pikselin levyisellä näytöllä (#217).
+
+WCAG-kriteerit: [1.3.1 Informaatio ja suhteet](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.10 Mukautuva näyttö](https://www.w3.org/WAI/WCAG21/Understanding/reflow.html), [2.4.3 Kohdistusjärjestys](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html), [4.1.2 Nimi, rooli, arvo](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  props={paginationProps}
+  label="Paginationin propsit"
+  lang="fi"
+  overrides={{
+    pageCount: { description: 'Sivujen määrä.' },
+    activePageIndex: { description: 'Valitun sivun indeksi. Ensimmäinen sivu on `0`.' },
+    onPageChange: { description: 'Kutsutaan uuden sivun indeksillä.' },
+    getAriaLabelForButton: {
+      description: 'Palauttaa sivupainikkeen nimen indeksistä, esimerkiksi "Sivu 3 / 10".',
+    },
+    maxVisiblePages: {
+      description:
+        'Näkyvien kohtien enimmäismäärä, ensimmäinen ja viimeinen sivu sekä kolmen pisteen merkit mukaan lukien.',
+    },
+    leftButtonLabel: { description: 'Edellinen sivu -painikkeen nimi.' },
+    rightButtonLabel: { description: 'Seuraava sivu -painikkeen nimi.' },
+  }}
+/>
+
+Muita propseja ei voi antaa, ei myöskään `className`- tai `aria-label`-propsia.
+
+## Tunnetut ongelmat
+
+- [#216 Oletusasetuksella keskellä listaa näkyy vain valittu sivu](https://github.com/Tampere/Tampere-design-system/issues/216)
+- [#217 Sivutus ei mahdu 320 pikselin näytölle](https://github.com/Tampere/Tampere-design-system/issues/217)
+- [#218 Nimetön navigaatio ja kohdistuksen katoaminen viimeisellä sivulla](https://github.com/Tampere/Tampere-design-system/issues/218)
+
+## Liittyvät komponentit
+
+<RelatedComponents names={['Table']} lang="fi" />
+
+<ComponentChanges name="Pagination" lang="fi" />

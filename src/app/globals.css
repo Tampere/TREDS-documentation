@@ -251,6 +251,11 @@ pre {
   gap: var(--space-sm);
   align-items: center;
 }
+/* For components wider than a 320px column (Pagination, #217): scroll here
+   instead of widening the page. */
+.example-preview.scroll {
+  overflow-x: auto;
+}
 /* Shiki's github-light-high-contrast colours are checked against this white background. */
 .code,
 .example-code pre,

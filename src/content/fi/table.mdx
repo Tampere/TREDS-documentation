@@ -1,0 +1,138 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+
+# Table
+
+<ComponentBadges name="Table" lang="fi" />
+
+Table näyttää tiedot riveinä ja sarakkeina, joita voi lukea ja vertailla kumpaankin suuntaan.
+
+<ComponentLinks name="Table" lang="fi" />
+
+<Example name="table/Hero" lang="fi" />
+
+## Milloin käyttää
+
+Käytä taulukkoa, kun tiedoilla on samat ominaisuudet ja käyttäjä vertailee niitä, esimerkiksi aukioloajat tai hakemusten tilat.
+
+**Älä käytä taulukkoa, kun**
+
+- haluat vain asetella sisältöä vierekkäin – käytä CSS-asettelua
+- jokaisella kohdalla on vain yksi tieto – käytä listaa
+- kohdat ovat sisällöltään erilaisia ja niistä linkitetään eteenpäin – käytä <ComponentRef name="Card" lang="fi">Card-</ComponentRef> tai <ComponentRef name="Linkbox" lang="fi">Linkbox-komponentteja</ComponentRef>
+
+## Variantit ja käyttötilanteet
+
+### Rakenne
+
+Table koostuu osista, jotka vastaavat HTML-taulukon elementtejä: `Table`, `TableHeader` (`<thead>`), `TableBody` (`<tbody>`), `TableRow` (`<tr>`), `TableHeaderCell` (`<th>`) ja `TableCell` (`<td>`). Anna jokaiselle otsikkosolulle `scope`: `col` sarakkeen ja `row` rivin otsikolle. Rivin otsikko saa oikeaan reunaansa viivan.
+
+### Otsikko
+
+`TableHeader`-osan `title` näkyy taulukon yläpuolella `<caption>`-elementtinä ja on taulukon nimi, kuten sivun alun esimerkissä. Jos taulukon yläpuolella on jo otsikko, anna nimi `Table`-osan `aria-label`-attribuutilla. Näkyvää otsikkoa ei voi piilottaa (#176).
+
+### Leveä taulukko
+
+Table ei vieritä itseään. Leveä taulukko levenee sivun yli, joten kääri se vieritettävään elementtiin (#176). Anna kääreelle `tabIndex={0}`, jotta sitä voi vierittää näppäimistöllä, sekä `role="region"` ja nimi.
+
+<Example name="table/Scroll" lang="fi" />
+
+### Sivutus
+
+Pitkän taulukon voi jakaa sivuiksi <ComponentRef name="Pagination" lang="fi">Pagination-komponentilla</ComponentRef>. Laita se `TableFooter`-osaan, jolle annat `variant="div"`, taulukon jälkeen. Kerro sivunumero taulukon otsikossa ja siirrä kohdistus sivun vaihtuessa, kuten <ComponentRef name="Pagination" lang="fi">Pagination-sivulla</ComponentRef> neuvotaan.
+
+<Example name="table/WithPagination" lang="fi" />
+
+`TableFooter` on oletuksena `<tfoot>`, mutta se rikkoo taulukon sarakkeet: alarivi ei asetu sarakkeiden kohdalle (#220). Laita esimerkiksi summarivi `TableBody`-osaan.
+
+### Valittavat rivit
+
+`TableRow` ottaa `selected`- ja `onSelectedChange`-propsit, jotka tekevät rivistä klikattavan. Valinta toimii vain hiirellä, sillä riviä ei voi kohdistaa näppäimistöllä (#221). Älä käytä sitä. Jos käyttäjän pitää valita rivejä, laita riville <ComponentRef name="Checkbox" lang="fi">Checkbox</ComponentRef> tai painike. Taulukon vuorovaikutteiset toiminnot ovat vielä suunnittelussa (#69).
+
+## Sisältöohjeet
+
+- Kirjoita sarakkeiden otsikot lyhyiksi ja yksiselitteisiksi.
+- Älä jätä soluja tyhjiksi. Kirjoita esimerkiksi "Suljettu" tai "Ei tietoa".
+- Pidä sarakkeita vähän. Jos tietoja on paljon, harkitse, tarvitseeko käyttäjä niitä kaikkia.
+
+## Saavutettavuus
+
+**Komponentti hoitaa**
+
+- Table on HTML-taulukko, ja `TableHeader`-osan `title` on sen nimi.
+- Rivien välissä on viivat, ja otsikkosolut ovat lihavoituja, joten rakenne ei jää pelkän värin varaan.
+
+**Sinun vastuullasi**
+
+- Anna taulukolle nimi: `title` tai `aria-label`.
+- Anna jokaiselle otsikkosolulle `scope`.
+- Kääri leveä taulukko vieritettävään alueeseen, jolla on nimi ja `tabIndex={0}`.
+- Älä käytä valittavia rivejä (#221).
+- Kaikki rivit muuttavat taustaväriään hiiren alla, vaikkei niitä voi klikata. Älä anna sen johtaa käyttäjää harhaan: älä esimerkiksi kirjoita "klikkaa riviä".
+
+WCAG-kriteerit: [1.3.1 Informaatio ja suhteet](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.10 Mukautuva näyttö](https://www.w3.org/WAI/WCAG21/Understanding/reflow.html), [2.1.1 Näppäimistö](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [4.1.2 Nimi, rooli, arvo](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  label="Tablen osien propsit"
+  lang="fi"
+  props={[
+    {
+      name: 'TableHeader: title',
+      type: 'string',
+      required: false,
+      description: 'Näkyvä otsikko `<caption>`-elementissä. Myös taulukon nimi.',
+    },
+    {
+      name: 'TableHeaderCell: scope',
+      type: "'col' | 'row'",
+      required: false,
+      description: 'Sarakkeen tai rivin otsikko. `row` lisää oikean reunan viivan.',
+    },
+    {
+      name: 'TableRow: selected',
+      type: 'boolean',
+      required: false,
+      requiredWhen: 'onSelectedChange on annettu',
+      description: 'Onko rivi valittu. Toimii vain hiirellä (#221).',
+    },
+    {
+      name: 'TableRow: onSelectedChange',
+      type: '(selected: boolean) => void',
+      required: false,
+      requiredWhen: 'selected on annettu',
+      description: 'Kutsutaan, kun riviä klikataan.',
+    },
+    {
+      name: 'TableFooter: variant',
+      type: "'tfoot' | 'div'",
+      required: false,
+      defaultValue: "'tfoot'",
+      description:
+        '`div` taulukon jälkeen esimerkiksi sivutukselle. `tfoot` rikkoo sarakkeet (#220).',
+    },
+  ]}
+/>
+
+Jokainen osa välittää muut propsit vastaavalle HTML-elementille, esimerkiksi `aria-label` taulukolle ja `colSpan` solulle.
+
+## Tunnetut ongelmat
+
+- [#176 Tiivis koko, vierityssäiliö ja piilotettava otsikko](https://github.com/Tampere/Tampere-design-system/issues/176)
+- [#69 Taulukon käyttötapaukset ja laajuus](https://github.com/Tampere/Tampere-design-system/issues/69)
+- [#220 `TableFooter` rikkoo sarakkeet](https://github.com/Tampere/Tampere-design-system/issues/220)
+- [#221 Valittavat rivit toimivat vain hiirellä](https://github.com/Tampere/Tampere-design-system/issues/221)
+
+## Liittyvät komponentit
+
+<RelatedComponents names={['Pagination', 'Checkbox']} lang="fi" />
+
+<ComponentChanges name="Table" lang="fi" />

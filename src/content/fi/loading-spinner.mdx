@@ -1,0 +1,102 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+
+# LoadingSpinner
+
+<ComponentBadges name="LoadingSpinner" lang="fi" />
+
+LoadingSpinner on pyörivä latausindikaattori. Se kertoo, että jotain on tapahtumassa, mutta ei sitä, kuinka kauan se kestää.
+
+<ComponentLinks name="LoadingSpinner" lang="fi" />
+
+<Example name="loading-spinner/Hero" lang="fi" />
+
+## Milloin käyttää
+
+Käytä LoadingSpinneria, kun sisältö latautuu tai toiminto on kesken eikä kestoa tiedetä, esimerkiksi hakutulosten haussa.
+
+**Älä käytä LoadingSpinneria, kun**
+
+- lataus kestää alle sekunnin – lyhyt välähdys on häiritsevämpi kuin odotus
+- toiminto etenee vaiheittain tai kesto tiedetään – kerro käyttäjälle vaihe tai edistyminen tekstinä
+- latautuu koko sivu – näytä sivun rakenne heti ja lataa sisältö osiin
+
+## Variantit ja käyttötilanteet
+
+### Aina tekstin kanssa
+
+Pelkkä pyörivä kuvio ei kerro, mitä ladataan. Kirjoita sen viereen lyhyt teksti, kuten sivun alun esimerkissä. LoadingSpinnerilla ei ole omaa nimeä, eikä sille voi antaa nimeä (#219), joten piilota se ruudunlukijalta `aria-hidden`-kääreellä ja anna tekstin kertoa tila.
+
+### Koot
+
+`size` on `xs`, `sm`, `md` (oletus), `lg` tai `xl`. Käytä pientä kokoa painikkeen tai tekstirivin vieressä ja suurta, kun se on alueen ainoa sisältö.
+
+<Example name="loading-spinner/Sizes" lang="fi" />
+
+### Latauksen tila ruudunlukijalle
+
+Kun lataus alkaa käyttäjän toiminnosta, kerro sen alku ja loppu ruudunlukijalle `role="status"`-alueella. Alueen on oltava sivulla jo ennen latausta, ja vain sen sisältö vaihtuu. Muuten ruudunlukija ei välttämättä huomaa muutosta. Kokeile esimerkkiä.
+
+<Example name="loading-spinner/Status" lang="fi" />
+
+## Sisältöohjeet
+
+- Kerro, mitä ladataan: "Haetaan tapahtumia…", ei "Ladataan…".
+- Kun lataus päättyy, kerro tulos: "Löytyi 12 tapahtumaa."
+- Jos lataus epäonnistuu, poista indikaattori ja kerro virhe sekä mitä käyttäjä voi tehdä.
+
+## Saavutettavuus
+
+**Komponentti hoitaa**
+
+- Indikaattorin sininen kaari erottuu valkoisesta taustasta kontrastilla 3,2:1.
+- Komponentti on `progressbar`-roolinen elementti ilman arvoa, eli kesto on tuntematon.
+
+**Sinun vastuullasi**
+
+- Komponentilla ei ole nimeä, eikä sitä voi antaa (#219). Piilota se `aria-hidden`-kääreellä ja kerro tila näkyvällä tekstillä.
+- Kerro latauksen alku ja tulos `role="status"`-alueella, jos lataus alkaa käyttäjän toiminnosta.
+- Älä poista käytöstä painiketta, jota käyttäjä juuri painoi: kohdistus katoaa sivulta. Estä toisto käsittelijässä, kuten esimerkissä.
+
+WCAG-kriteerit: [1.1.1 Ei-tekstuaalinen sisältö](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html), [1.4.11 Ei-tekstuaalisen sisällön kontrasti](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html), [4.1.2 Nimi, rooli, arvo](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html), [4.1.3 Tilasanomat](https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html)
+
+## API
+
+<PropsTable
+  label="LoadingSpinnerin propsit"
+  lang="fi"
+  props={[
+    {
+      name: 'size',
+      type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number",
+      required: false,
+      defaultValue: "'md'",
+      description: 'Koko. Luku tarkoittaa pikseleitä.',
+    },
+    {
+      name: 'style',
+      type: 'CSSProperties',
+      required: false,
+      description: 'Lisätyylit juurielementille. Väri tulee tokeneista, eikä `color` muuta sitä.',
+    },
+  ]}
+/>
+
+Muita propseja ei voi antaa. Juurielementti on `<span role="progressbar">`.
+
+## Tunnetut ongelmat
+
+- [#219 LoadingSpinnerille ei voi antaa nimeä](https://github.com/Tampere/Tampere-design-system/issues/219)
+
+## Liittyvät komponentit
+
+<RelatedComponents names={['Button']} lang="fi" />
+
+<ComponentChanges name="LoadingSpinner" lang="fi" />

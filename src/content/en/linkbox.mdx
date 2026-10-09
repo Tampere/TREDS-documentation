@@ -1,0 +1,127 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import linkboxProps from '@/generated/Linkbox.props.json';
+
+# Linkbox
+
+<ComponentBadges name="Linkbox" lang="en" />
+
+A linkbox is a box-shaped link: the whole box leads to one destination.
+
+<ComponentLinks name="Linkbox" lang="en" />
+
+<Example name="linkbox/Hero" lang="en" />
+
+## When to use
+
+Use a linkbox to highlight content or a section of the service that the user moves to, for example service highlights on a home page. A linkbox has a title, and it can have a short description and an image.
+
+**Don't use a linkbox when**
+
+- the box contains several links or buttons – use <ComponentRef name="Card" lang="en" />
+- the link is in the middle of text – use <ComponentRef name="TextLink" lang="en" />
+- the links are in a navigation list – use <ComponentRef name="NavigationLink" lang="en" />
+- pressing it does something on the page – use <ComponentRef name="Button" lang="en" />
+
+## Variants and situations
+
+### Grid
+
+Linkboxes usually go in a grid, as in the example at the top of the page. A linkbox doesn't lay itself out, so use a CSS grid and TREDS spacing. On a white page the box's edge doesn't show, so it works best on a coloured or grey background (#190).
+
+### Image
+
+`media` shows an image at the top of the box in a 3:2 frame. `mediaPlacement="left"` puts the image on the left, and when the box is narrower than 768px, the image moves back to the top.
+
+<Example name="linkbox/Media" lang="en" />
+
+### Inverted
+
+`inverted` makes the box turquoise and the text white. It stands out best on a white page. When focused or hovered the background gets lighter, and the description's contrast drops below the requirement (#211).
+
+<Example name="linkbox/Inverted" lang="en" />
+
+### External link
+
+`external` swaps the arrow for the external link icon, opens the link in a new tab and adds the text "(avautuu uuteen välilehteen)" to the link's name. In other languages, give the text with `externalLabel`.
+
+<Example name="linkbox/External" lang="en" />
+
+## Content guidelines
+
+- Write the title as the name of the target page. The title is also the link's name.
+- Keep the description to one sentence and say what the target offers.
+- Use the `eyebrow` text for classification, for example "Services" or "News".
+- Use external links sparingly: a new tab breaks returning with the Back button.
+
+## Accessibility
+
+**The component handles**
+
+- The box is a native `<a>` link, and the title is a heading element (H3 by default).
+- The link's name is the `title`. `external` adds the new-tab notice to the name.
+- A focused box gets the TREDS focus ring outside the box.
+- The icons are hidden from screen readers.
+
+**Your responsibility**
+
+- The link's name is the title alone: screen readers don't read the `eyebrow` and `description` texts as part of the link's name. Write the title so it names the target on its own.
+- Make titles unique. Two boxes with the same name leading to different places confuse users browsing a list of links.
+- Choose the heading level to fit the page structure with `titleOrder`.
+- An `inverted` box's description drops to 4.34:1 when hovered or focused (#211). Keep the description short or use a white box until it's fixed.
+
+WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.3 Contrast (Minimum)](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html), [2.4.4 Link Purpose (In Context)](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html), [2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html)
+
+## API
+
+<PropsTable
+  props={linkboxProps}
+  label="Linkbox props"
+  lang="en"
+  overrides={{
+    'data-testid': { hidden: true },
+    href: { description: "The target's address." },
+    title: { description: "The title and the link's name." },
+    titleOrder: { description: 'Heading level. The default is 3.' },
+    eyebrow: { description: "Small text above the title. Not part of the link's name." },
+    description: {
+      description: "A short description below the title. Not part of the link's name.",
+    },
+    media: { description: 'An image or other media. Cropped to a 3:2 frame.' },
+    mediaPlacement: {
+      description: '`top` or `left`. `left` switches to the `top` layout below 768px wide.',
+    },
+    inverted: { description: 'A turquoise box with white text.' },
+    external: {
+      description: "External link: its own icon, a new tab and a notice in the link's name.",
+    },
+    externalLabel: { description: "The new-tab notice in the link's name." },
+    target: { description: 'Native `target`. Ignored when `external` is set.' },
+    rel: { description: 'Native `rel`. `external` adds `noopener noreferrer`.' },
+    className: { description: 'Extra class for the box.' },
+    id: { description: "The element's `id`." },
+    role: { description: 'ARIA role.' },
+    component: { description: 'Root element. The default is `a`.' },
+  }}
+/>
+
+`aria-*` attributes are passed to the link too. Your own `aria-label` replaces the title in the link's name.
+
+## Known issues
+
+- [#211 An inverted box's contrast drops to 4.34:1 when hovered or focused](https://github.com/Tampere/Tampere-design-system/issues/211)
+- [#189 No slot for a status next to the title](https://github.com/Tampere/Tampere-design-system/issues/189)
+- [#190 No optional border for white backgrounds](https://github.com/Tampere/Tampere-design-system/issues/190)
+
+## Related components
+
+<RelatedComponents names={['Card', 'TextLink', 'NavigationLink', 'Paper']} lang="en" />
+
+<ComponentChanges name="Linkbox" lang="en" />

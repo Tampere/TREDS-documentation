@@ -1,0 +1,165 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import accordionProps from '@/generated/Accordion.props.json';
+
+# Accordion
+
+<ComponentBadges name="Accordion" lang="fi" />
+
+Haitari jakaa sisällön otsikoiden alle avattaviin osioihin. Käyttäjä avaa vain ne osiot, joita tarvitsee.
+
+<ComponentLinks name="Accordion" lang="fi" />
+
+<Example name="accordion/Hero" lang="fi" />
+
+## Milloin käyttää
+
+Käytä haitaria, kun sivulla on useita erillisiä sisältöosioita, joista käyttäjä tarvitsee yleensä vain osan, esimerkiksi usein kysytyt kysymykset tai lisätiedot.
+
+**Älä käytä haitaria, kun**
+
+- käyttäjä tarvitsee yleensä kaiken sisällön – näytä se suoraan väliotsikoiden alla
+- osiot ovat saman asian rinnakkaisia näkymiä – käytä <ComponentRef name="Tabs" lang="fi">Tabs-komponenttia</ComponentRef>
+- sisältöä on vain yksi lyhyt kappale – näytä se suoraan
+
+## Variantit ja käyttötilanteet
+
+### Välistys
+
+`spacing` on pakollinen. `default` erottaa osiot toisistaan väleillä ja varjoilla, kuten sivun alun esimerkissä. `none` asettaa osiot tiiviisti allekkain.
+
+<Example name="accordion/NoSpacing" lang="fi" />
+
+### Avaa- ja sulje-tekstit
+
+`openLabel` ja `closeLabel` näyttävät otsikon oikeassa reunassa tekstin, joka vaihtuu tilan mukaan. Tekstit tulevat painikkeen nimeen, joten ruudunlukija kuulee esimerkiksi "Hakemuksen tiedot Näytä, painike, suljettu".
+
+<Example name="accordion/OpenCloseLabels" lang="fi" />
+
+### Usea osio auki
+
+Käyttäjä voi avata useita osioita yhtä aikaa. Kaikki osiot ovat aluksi kiinni, eikä yhtäkään voi avata valmiiksi (#213). `onChange` kertoo avoinna olevien osioiden `value`-arvot.
+
+### Ei käytettävissä
+
+`disabled` estää osion avaamisen ja harmaannuttaa otsikon. Kerro muualla, miksi sisältö ei ole saatavilla.
+
+## Sisältöohjeet
+
+- Kirjoita otsikko niin, että käyttäjä tietää ennen avaamista, mitä osiossa on. Kysymysmuoto sopii usein kysytyille kysymyksille.
+- Älä piilota haitariin tietoa, jota jokainen käyttäjä tarvitsee, kuten määräaikoja.
+- Pidä otsikot lyhyinä, jotta ne mahtuvat yhdelle riville myös puhelimessa.
+
+## Saavutettavuus
+
+**Komponentti hoitaa**
+
+- Otsikko on natiivi `<button>`, jolla on `aria-expanded`. Ruudunlukija kertoo, onko osio auki.
+- Enter ja välilyönti avaavat ja sulkevat osion. Nuolinäppäimet ylös ja alas siirtävät fokuksen otsikosta toiseen.
+- Avattu osio on `region`-alue, jonka nimi on otsikko.
+- Kohdistettu otsikko saa TREDSin kohdistuskehyksen.
+
+**Sinun vastuullasi**
+
+- Otsikot eivät ole otsikkoelementtejä, joten ruudunlukijan käyttäjä ei löydä osioita otsikoista selaamalla (#212). Laita haitarin yläpuolelle oikea otsikko, joka kertoo, mistä osiot kertovat.
+- Suljettujen osioiden sisältö ei ole sivulla, joten selaimen haku (Ctrl+F) ei löydä sitä.
+- Avaa ja sulje -tekstit tulevat painikkeen nimeen. Jos käytät niitä, pidä ne lyhyinä.
+- Otsikon nuoli näkyy ruudunlukijalle nimettömänä kuvana (#212).
+
+WCAG-kriteerit: [1.3.1 Informaatio ja suhteet](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.1.1 Näppäimistö](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [2.4.6 Otsikot ja nimilaput](https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html), [4.1.2 Nimi, rooli, arvo](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+### Accordion
+
+<PropsTable
+  props={accordionProps}
+  label="Accordionin propsit"
+  lang="fi"
+  overrides={{
+    spacing: {
+      type: "'default' | 'none'",
+      description: 'Välit osioiden välissä: `default` tai `none`.',
+    },
+    onChange: {
+      description: 'Kutsutaan, kun osio avataan tai suljetaan. Saa avoinna olevat arvot.',
+    },
+    transitionDuration: { description: 'Avautumisen animaation kesto millisekunteina.' },
+    classNames: {
+      description: 'Lisäluokat osille `root`, `item`, `control`, `label`, `chevron` ja `content`.',
+    },
+    role: { description: 'Rooli koko haitarille: `list`, `region` tai `group`.' },
+  }}
+/>
+
+### AccordionItem
+
+<PropsTable
+  label="AccordionItemin propsit"
+  lang="fi"
+  props={[
+    {
+      name: 'value',
+      type: 'string',
+      required: true,
+      description: 'Osion yksilöivä arvo. `onChange` palauttaa nämä.',
+    },
+    {
+      name: 'label',
+      type: 'ReactNode',
+      required: true,
+      description: 'Osion otsikko ja painikkeen nimi.',
+    },
+    {
+      name: 'children',
+      type: 'ReactNode',
+      required: false,
+      description: 'Osion sisältö.',
+    },
+    {
+      name: 'openLabel',
+      type: 'ReactNode',
+      required: false,
+      description: 'Teksti otsikon oikeassa reunassa, kun osio on kiinni.',
+    },
+    {
+      name: 'closeLabel',
+      type: 'ReactNode',
+      required: false,
+      description: 'Teksti otsikon oikeassa reunassa, kun osio on auki.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Estää osion avaamisen.',
+    },
+    {
+      name: 'role',
+      type: "'listitem'",
+      required: false,
+      description: 'Käytä, kun haitarin `role` on `list`.',
+    },
+  ]}
+/>
+
+Accordion ja AccordionItem eivät välitä muita propseja eteenpäin.
+
+## Tunnetut ongelmat
+
+- [#212 Otsikot eivät ole otsikkoelementtejä, nuoli on nimetön kuva ja `aria-controls` osoittaa puuttuviin paneeleihin](https://github.com/Tampere/Tampere-design-system/issues/212)
+- [#213 Osiota ei voi avata valmiiksi eikä avoimia osioita voi ohjata](https://github.com/Tampere/Tampere-design-system/issues/213)
+
+## Liittyvät komponentit
+
+<RelatedComponents names={['Tabs', 'Card']} lang="fi" />
+
+<ComponentChanges name="Accordion" lang="fi" />

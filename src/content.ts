@@ -51,6 +51,26 @@ export const content: Partial<Record<string, Record<Lang, Loader>>> = {
     fi: () => import('./content/fi/breadcrumbs.mdx'),
     en: () => import('./content/en/breadcrumbs.mdx'),
   },
+  'components/paper': {
+    fi: () => import('./content/fi/paper.mdx'),
+    en: () => import('./content/en/paper.mdx'),
+  },
+  'components/card': {
+    fi: () => import('./content/fi/card.mdx'),
+    en: () => import('./content/en/card.mdx'),
+  },
+  'components/linkbox': {
+    fi: () => import('./content/fi/linkbox.mdx'),
+    en: () => import('./content/en/linkbox.mdx'),
+  },
+  'components/accordion': {
+    fi: () => import('./content/fi/accordion.mdx'),
+    en: () => import('./content/en/accordion.mdx'),
+  },
+  'components/tabs': {
+    fi: () => import('./content/fi/tabs.mdx'),
+    en: () => import('./content/en/tabs.mdx'),
+  },
   'components/badge': {
     fi: () => import('./content/fi/badge.mdx'),
     en: () => import('./content/en/badge.mdx'),

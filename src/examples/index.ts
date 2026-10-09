@@ -150,10 +150,64 @@ import FiMobileBC from './fi/breadcrumbs/Mobile';
 import EnMobileBC from './en/breadcrumbs/Mobile';
 import FiRouterLinkBC from './fi/breadcrumbs/RouterLink';
 import EnRouterLinkBC from './en/breadcrumbs/RouterLink';
+import FiHeroPA from './fi/paper/Hero';
+import EnHeroPA from './en/paper/Hero';
+import FiBorderPA from './fi/paper/Border';
+import EnBorderPA from './en/paper/Border';
+import FiPaddingPA from './fi/paper/Padding';
+import EnPaddingPA from './en/paper/Padding';
+import FiHeroCA from './fi/card/Hero';
+import EnHeroCA from './en/card/Hero';
+import FiMediaTopCA from './fi/card/MediaTop';
+import EnMediaTopCA from './en/card/MediaTop';
+import FiMediaLeftCA from './fi/card/MediaLeft';
+import EnMediaLeftCA from './en/card/MediaLeft';
+import FiSizesCA from './fi/card/Sizes';
+import EnSizesCA from './en/card/Sizes';
+import FiBackgroundCA from './fi/card/Background';
+import EnBackgroundCA from './en/card/Background';
+import FiHeroLB from './fi/linkbox/Hero';
+import EnHeroLB from './en/linkbox/Hero';
+import FiMediaLB from './fi/linkbox/Media';
+import EnMediaLB from './en/linkbox/Media';
+import FiInvertedLB from './fi/linkbox/Inverted';
+import EnInvertedLB from './en/linkbox/Inverted';
+import FiExternalLB from './fi/linkbox/External';
+import EnExternalLB from './en/linkbox/External';
+import FiHeroAC from './fi/accordion/Hero';
+import EnHeroAC from './en/accordion/Hero';
+import FiNoSpacingAC from './fi/accordion/NoSpacing';
+import EnNoSpacingAC from './en/accordion/NoSpacing';
+import FiOpenCloseLabelsAC from './fi/accordion/OpenCloseLabels';
+import EnOpenCloseLabelsAC from './en/accordion/OpenCloseLabels';
+import FiHeroTB from './fi/tabs/Hero';
+import EnHeroTB from './en/tabs/Hero';
+import FiCenteredTB from './fi/tabs/Centered';
+import EnCenteredTB from './en/tabs/Centered';
+import FiScrollableTB from './fi/tabs/Scrollable';
+import EnScrollableTB from './en/tabs/Scrollable';
 
 // Static maps: the bundler must see every example import to include it. Each language has
 // its own files so the code a reader copies carries labels in the page language.
 const fi = {
+  'paper/Hero': FiHeroPA,
+  'paper/Border': FiBorderPA,
+  'paper/Padding': FiPaddingPA,
+  'card/Hero': FiHeroCA,
+  'card/MediaTop': FiMediaTopCA,
+  'card/MediaLeft': FiMediaLeftCA,
+  'card/Sizes': FiSizesCA,
+  'card/Background': FiBackgroundCA,
+  'linkbox/Hero': FiHeroLB,
+  'linkbox/Media': FiMediaLB,
+  'linkbox/Inverted': FiInvertedLB,
+  'linkbox/External': FiExternalLB,
+  'accordion/Hero': FiHeroAC,
+  'accordion/NoSpacing': FiNoSpacingAC,
+  'accordion/OpenCloseLabels': FiOpenCloseLabelsAC,
+  'tabs/Hero': FiHeroTB,
+  'tabs/Centered': FiCenteredTB,
+  'tabs/Scrollable': FiScrollableTB,
   'text-area/Hero': FiHeroTA,
   'text-area/Autosize': FiAutosizeTA,
   'text-area/Required': FiRequiredTA,
@@ -236,6 +290,24 @@ export type ExampleName = keyof typeof fi;
 export const examples: Record<Lang, Record<ExampleName, ComponentType>> = {
   fi,
   en: {
+    'paper/Hero': EnHeroPA,
+    'paper/Border': EnBorderPA,
+    'paper/Padding': EnPaddingPA,
+    'card/Hero': EnHeroCA,
+    'card/MediaTop': EnMediaTopCA,
+    'card/MediaLeft': EnMediaLeftCA,
+    'card/Sizes': EnSizesCA,
+    'card/Background': EnBackgroundCA,
+    'linkbox/Hero': EnHeroLB,
+    'linkbox/Media': EnMediaLB,
+    'linkbox/Inverted': EnInvertedLB,
+    'linkbox/External': EnExternalLB,
+    'accordion/Hero': EnHeroAC,
+    'accordion/NoSpacing': EnNoSpacingAC,
+    'accordion/OpenCloseLabels': EnOpenCloseLabelsAC,
+    'tabs/Hero': EnHeroTB,
+    'tabs/Centered': EnCenteredTB,
+    'tabs/Scrollable': EnScrollableTB,
     'text-area/Hero': EnHeroTA,
     'text-area/Autosize': EnAutosizeTA,
     'text-area/Required': EnRequiredTA,

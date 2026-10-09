@@ -34,6 +34,22 @@ const DEFAULTS = {
   TextField: { showSearchIcon: 'false', showClearButton: 'false' },
   NavigationLink: { isSelected: 'false', variant: "'default'", size: "'md'" },
   SkipLink: { href: "'#main-content'", children: "'Hyppää pääsisältöön'" },
+  Paper: {
+    background: "'default'",
+    radius: "'sharp'",
+    withBorder: 'false',
+    borderColor: "'divider'",
+    withShadow: 'true',
+    padding: "'md'",
+  },
+  Card: { size: "'lg'", background: "'default'", mediaPlacement: "'top'" },
+  Linkbox: {
+    mediaPlacement: "'top'",
+    inverted: 'false',
+    external: 'false',
+    externalLabel: "'(avautuu uuteen välilehteen)'",
+  },
+  Accordion: { transitionDuration: '0' },
 };
 
 const parser = docgen.withCustomConfig('tsconfig.json', {

@@ -35,6 +35,10 @@ export const content: Partial<Record<string, Record<Lang, Loader>>> = {
     fi: () => import('./content/fi/badge.mdx'),
     en: () => import('./content/en/badge.mdx'),
   },
+  'components/checkbox': {
+    fi: () => import('./content/fi/checkbox.mdx'),
+    en: () => import('./content/en/checkbox.mdx'),
+  },
   'components/chip': {
     fi: () => import('./content/fi/chip.mdx'),
     en: () => import('./content/en/chip.mdx'),

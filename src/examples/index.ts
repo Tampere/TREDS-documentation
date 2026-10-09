@@ -48,6 +48,16 @@ import EnFilterC from './en/chip/Filter';
 import EnWithIconC from './en/chip/WithIcon';
 import EnRemovableC from './en/chip/Removable';
 import EnDisabledC from './en/chip/Disabled';
+import FiHeroCB from './fi/checkbox/Hero';
+import FiSingleCB from './fi/checkbox/Single';
+import FiSelectAllCB from './fi/checkbox/SelectAll';
+import FiErrorCB from './fi/checkbox/Error';
+import FiDisabledCB from './fi/checkbox/Disabled';
+import EnHeroCB from './en/checkbox/Hero';
+import EnSingleCB from './en/checkbox/Single';
+import EnSelectAllCB from './en/checkbox/SelectAll';
+import EnErrorCB from './en/checkbox/Error';
+import EnDisabledCB from './en/checkbox/Disabled';
 import FiHeroTF from './fi/text-field/Hero';
 import FiHelperTextTF from './fi/text-field/HelperText';
 import FiRequiredTF from './fi/text-field/Required';
@@ -80,6 +90,11 @@ import EnControlledSE from './en/select/Controlled';
 // Static maps: the bundler must see every example import to include it. Each language has
 // its own files so the code a reader copies carries labels in the page language.
 const fi = {
+  'checkbox/Hero': FiHeroCB,
+  'checkbox/Single': FiSingleCB,
+  'checkbox/SelectAll': FiSelectAllCB,
+  'checkbox/Error': FiErrorCB,
+  'checkbox/Disabled': FiDisabledCB,
   'select/Hero': FiHeroSE,
   'select/HelperRequired': FiHelperRequiredSE,
   'select/Error': FiErrorSE,
@@ -125,6 +140,11 @@ export type ExampleName = keyof typeof fi;
 export const examples: Record<Lang, Record<ExampleName, ComponentType>> = {
   fi,
   en: {
+    'checkbox/Hero': EnHeroCB,
+    'checkbox/Single': EnSingleCB,
+    'checkbox/SelectAll': EnSelectAllCB,
+    'checkbox/Error': EnErrorCB,
+    'checkbox/Disabled': EnDisabledCB,
     'select/Hero': EnHeroSE,
     'select/HelperRequired': EnHelperRequiredSE,
     'select/Error': EnErrorSE,

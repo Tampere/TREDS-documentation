@@ -1,0 +1,107 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import labeledIconButtonProps from '@/generated/LabeledIconButton.props.json';
+
+# LabeledIconButton
+
+<ComponentBadges name="LabeledIconButton" lang="fi" />
+
+Ikonipainike, jonka alla on lyhyt teksti.
+
+<ComponentLinks name="LabeledIconButton" lang="fi" />
+
+<Example name="labeled-icon-button/Hero" lang="fi" />
+
+## Milloin käyttää
+
+Käytä nimettyä ikonipainiketta työkalupalkeissa ja sovelluksen yläpalkin toiminnoissa, kun pelkkä ikoni ei kerro toimintoa riittävän selvästi, mutta tavalliselle painikkeelle ei ole tilaa.
+
+**Älä käytä nimettyä ikonipainiketta, kun**
+
+- ikoni on yksiselitteinen ja tila on vähissä, esimerkiksi taulukon rivillä – käytä <ComponentRef name="IconButton" lang="fi">IconButton-komponenttia</ComponentRef>
+- kyseessä on näkymän päätoiminto – käytä <ComponentRef name="Button" lang="fi">Button-komponenttia</ComponentRef>
+- teksti ei mahdu yhteen tai kahteen sanaan – käytä <ComponentRef name="Button" lang="fi">Button-komponenttia</ComponentRef>, jossa on ikoni
+
+## Variantit ja käyttötilanteet
+
+### Tummalla taustalla
+
+`variant="inverted"` tekee ikonista ja tekstistä vaaleat. Kohdistuskehys jää tummaksi (#201). Käytä sitä vain tummalla tai värillisellä taustalla.
+
+<Example name="labeled-icon-button/Inverted" lang="fi" />
+
+### Linkkinä
+
+`renderRoot` vaihtaa juurielementin, esimerkiksi reitittimen linkiksi. Ikoni ja teksti säilyvät.
+
+<Example name="labeled-icon-button/RouterLink" lang="fi" />
+
+### Ei käytettävissä
+
+`disabled` estää painamisen ja harmaannuttaa ikonin ja tekstin. Käytöstä poistettua painiketta ei voi kohdistaa näppäimistöllä, joten kerro muualla, miksi toiminto ei ole käytettävissä.
+
+<Example name="labeled-icon-button/Disabled" lang="fi" />
+
+## Sisältöohjeet
+
+- Kirjoita teksti yhdellä sanalla, mieluiten verbinä: "Muokkaa", "Lataa", "Poista".
+- Käytä samaa ikonia ja tekstiä samaan toimintoon koko palvelussa.
+
+## Saavutettavuus
+
+**Komponentti hoitaa**
+
+- Painike on natiivi `<button type="button">`, joten se ei lähetä lomaketta vahingossa.
+- `label` on aina painikkeen saavutettava nimi. Komponentti poistaa `aria-label`- ja `aria-labelledby`-attribuutit, jotta näkyvä teksti ja ruudunlukijan kuulema nimi eivät voi erota (WCAG 2.5.3).
+- Kohdistettu painike saa TREDSin kohdistuskehyksen ja taustan.
+- Kosketusalue on reilusti yli 24 × 24 px.
+
+**Sinun vastuullasi**
+
+- Kirjoita `label` niin, että se kertoo toiminnon myös ilman ikonia.
+- Linkkinä käytetyn painikkeen teksti kertoo kohteen: "Etusivu", ei "Siirry".
+- `inverted`-variantin kohdistuskehys on tumma, ja sen kontrasti tummaa taustaa vasten on vain 1,7:1 (#201). Testaa näppäimistöllä, että kohdistus erottuu taustastasi.
+
+WCAG-kriteerit: [1.4.11 Ei-tekstuaalisen sisällön kontrasti](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html), [2.4.7 Näkyvä kohdistus](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html), [2.5.3 Nimilappu nimessä](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html), [4.1.2 Nimi, rooli, arvo](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  props={labeledIconButtonProps}
+  label="LabeledIconButtonin propsit"
+  lang="fi"
+  overrides={{
+    icon: { description: 'Ikoni, esimerkiksi `<EditIcon />`.' },
+    label: { description: 'Näkyvä teksti ja saavutettava nimi.' },
+    variant: {
+      defaultValue: "'default'",
+      description: '`inverted` tummalle tai värilliselle taustalle.',
+    },
+    disabled: { defaultValue: 'false', description: 'Estää painamisen.' },
+    onClick: { description: 'Kutsutaan, kun painiketta painetaan.' },
+    renderRoot: {
+      type: '(props) => ReactNode',
+      description:
+        'Renderöi juurielementin itse, esimerkiksi reitittimen linkkinä. Levitä `props` elementille.',
+    },
+  }}
+/>
+
+Muut `<button>`-elementin attribuutit, kuten `id` ja `title`, välitetään painikkeelle. `aria-label` ja `aria-labelledby` poistetaan.
+
+## Tunnetut ongelmat
+
+- [#201 `inverted`-variantin kohdistuskehys on tumma tummalla taustalla](https://github.com/Tampere/Tampere-design-system/issues/201)
+
+## Liittyvät komponentit
+
+<RelatedComponents names={['IconButton', 'Button', 'AppHeader']} lang="fi" />
+
+<ComponentChanges name="LabeledIconButton" lang="fi" />

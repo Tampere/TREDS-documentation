@@ -47,6 +47,14 @@ export const content: Partial<Record<string, Record<Lang, Loader>>> = {
     fi: () => import('./content/fi/fieldset.mdx'),
     en: () => import('./content/en/fieldset.mdx'),
   },
+  'components/icon-button': {
+    fi: () => import('./content/fi/icon-button.mdx'),
+    en: () => import('./content/en/icon-button.mdx'),
+  },
+  'components/labeled-icon-button': {
+    fi: () => import('./content/fi/labeled-icon-button.mdx'),
+    en: () => import('./content/en/labeled-icon-button.mdx'),
+  },
   'components/chip': {
     fi: () => import('./content/fi/chip.mdx'),
     en: () => import('./content/en/chip.mdx'),

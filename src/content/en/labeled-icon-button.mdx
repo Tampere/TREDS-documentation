@@ -1,0 +1,107 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import labeledIconButtonProps from '@/generated/LabeledIconButton.props.json';
+
+# LabeledIconButton
+
+<ComponentBadges name="LabeledIconButton" lang="en" />
+
+An icon button with a short label below it.
+
+<ComponentLinks name="LabeledIconButton" lang="en" />
+
+<Example name="labeled-icon-button/Hero" lang="en" />
+
+## When to use
+
+Use a labeled icon button in toolbars and in the app header's actions, when the icon alone doesn't make the action clear enough but there's no room for a regular button.
+
+**Don't use a labeled icon button when**
+
+- the icon is unambiguous and space is tight, for example in a table row – use <ComponentRef name="IconButton" lang="en" />
+- it is the view's main action – use <ComponentRef name="Button" lang="en" />
+- the text doesn't fit in one or two words – use a <ComponentRef name="Button" lang="en" /> with an icon
+
+## Variants and situations
+
+### On a dark background
+
+`variant="inverted"` makes the icon and the label light. The focus ring stays dark (#201). Use it only on a dark or coloured background.
+
+<Example name="labeled-icon-button/Inverted" lang="en" />
+
+### As a link
+
+`renderRoot` swaps the root element, for example for a router link. The icon and label stay.
+
+<Example name="labeled-icon-button/RouterLink" lang="en" />
+
+### Disabled
+
+`disabled` prevents pressing and greys out the icon and label. A disabled button can't be focused with the keyboard, so explain elsewhere why the action isn't available.
+
+<Example name="labeled-icon-button/Disabled" lang="en" />
+
+## Content guidelines
+
+- Write the label as one word, preferably a verb: "Edit", "Download", "Delete".
+- Use the same icon and label for the same action across the service.
+
+## Accessibility
+
+**The component handles**
+
+- The button is a native `<button type="button">`, so it doesn't submit a form by accident.
+- `label` is always the button's accessible name. The component removes `aria-label` and `aria-labelledby`, so the visible text and the name screen readers hear can't differ (WCAG 2.5.3).
+- A focused button gets the TREDS focus ring and background.
+- The touch target is well over 24 × 24px.
+
+**Your responsibility**
+
+- Write the `label` so that it states the action even without the icon.
+- For a button used as a link, the label names the destination: "Home", not "Go".
+- The `inverted` variant's focus ring is dark, with only 1.7:1 contrast against a dark background (#201). Check with the keyboard that focus stands out from your background.
+
+WCAG criteria: [1.4.11 Non-text Contrast](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html), [2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html), [2.5.3 Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  props={labeledIconButtonProps}
+  label="LabeledIconButton props"
+  lang="en"
+  overrides={{
+    icon: { description: 'The icon, for example `<EditIcon />`.' },
+    label: { description: 'Visible text and accessible name.' },
+    variant: {
+      defaultValue: "'default'",
+      description: '`inverted` for a dark or coloured background.',
+    },
+    disabled: { defaultValue: 'false', description: 'Prevents pressing.' },
+    onClick: { description: 'Called when the button is pressed.' },
+    renderRoot: {
+      type: '(props) => ReactNode',
+      description:
+        'Renders the root element yourself, for example as a router link. Spread `props` onto the element.',
+    },
+  }}
+/>
+
+Other `<button>` attributes, such as `id` and `title`, are passed to the button. `aria-label` and `aria-labelledby` are removed.
+
+## Known issues
+
+- [#201 The `inverted` variant's focus ring is dark on a dark background](https://github.com/Tampere/Tampere-design-system/issues/201)
+
+## Related components
+
+<RelatedComponents names={['IconButton', 'Button', 'AppHeader']} lang="en" />
+
+<ComponentChanges name="LabeledIconButton" lang="en" />

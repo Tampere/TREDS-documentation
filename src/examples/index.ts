@@ -62,6 +62,24 @@ import EnHeroFS from './en/fieldset/Hero';
 import EnRequiredFS from './en/fieldset/Required';
 import EnErrorFS from './en/fieldset/Error';
 import EnWithBorderFS from './en/fieldset/WithBorder';
+import FiHeroIB from './fi/icon-button/Hero';
+import FiSizesIB from './fi/icon-button/Sizes';
+import FiInvertedIB from './fi/icon-button/Inverted';
+import FiAsLinkIB from './fi/icon-button/AsLink';
+import FiDisabledIB from './fi/icon-button/Disabled';
+import EnHeroIB from './en/icon-button/Hero';
+import EnSizesIB from './en/icon-button/Sizes';
+import EnInvertedIB from './en/icon-button/Inverted';
+import EnAsLinkIB from './en/icon-button/AsLink';
+import EnDisabledIB from './en/icon-button/Disabled';
+import FiHeroLIB from './fi/labeled-icon-button/Hero';
+import FiInvertedLIB from './fi/labeled-icon-button/Inverted';
+import FiRouterLinkLIB from './fi/labeled-icon-button/RouterLink';
+import FiDisabledLIB from './fi/labeled-icon-button/Disabled';
+import EnHeroLIB from './en/labeled-icon-button/Hero';
+import EnInvertedLIB from './en/labeled-icon-button/Inverted';
+import EnRouterLinkLIB from './en/labeled-icon-button/RouterLink';
+import EnDisabledLIB from './en/labeled-icon-button/Disabled';
 import FiHeroCB from './fi/checkbox/Hero';
 import FiSingleCB from './fi/checkbox/Single';
 import FiSelectAllCB from './fi/checkbox/SelectAll';
@@ -104,6 +122,15 @@ import EnControlledSE from './en/select/Controlled';
 // Static maps: the bundler must see every example import to include it. Each language has
 // its own files so the code a reader copies carries labels in the page language.
 const fi = {
+  'icon-button/Hero': FiHeroIB,
+  'icon-button/Sizes': FiSizesIB,
+  'icon-button/Inverted': FiInvertedIB,
+  'icon-button/AsLink': FiAsLinkIB,
+  'icon-button/Disabled': FiDisabledIB,
+  'labeled-icon-button/Hero': FiHeroLIB,
+  'labeled-icon-button/Inverted': FiInvertedLIB,
+  'labeled-icon-button/RouterLink': FiRouterLinkLIB,
+  'labeled-icon-button/Disabled': FiDisabledLIB,
   'fieldset/Hero': FiHeroFS,
   'fieldset/Required': FiRequiredFS,
   'fieldset/Error': FiErrorFS,
@@ -161,6 +188,15 @@ export type ExampleName = keyof typeof fi;
 export const examples: Record<Lang, Record<ExampleName, ComponentType>> = {
   fi,
   en: {
+    'icon-button/Hero': EnHeroIB,
+    'icon-button/Sizes': EnSizesIB,
+    'icon-button/Inverted': EnInvertedIB,
+    'icon-button/AsLink': EnAsLinkIB,
+    'icon-button/Disabled': EnDisabledIB,
+    'labeled-icon-button/Hero': EnHeroLIB,
+    'labeled-icon-button/Inverted': EnInvertedLIB,
+    'labeled-icon-button/RouterLink': EnRouterLinkLIB,
+    'labeled-icon-button/Disabled': EnDisabledLIB,
     'fieldset/Hero': EnHeroFS,
     'fieldset/Required': EnRequiredFS,
     'fieldset/Error': EnErrorFS,

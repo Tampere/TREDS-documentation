@@ -48,6 +48,12 @@ import EnFilterC from './en/chip/Filter';
 import EnWithIconC from './en/chip/WithIcon';
 import EnRemovableC from './en/chip/Removable';
 import EnDisabledC from './en/chip/Disabled';
+import FiHeroRB from './fi/radio-button/Hero';
+import FiErrorRB from './fi/radio-button/Error';
+import FiDisabledRB from './fi/radio-button/Disabled';
+import EnHeroRB from './en/radio-button/Hero';
+import EnErrorRB from './en/radio-button/Error';
+import EnDisabledRB from './en/radio-button/Disabled';
 import FiHeroCB from './fi/checkbox/Hero';
 import FiSingleCB from './fi/checkbox/Single';
 import FiSelectAllCB from './fi/checkbox/SelectAll';
@@ -90,6 +96,9 @@ import EnControlledSE from './en/select/Controlled';
 // Static maps: the bundler must see every example import to include it. Each language has
 // its own files so the code a reader copies carries labels in the page language.
 const fi = {
+  'radio-button/Hero': FiHeroRB,
+  'radio-button/Error': FiErrorRB,
+  'radio-button/Disabled': FiDisabledRB,
   'checkbox/Hero': FiHeroCB,
   'checkbox/Single': FiSingleCB,
   'checkbox/SelectAll': FiSelectAllCB,
@@ -140,6 +149,9 @@ export type ExampleName = keyof typeof fi;
 export const examples: Record<Lang, Record<ExampleName, ComponentType>> = {
   fi,
   en: {
+    'radio-button/Hero': EnHeroRB,
+    'radio-button/Error': EnErrorRB,
+    'radio-button/Disabled': EnDisabledRB,
     'checkbox/Hero': EnHeroCB,
     'checkbox/Single': EnSingleCB,
     'checkbox/SelectAll': EnSelectAllCB,

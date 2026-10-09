@@ -1,0 +1,143 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+
+# RadioButton
+
+<ComponentBadges name="RadioButton" lang="fi" />
+
+Valintanapilla käyttäjä valitsee yhden vaihtoehdon useasta.
+
+<ComponentLinks name="RadioButton" lang="fi" />
+
+<Example name="radio-button/Hero" lang="fi" />
+
+## Milloin käyttää
+
+Käytä valintanappeja, kun käyttäjän on valittava täsmälleen yksi vaihtoehto, ja vaihtoehtoja on niin vähän, että ne kannattaa näyttää kaikki kerralla.
+
+**Älä käytä valintanappeja, kun**
+
+- käyttäjä voi valita useamman vaihtoehdon – käytä <ComponentRef name="Checkbox" lang="fi">Checkbox-komponenttia</ComponentRef>
+- kysyt yksittäistä kyllä/ei-vahvistusta – käytä yhtä <ComponentRef name="Checkbox" lang="fi">Checkbox-komponenttia</ComponentRef>
+- vaihtoehtoja on niin paljon, että lista veisi liikaa tilaa – käytä <ComponentRef name="Select" lang="fi">Select-komponenttia</ComponentRef>
+
+## Variantit ja käyttötilanteet
+
+### Valintanappiryhmä
+
+Valintanapit ovat aina ryhmässä. Ryhmitä ne <ComponentRef name="Fieldset" lang="fi">Fieldset-komponentilla</ComponentRef>, kuten sivun alun esimerkissä: `legend` kertoo kysymyksen, ja `fieldsetSelectionGroup`-luokka asettaa vaihtoehdot allekkain. Anna ryhmän valintanapeille sama `name`.
+
+Pidä valittu arvo tilassa ja anna jokaiselle valintanapille `checked` ja `onChange`. Ilman `checked`-propsia valintanappi ei näytä valintaa, vaikka selain valitsee sen (#198).
+
+### Virhe
+
+`error` värittää valintanapin virhevärillä, mutta ei näytä viestiä. Anna virheviesti ryhmälle Fieldsetin `error`-propsilla ja aseta valintanapeille `aria-invalid`. Poista virhe, kun käyttäjä valitsee vaihtoehdon.
+
+<Example name="radio-button/Error" lang="fi" />
+
+### Ei käytettävissä
+
+`disabled` estää yksittäisen vaihtoehdon valinnan ja harmaannuttaa sen otsikon. Kerro ryhmän ohjetekstissä, miksi vaihtoehto ei ole käytettävissä, sillä käytöstä poistettua valintanappia ei voi kohdistaa näppäimistöllä.
+
+<Example name="radio-button/Disabled" lang="fi" />
+
+## Sisältöohjeet
+
+- Muotoile ryhmän `legend` kysymykseksi, johon vaihtoehdot vastaavat.
+- Kirjoita vaihtoehdot lyhyiksi ja samanmuotoisiksi, esimerkiksi "Sähköpostilla", "Puhelimella", "Kirjeellä".
+- Järjestä vaihtoehdot loogisesti, esimerkiksi asteikon mukaan tai yleisimmästä harvinaisimpaan.
+- Esivalitse vaihtoehto vain, kun se on turvallinen oletus. Jos käyttäjän on tehtävä tietoinen valinta, jätä kaikki valitsematta.
+
+## Saavutettavuus
+
+**Komponentti hoitaa**
+
+- Valintanappi on natiivi `<input type="radio">`, ja `label` on sen `<label>`. Ruudunlukija lukee otsikon valintanapin nimenä, ja otsikon klikkaaminen valitsee vaihtoehdon.
+- Saman `name`-ryhmän sisällä nuolinäppäimet siirtävät valintaa, ja sarkain siirtyy ryhmään valitun vaihtoehdon kohdalle.
+- Kohdistettu valintanappi saa TREDSin kohdistuskehyksen.
+- Valinta näkyy myös ikonin muotona, ei pelkkänä värinä.
+
+**Sinun vastuullasi**
+
+- Ryhmitä valintanapit Fieldsetillä, jotta ryhmällä on ruudunlukijalle kuuluva nimi.
+- Anna jokaiselle ryhmälle oma `name`. Saman sivun ryhmät, joilla on sama `name`, toimivat selaimessa yhtenä ryhmänä, jolloin valinta ja nuolinäppäimet hyppäävät ryhmästä toiseen.
+- Anna jokaiselle valintanapille `label`. TypeScript ei vaadi sitä, mutta ilman sitä valintanapilla ei ole nimeä, ellei se saa `aria-label`-attribuuttia.
+- `error` muuttaa vain värin. Anna aina virheviesti Fieldsetin `error`-propsilla ja aseta valintanapeille `aria-invalid` (#197).
+- Älä yhdistä `error`- ja `disabled`-propseja: valintanappi näkyy silloin punaisena, vaikka sitä ei voi valita (#137).
+- Kun lomake lähetetään virheellisenä, siirrä fokus ensimmäiseen virheelliseen kenttään tai virheiden yhteenvetoon.
+
+WCAG-kriteerit: [1.3.1 Informaatio ja suhteet](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.1 Värien käyttö](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html), [2.1.1 Näppäimistö](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [3.3.1 Virheen tunnistaminen](https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html), [3.3.2 Nimilaput tai ohjeet](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html), [4.1.2 Nimi, rooli, arvo](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  label="RadioButtonin propsit"
+  lang="fi"
+  props={[
+    {
+      name: 'label',
+      type: 'string',
+      required: false,
+      description:
+        'Valintanapin näkyvä otsikko ja saavutettava nimi. Ilman sitä anna `aria-label`.',
+    },
+    {
+      name: 'error',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Virheväri. Ei näytä viestiä eikä aseta `aria-invalid`-attribuuttia.',
+    },
+  ]}
+  inherited={[
+    {
+      name: 'checked',
+      type: 'boolean',
+      description: 'Onko vaihtoehto valittu. Tarvitaan, jotta valinta näkyy.',
+    },
+    {
+      name: 'onChange',
+      type: 'ChangeEventHandler<HTMLInputElement>',
+      description: 'Kutsutaan, kun vaihtoehto valitaan.',
+    },
+    {
+      name: 'name',
+      type: 'string',
+      description: 'Ryhmän nimi. Sama kaikille ryhmän valintanapeille.',
+    },
+    {
+      name: 'value',
+      type: 'string',
+      description: 'Arvo, joka lähetetään, kun vaihtoehto on valittu.',
+    },
+    { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Estää valinnan.' },
+    {
+      name: 'required',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Ryhmästä on valittava jokin ennen lähetystä.',
+    },
+  ]}
+/>
+
+Taulukon kuusi viimeistä ovat natiiveja `<input>`-attribuutteja. `className` menee valintanapin ympäröivälle elementille, muut attribuutit `<input>`-elementille.
+
+## Tunnetut ongelmat
+
+- [#198 Valintanappi ei näytä valintaa ilman `checked`-propsia](https://github.com/Tampere/Tampere-design-system/issues/198)
+- [#137 `error` ohittaa `disabled`-tilan](https://github.com/Tampere/Tampere-design-system/issues/137)
+- [#139 React varoittaa, kun `checked` annetaan ilman `onChange`-käsittelijää](https://github.com/Tampere/Tampere-design-system/issues/139)
+- [#197 `error` ei aseta `aria-invalid`-attribuuttia](https://github.com/Tampere/Tampere-design-system/issues/197)
+
+## Liittyvät komponentit
+
+<RelatedComponents names={['Checkbox', 'Select', 'Fieldset']} lang="fi" />
+
+<ComponentChanges name="RadioButton" lang="fi" />

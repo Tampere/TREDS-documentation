@@ -118,7 +118,12 @@ WCAG-kriteerit: [1.3.1 Informaatio ja suhteet](https://www.w3.org/WAI/WCAG21/Und
   }}
   inherited={[
     { name: 'value', type: 'string', description: 'Kentän arvo, kun arvo on tilassa.' },
-    { name: 'defaultValue', type: 'string', description: 'Alkuarvo, kun arvoa ei ole tilassa.' },
+    {
+      name: 'defaultValue',
+      type: 'string',
+      description:
+        'Ei toimi tällä hetkellä: kenttä alkaa aina tyhjänä (#200). Käytä `value`-propsia.',
+    },
     {
       name: 'onChange',
       type: 'ChangeEventHandler<HTMLInputElement>',
@@ -154,6 +159,7 @@ Taulukon kahdeksan viimeistä propsia periytyvät Mantinen `TextInput`-komponent
 
 ## Tunnetut ongelmat
 
+- [#200 `defaultValue` ohitetaan, ja kenttä alkaa aina tyhjänä](https://github.com/Tampere/Tampere-design-system/issues/200)
 - [#178 Mantinen `label`- ja `description`-propsit hyväksytään, mutta niitä ei näytetä](https://github.com/Tampere/Tampere-design-system/issues/178)
 - [#187 Kenttä levenee kapean säiliön yli, kun tyhjennyspainike ilmestyy](https://github.com/Tampere/Tampere-design-system/issues/187)
 - [#191 Fokus katoaa sivun alkuun, kun tyhjennyspainiketta painetaan](https://github.com/Tampere/Tampere-design-system/issues/191)

@@ -54,6 +54,14 @@ import FiDisabledRB from './fi/radio-button/Disabled';
 import EnHeroRB from './en/radio-button/Hero';
 import EnErrorRB from './en/radio-button/Error';
 import EnDisabledRB from './en/radio-button/Disabled';
+import FiHeroFS from './fi/fieldset/Hero';
+import FiRequiredFS from './fi/fieldset/Required';
+import FiErrorFS from './fi/fieldset/Error';
+import FiWithBorderFS from './fi/fieldset/WithBorder';
+import EnHeroFS from './en/fieldset/Hero';
+import EnRequiredFS from './en/fieldset/Required';
+import EnErrorFS from './en/fieldset/Error';
+import EnWithBorderFS from './en/fieldset/WithBorder';
 import FiHeroCB from './fi/checkbox/Hero';
 import FiSingleCB from './fi/checkbox/Single';
 import FiSelectAllCB from './fi/checkbox/SelectAll';
@@ -96,6 +104,10 @@ import EnControlledSE from './en/select/Controlled';
 // Static maps: the bundler must see every example import to include it. Each language has
 // its own files so the code a reader copies carries labels in the page language.
 const fi = {
+  'fieldset/Hero': FiHeroFS,
+  'fieldset/Required': FiRequiredFS,
+  'fieldset/Error': FiErrorFS,
+  'fieldset/WithBorder': FiWithBorderFS,
   'radio-button/Hero': FiHeroRB,
   'radio-button/Error': FiErrorRB,
   'radio-button/Disabled': FiDisabledRB,
@@ -149,6 +161,10 @@ export type ExampleName = keyof typeof fi;
 export const examples: Record<Lang, Record<ExampleName, ComponentType>> = {
   fi,
   en: {
+    'fieldset/Hero': EnHeroFS,
+    'fieldset/Required': EnRequiredFS,
+    'fieldset/Error': EnErrorFS,
+    'fieldset/WithBorder': EnWithBorderFS,
     'radio-button/Hero': EnHeroRB,
     'radio-button/Error': EnErrorRB,
     'radio-button/Disabled': EnDisabledRB,

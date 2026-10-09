@@ -43,6 +43,10 @@ export const content: Partial<Record<string, Record<Lang, Loader>>> = {
     fi: () => import('./content/fi/radio-button.mdx'),
     en: () => import('./content/en/radio-button.mdx'),
   },
+  'components/fieldset': {
+    fi: () => import('./content/fi/fieldset.mdx'),
+    en: () => import('./content/en/fieldset.mdx'),
+  },
   'components/chip': {
     fi: () => import('./content/fi/chip.mdx'),
     en: () => import('./content/en/chip.mdx'),

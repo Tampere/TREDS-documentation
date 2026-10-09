@@ -1,0 +1,208 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+
+# Select
+
+<ComponentBadges name="Select" lang="fi" />
+
+Pudotusvalikko, josta käyttäjä valitsee yhden vaihtoehdon. Listaa voi suodattaa kirjoittamalla, ja vaihtoehdot voi ryhmitellä.
+
+<ComponentLinks name="Select" lang="fi" />
+
+<Example name="select/Hero" lang="fi" />
+
+## Milloin käyttää
+
+Käytä pudotusvalikkoa, kun käyttäjä valitsee yhden vaihtoehdon listasta, joka on liian pitkä näytettäväksi kerralla, esimerkiksi kaupunginosan tai palvelun.
+
+**Älä käytä pudotusvalikkoa, kun**
+
+- vaihtoehtoja on vain muutama – käytä <ComponentRef name="RadioButton" lang="fi">RadioButton-komponenttia</ComponentRef>, jolloin kaikki vaihtoehdot näkyvät kerralla
+- käyttäjä voi valita useamman vaihtoehdon – käytä <ComponentRef name="Checkbox" lang="fi">Checkbox-</ComponentRef> tai <ComponentRef name="Chip" lang="fi">Chip-komponenttia</ComponentRef>
+- vastaus on vapaata tekstiä – käytä <ComponentRef name="TextField" lang="fi">TextField-komponenttia</ComponentRef>
+- valinta vie toiselle sivulle – käytä linkkejä
+
+## Variantit ja käyttötilanteet
+
+### Ohjeteksti ja pakollisuus
+
+`helperText` näkyy otsikon alla, ja `required` merkitsee kentän pakolliseksi samoin kuin <ComponentRef name="TextField" lang="fi">TextFieldissä</ComponentRef>.
+
+<Example name="select/HelperRequired" lang="fi" />
+
+### Virhe
+
+`error` näyttää virheviestin. Kerro viestissä, mitä käyttäjän pitää tehdä.
+
+<Example name="select/Error" lang="fi" />
+
+### Ryhmitellyt vaihtoehdot
+
+`options` hyväksyy myös ryhmät: `{ group, items }`. Ryhmän otsikko näkyy listassa vaihtoehtojen yläpuolella, eikä sitä voi valita.
+
+<Example name="select/Grouped" lang="fi" />
+
+### Haku
+
+Kirjoittaminen suodattaa listaa aina. `showSearchIcon` lisää kenttään hakuikonin, joka kertoo tästä. `noResultsMessage` näkyy, kun mikään vaihtoehto ei vastaa hakua. Ilman sitä lista on tyhjä.
+
+<Example name="select/Search" lang="fi" />
+
+### Ei käytettävissä
+
+`disabled` estää valinnan.
+
+<Example name="select/Disabled" lang="fi" />
+
+### Arvo tilassa
+
+Kun valinta on tilassa, anna `value` ja `onChange`. Huomaa, että `onChange` kutsutaan myös kirjoitettaessa kirjoitetulla tekstillä, ei vain vaihtoehtoa valittaessa. Tarkista siksi, että arvo on yksi vaihtoehdoista.
+
+<Example name="select/Controlled" lang="fi" />
+
+## Sisältöohjeet
+
+- Kirjoita otsikko lyhyeksi ja kerro, mitä valitaan: "Kaupunginosa", ei "Valitse kaupunginosa listasta".
+- Järjestä vaihtoehdot loogisesti: aakkosjärjestykseen, tai jos järjestyksellä on merkitys, sen mukaan.
+- Käytä ryhmiä, kun vaihtoehdot jakautuvat selviin luokkiin. Pidä ryhmien nimet lyhyinä.
+- Kirjoita `noResultsMessage` aina, kun listaa voi suodattaa.
+
+## Saavutettavuus
+
+**Komponentti hoitaa**
+
+- `inputLabel` on kentän `<label>`. Ohjeteksti ja virheviesti on kytketty kenttään `aria-describedby`-attribuutilla, ja virhe asettaa `aria-invalid`-attribuutin.
+- Lista toimii näppäimistöllä: nuoli alas avaa listan ja liikkuu vaihtoehdoissa, ja Enter valitsee vaihtoehdon.
+- Valittu vaihtoehto on merkitty `aria-selected`-attribuutilla, ja jokaisella vaihtoehdolla on kuvauksena sijaintinsa, esimerkiksi "2 / 5".
+- Jokainen ryhmä on oma `group`-roolinsa, jonka nimi on ryhmän otsikko.
+
+**Sinun vastuullasi**
+
+- Anna aina näkyvä `inputLabel`. Select ei välitä `aria-label`-propsia kentälle, joten ilman `inputLabel`-propsia kenttä jää nimettömäksi (#195).
+- Anna `clearButtonLabel`, `expandButtonLabel` ja `collapseButtonLabel`, sillä painikkeilla ei ole oletusnimiä (#192).
+- Tarkista, että `onChange`-propsin arvo on yksi vaihtoehdoista, ennen kuin käytät sitä.
+- Fokus katoaa sivun alkuun, kun tyhjennyspainiketta painetaan (#191). Selectissä tähän ei ole kiertotietä, koska komponentti ei välitä `ref`-viittausta.
+- Kenttä ilmoittaa ruudunlukijalle olevansa tekstikenttä, eikä listan auki- tai kiinni-tila välity (#194). Testaa Selectiä käyttävät lomakkeet ruudunlukijalla.
+
+WCAG-kriteerit: [1.3.1 Informaatio ja suhteet](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.1.1 Näppäimistö](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [3.3.2 Nimilaput tai ohjeet](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html), [4.1.2 Nimi, rooli, arvo](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  label="Selectin propsit"
+  lang="fi"
+  props={[
+    {
+      name: 'options',
+      type: 'string[] | SelectOptionGroup[]',
+      required: true,
+      description: 'Vaihtoehdot listana tai ryhminä `{ group, items }`.',
+    },
+    {
+      name: 'inputLabel',
+      type: 'string',
+      required: false,
+      description: 'Kentän näkyvä otsikko. Käytännössä pakollinen, koska `aria-label` ei toimi.',
+    },
+    {
+      name: 'value',
+      type: 'string',
+      required: false,
+      description: 'Valittu arvo, kun arvo on tilassa.',
+    },
+    {
+      name: 'onChange',
+      type: '(value: string) => void',
+      required: false,
+      description: 'Kutsutaan valinnalla ja myös kirjoitetulla tekstillä.',
+    },
+    {
+      name: 'placeholder',
+      type: 'string',
+      required: false,
+      description: 'Paikkamerkkiteksti. Ei korvaa otsikkoa.',
+    },
+    {
+      name: 'helperText',
+      type: 'string',
+      required: false,
+      description: 'Ohjeteksti otsikon alla.',
+    },
+    {
+      name: 'error',
+      type: 'string',
+      required: false,
+      description: 'Virheviesti. Asettaa myös `aria-invalid`-attribuutin.',
+    },
+    {
+      name: 'required',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Pakollinen kenttä.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Estää valinnan.',
+    },
+    {
+      name: 'showSearchIcon',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Hakuikoni kentän alussa.',
+    },
+    {
+      name: 'noResultsMessage',
+      type: 'string',
+      required: false,
+      description: 'Viesti, kun mikään vaihtoehto ei vastaa hakua.',
+    },
+    {
+      name: 'clearButtonLabel',
+      type: 'string',
+      required: false,
+      description: 'Tyhjennyspainikkeen saavutettava nimi. Ei oletusta (#192).',
+    },
+    {
+      name: 'expandButtonLabel',
+      type: 'string',
+      required: false,
+      description: 'Listan avaavan painikkeen saavutettava nimi. Ei oletusta (#192).',
+    },
+    {
+      name: 'collapseButtonLabel',
+      type: 'string',
+      required: false,
+      description: 'Listan sulkevan painikkeen saavutettava nimi. Ei oletusta (#192).',
+    },
+  ]}
+/>
+
+Taulukko on kirjoitettu käsin, koska propseja ei saada luettua julkaistun paketin tyypeistä. `SelectProps`-tyyppiä ei viedä paketista (#182, #141). Muita propseja Select ei hyväksy.
+
+## Tunnetut ongelmat
+
+- [#187 Kenttä levenee kapean säiliön yli, kun arvo valitaan](https://github.com/Tampere/Tampere-design-system/issues/187)
+- [#191 Fokus katoaa sivun alkuun, kun tyhjennyspainiketta painetaan](https://github.com/Tampere/Tampere-design-system/issues/191)
+- [#192 Painikkeilla ei ole saavutettavaa nimeä ilman nimipropseja](https://github.com/Tampere/Tampere-design-system/issues/192)
+- [#194 Kentällä ei ole combobox-roolia, eikä listan tila välity ruudunlukijalle](https://github.com/Tampere/Tampere-design-system/issues/194)
+- [#195 `aria-label` ohitetaan, joten Select ilman `inputLabel`-propsia on nimetön](https://github.com/Tampere/Tampere-design-system/issues/195)
+- [#141 Ryhmien tyyppejä ei viedä paketista](https://github.com/Tampere/Tampere-design-system/issues/141)
+- [#138 Ryhmän otsikkoa ei voi valita vaihtoehtona](https://github.com/Tampere/Tampere-design-system/issues/138)
+
+## Liittyvät komponentit
+
+<RelatedComponents names={['TextField', 'RadioButton', 'Checkbox', 'SearchField']} lang="fi" />
+
+<ComponentChanges name="Select" lang="fi" />

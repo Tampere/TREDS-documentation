@@ -1,0 +1,22 @@
+import { Breakpoints } from '@/docs-ui/tokens/Breakpoints';
+import { SpacingScale } from '@/docs-ui/tokens/SpacingScale';
+
+# Välistys ja asettelu
+
+## Välistysasteikko
+
+Seitsemän askelta, `xxs`:stä `xxl`:ään. Typografian tavoin asteikko on responsiivinen: sama askel on kapealla näytöllä pienempi. Komponentit käyttävät sitä sisäisesti; käytä samoja askeleita omissa asetteluissasi, jotta välistys pysyy niiden kanssa yhtenäisenä.
+
+<SpacingScale lang="fi" />
+
+## Tekstilohkojen välit
+
+TREDS ei vielä määrittele otsikoiden ja kappaleiden välejä — `Typography` ei aseta marginaaleja, joten jokainen palvelu päättää ne itse. Puuttuva token on kirjattu issueksi [#180](https://github.com/Tampere/Tampere-design-system/issues/180). Siihen asti tämä sivusto käyttää yllä olevaa asteikkoa: kappaleiden välissä `sm`, ennen `h2`-otsikkoa `xl` ja otsikon jälkeen `xs`.
+
+## Breakpointit
+
+Kuusi breakpointia. Huomaa, että avaimen arvot ovat voimassa sen oman leveyden **alapuolella** — `lg` (1024px) kattaa näytön leveydet 768px:stä 1024px:iin. Tokenit vaihtuvat automaattisesti CSS-mediakyselyillä, joten komponentit eivät tarvitse JavaScript-logiikkaa breakpointeille.
+
+Asettelun ruudukko — palstat, gutter ja reunamarginaali — muuttuu samoissa kohdissa.
+
+<Breakpoints lang="fi" />

@@ -1,0 +1,37 @@
+# Tampere Design System
+
+TREDS is the component library behind the City of Tampere's digital services. It gives teams a set of accessible, visually consistent building blocks so that every Tampere service looks and behaves like part of the same city — without each team re-solving focus outlines, colour contrast and responsive type from scratch.
+
+It is a React library, published as `@tampere/treds`, built on top of [Mantine v8](https://mantine.dev/). Mantine handles the unglamorous primitives — popovers, focus traps, form state — and TREDS supplies Tampere's design decisions on top.
+
+## Who this is for
+
+**If you build Tampere services**, start with installation below, then the component pages. Everything is typed, so your editor will tell you most of what the docs would.
+
+**If you design Tampere services**, the component pages are the useful part: each one shows the real component in the states it supports and says when to reach for it. Try the [Button](/en/components/button/) page.
+
+## Installing
+
+```bash
+npm install @tampere/treds
+```
+
+The package is published to GitHub Packages rather than the public npm registry, so it needs a one-line `.npmrc` and a token first.
+
+Wrap your app once, at the root:
+
+```jsx
+import { ThemeProvider } from '@tampere/treds';
+
+<ThemeProvider>
+  <App />
+</ThemeProvider>;
+```
+
+## Versioning
+
+TREDS follows semantic versioning from 1.0.0: breaking changes bump the major version. Every release's breaking and visual changes are listed under "Upgrade notes" in the [changelog](https://github.com/Tampere/Tampere-design-system/blob/main/CHANGELOG.md).
+
+## Licence
+
+The code is licensed under EUPL-1.2. The City of Tampere's logos, coat of arms and other brand assets are not covered by that licence.

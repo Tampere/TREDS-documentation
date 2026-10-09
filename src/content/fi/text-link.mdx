@@ -1,0 +1,129 @@
+import { Example } from '@/docs-ui/Example';
+import { TextLinkPlayground } from '@/docs-ui/TextLinkPlayground';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import textLinkProps from '@/generated/TextLink.props.json';
+
+# TextLink
+
+<ComponentBadges name="TextLink" lang="fi" />
+
+Tekstilinkki vie käyttäjän toiselle sivulle, toiseen palveluun tai tiedostoon.
+
+<ComponentLinks name="TextLink" lang="fi" />
+
+<Example name="text-link/Hero" lang="fi" />
+
+## Milloin käyttää
+
+Käytä tekstilinkkiä, kun painallus vie toiseen paikkaan: toiselle sivulle, toiseen palveluun, tiedostoon tai saman sivun toiseen kohtaan. Linkki voi olla leipätekstin sisällä tai omana rivinään.
+
+**Älä käytä tekstilinkkiä, kun**
+
+- painallus käynnistää toiminnon tällä sivulla – käytä <ComponentRef name="Button" lang="fi">Button-komponenttia</ComponentRef>
+- linkki kuuluu sivuston päänavigaatioon tai sivunavigaatioon – käytä <ComponentRef name="NavigationLink" lang="fi">NavigationLink-komponenttia</ComponentRef>
+- koko kortin tai laatikon pitää olla painettava – käytä <ComponentRef name="Linkbox" lang="fi">Linkbox-komponenttia</ComponentRef>
+- tarvitset ohituslinkin pääsisältöön – käytä <ComponentRef name="SkipLink" lang="fi">SkipLink-komponenttia</ComponentRef>
+
+## Variantit ja käyttötilanteet
+
+### Tekstin sisällä
+
+Linkin koko on oletuksena P1. Kun ympäröivä teksti on muun kokoista, anna linkille sama koko `size`-propsilla, jotta linkki ei erotu tekstistä koollaan.
+
+<Example name="text-link/InText" lang="fi" />
+
+### Ulkoinen linkki
+
+`openExternal` avaa linkin uuteen välilehteen ja lisää ulkoisen linkin ikonin. Ruudunlukija kuulee linkin perään "(avautuu uuteen välilehteen)". Käytä uutta välilehteä vain, kun siihen on syy, esimerkiksi kun käyttäjä on täyttämässä lomaketta.
+
+<Example name="text-link/External" lang="fi" />
+
+### Avattu linkki
+
+`visited` näyttää linkin avattuna tummemmalla sinisellä. Tila on propsi: komponentti ei seuraa selaimen omaa historiaa, joten sovelluksen pitää kertoa, mitkä linkit on avattu.
+
+<Example name="text-link/Visited" lang="fi" />
+
+### Otsikon kokoinen linkki
+
+`size` hyväksyy koko typografia-asteikon, `h1`:stä `caption`iin. Otsikon kokoista linkkiä voi käyttää esimerkiksi listauksen kohteen otsikkona.
+
+<Example name="text-link/HeadingSize" lang="fi" />
+
+### Reitittimen linkki
+
+`renderLink` korvaa `<a>`-elementin omalla elementilläsi, esimerkiksi Next.js:n tai React Routerin `Link`-komponentilla. Funktio saa TextLinkin luokkanimen, jonka annat elementillesi. Tällöin `href`, `openExternal` ja muut propsit eivät ole käytössä: lisää ne itse omaan elementtiisi.
+
+<Example name="text-link/RouterLink" lang="fi" />
+
+## Sisältöohjeet
+
+- Kerro linkkitekstissä, minne linkki vie: "Tampereen kaupungin verkkosivuilta", ei "tästä" tai pelkkä "lue lisää".
+- Älä käytä verkko-osoitetta linkkitekstinä, ellei osoite itse ole tieto, jota käyttäjä tarvitsee.
+- Kun linkki vie tiedostoon, kerro tiedostomuoto ja koko, esimerkiksi "Hakulomake (PDF, 2 Mt)".
+- Älä anna samaa linkkitekstiä linkeille, jotka vievät eri paikkoihin.
+
+## Saavutettavuus
+
+**Komponentti hoitaa**
+
+- Linkki on natiivi `<a>`-elementti, joten se toimii näppäimistöllä ja ruudunlukija ilmoittaa sen linkkinä.
+- Linkki on aina alleviivattu, joten se ei erotu ympäröivästä tekstistä pelkän värin perusteella. Värien kontrasti valkoista taustaa vasten ylittää 4,5:1 myös avatussa tilassa.
+- Näppäimistöfokus näkyy fokusrenkaana.
+- `openExternal` lisää näkymättömän tekstin "(avautuu uuteen välilehteen)", piilottaa ikonin ruudunlukijalta ja asettaa `rel="noopener noreferrer"`.
+
+**Sinun vastuullasi**
+
+- Linkkiteksti kertoo määränpään myös irrallaan ympäröivästä tekstistä.
+- Linkin `size` vastaa ympäröivää tekstiä, kun linkki on tekstin sisällä.
+- Muunkielisillä sivuilla anna `openExternalLabel` sivun kielellä. Oletusteksti on suomeksi.
+- `renderLink`-tilassa lisää ulkoisen linkin merkintä, `target` ja `rel` itse, sillä `openExternal` ei toimi siinä.
+- Linkillä on oltava `href` tai `renderLink`. Ilman niitä linkkiä ei voi kohdistaa näppäimistöllä.
+
+WCAG-kriteerit: [1.4.1 Värien käyttö](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html), [2.4.4 Linkin tarkoitus (kontekstissa)](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html), [2.4.7 Näkyvä kohdistus](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html), [4.1.2 Nimi, rooli, arvo](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## Kokeile
+
+<TextLinkPlayground lang="fi" />
+
+## API
+
+<PropsTable
+  props={textLinkProps}
+  label="TextLinkin propsit"
+  lang="fi"
+  overrides={{
+    href: { requiredWhen: '`renderLink` puuttuu', description: 'Linkin osoite.' },
+    size: {
+      description: 'Typografiatyyli, jonka mukaan linkki on mitoitettu. Vastaa ympäröivää tekstiä.',
+    },
+    visited: { description: 'Näyttää linkin avattuna.' },
+    openExternal: {
+      description: 'Avaa linkin uuteen välilehteen ja lisää ulkoisen linkin ikonin.',
+    },
+    openExternalLabel: {
+      description: 'Ruudunlukijalle luettava teksti, kun `openExternal` on asetettu.',
+    },
+    renderLink: {
+      type: '(className: string) => ReactElement',
+      description:
+        'Korvaa `<a>`-elementin, esimerkiksi reitittimen `Link`-komponentilla. Saa luokkanimen parametrina.',
+    },
+    className: { hidden: true },
+  }}
+/>
+
+Muut propsit, kuten `target`, `rel` ja `aria-label`, välitetään `<a>`-elementille.
+
+## Liittyvät komponentit
+
+<RelatedComponents names={['Button', 'NavigationLink', 'Linkbox']} lang="fi" />
+
+<ComponentChanges name="TextLink" lang="fi" />

@@ -1,0 +1,142 @@
+import { Example } from '@/docs-ui/Example';
+import { ButtonPlayground } from '@/docs-ui/ButtonPlayground';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import buttonProps from '@/generated/Button.props.json';
+
+# Button
+
+<ComponentBadges name="Button" lang="en" />
+
+A button triggers an action on the current page: saving, submitting or opening a dialog.
+
+<ComponentLinks name="Button" lang="en" />
+
+<Example name="button/Hero" lang="en" />
+
+## When to use
+
+Use a button when the action happens on this page: submitting a form, saving, opening a dialog or clearing filters.
+
+**Don't use a button when**
+
+- activating it takes the user to another page – use <ComponentRef name="TextLink" lang="en" />
+- the user selects or filters options – use <ComponentRef name="Chip" lang="en" />
+- it is an icon action in the site header – use <ComponentRef name="IconButton" lang="en" /> or <ComponentRef name="LabeledIconButton" lang="en" />
+
+## Variants and situations
+
+### Primary
+
+The main action of the view. Use at most one primary button per view so the most important action stands out.
+
+<Example name="button/Primary" lang="en" />
+
+### Secondary
+
+Alternatives to the main action, such as saving a draft or cancelling. Place it after the primary button.
+
+<Example name="button/Secondary" lang="en" />
+
+### Tertiary
+
+Low-emphasis actions, such as showing more content. Rounding (`radius="pill"`) has no effect on a tertiary button.
+
+<Example name="button/Tertiary" lang="en" />
+
+### Rounded
+
+`radius="pill"` fully rounds the button's ends.
+
+> _[Open: when should the rounded button be used instead of the sharp one? For the designer to decide.]_
+
+<Example name="button/Pill" lang="en" />
+
+### Button with an icon
+
+An icon can sit on the left (`leftIcon`) or right (`rightIcon`) of the label. The icon supports the label and doesn't replace it. An icon that points a direction usually belongs on the right.
+
+<Example name="button/WithIcons" lang="en" />
+
+### Icon only
+
+`iconOnly` makes the button square. With no visible text, `aria-label` is required: TypeScript won't compile the button without it. Use icon-only buttons only for well-established actions such as search.
+
+<Example name="button/IconOnly" lang="en" />
+
+### Disabled
+
+`disabled` makes the button unusable. First consider keeping it enabled and telling the user what is missing when they press it. See [Accessibility](#accessibility).
+
+<Example name="button/Disabled" lang="en" />
+
+## Content guidelines
+
+- Say what happens: "Submit application", not "OK" or "Continue".
+- Start with a verb and keep the label short. Long Finnish compound words don't fit a narrow screen.
+- Use the same word for the same action throughout the service.
+
+> _[The designer reviews the content guidelines and the order of button groups.]_
+
+## Accessibility
+
+**The component handles**
+
+- The button is a native `<button>` element, so it works with the keyboard (Enter and Space) and screen readers announce it as a button.
+- Keyboard focus is shown as a focus ring.
+- An icon-only button (`iconOnly`) doesn't compile without `aria-label`.
+
+**Your responsibility**
+
+- The label or `aria-label` describes the action even out of context.
+- The button's `type` defaults to `"button"`. A form's submit button needs `type="submit"`.
+- `disabled` removes the button from the focus order, so screen reader users may not find it. Explain elsewhere why the action is unavailable.
+- Don't use a button to move to another page. Screen readers announce it as a button, and users expect an action, not navigation.
+
+WCAG criteria: [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html), [2.5.3 Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## Try it
+
+<ButtonPlayground lang="en" />
+
+## API
+
+<PropsTable
+  props={buttonProps}
+  label="Button props"
+  lang="en"
+  overrides={{
+    variant: {
+      description: 'Visual emphasis: primary, secondary or tertiary.',
+    },
+    radius: {
+      description: 'Corner shape. Has no effect on a tertiary button.',
+    },
+    iconOnly: { description: 'A square button with no text.' },
+    'aria-label': {
+      requiredWhen: '`iconOnly` is set',
+      description: "The button's accessible name when there is no visible text.",
+    },
+    leftIcon: { description: 'Icon on the left of the label.' },
+    rightIcon: { description: 'Icon on the right of the label.' },
+    disabled: {
+      description: 'Makes the button unusable and removes it from the focus order.',
+    },
+    onClick: { description: 'Called when the button is pressed.' },
+    id: { hidden: true },
+  }}
+/>
+
+Other props, such as `type` and `id`, are passed to the `<button>` element.
+
+## Related components
+
+<RelatedComponents names={['TextLink', 'IconButton', 'LabeledIconButton', 'Chip']} lang="en" />
+
+<ComponentChanges name="Button" lang="en" />

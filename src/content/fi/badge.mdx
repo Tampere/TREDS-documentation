@@ -1,0 +1,116 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import badgeProps from '@/generated/Badge.props.json';
+
+# Badge
+
+<ComponentBadges name="Badge" lang="fi" />
+
+Badge on lyhyt tunniste, joka kertoo kohteen tilan tai luokan. Se ei ole painettava.
+
+<ComponentLinks name="Badge" lang="fi" />
+
+<Example name="badge/Hero" lang="fi" />
+
+## Milloin käyttää
+
+Käytä badgea, kun haluat merkitä kohteen tilan, kuten "Käsittelyssä" tai "Hyväksytty", tai luokan, kuten "Luonnos", "Uusi" tai "Luotu tekoälyllä", yhdellä tai kahdella sanalla.
+
+**Älä käytä badgea, kun**
+
+- käyttäjän pitää voida valita, suodattaa tai poistaa tunniste – käytä <ComponentRef name="Chip" lang="fi">Chip-komponenttia</ComponentRef>
+- painalluksen pitää viedä jonnekin tai tehdä jotain – käytä <ComponentRef name="TextLink" lang="fi">TextLink-</ComponentRef> tai <ComponentRef name="Button" lang="fi">Button-komponenttia</ComponentRef>
+- viesti on pidempi kuin muutama sana – kirjoita se tekstiksi
+
+## Variantit ja käyttötilanteet
+
+### Neutraali
+
+Ilman `status`-propsia badge on neutraali. Käytä sitä luokille ja ominaisuuksille, joihin ei liity onnistumista tai ongelmaa. `inverted` antaa badgelle tumman taustan, kun se tarvitsee enemmän huomiota.
+
+<Example name="badge/Neutral" lang="fi" />
+
+### Neutraali ja ikoni
+
+Neutraaliin badgeen voi antaa oman ikonin `icon`-propsilla. Tekoälyn käytön merkitsemiseen on oma ikoninsa, `AiIcon`.
+
+<Example name="badge/WithIcon" lang="fi" />
+
+### Tila
+
+`status` värittää badgen tilan mukaan: `info`, `success`, `warning` tai `error`. `showIcon` lisää tilan oman ikonin. Käytä ikonia, sillä jokaisella tilalla on eri muotoinen ikoni, eikä tila silloin välity pelkällä värillä.
+
+<Example name="badge/Statuses" lang="fi" />
+
+### Tila ruudunlukijalle
+
+Kun teksti ei itse kerro tilaa, `statusLabel` lukee tilan nimen ruudunlukijalle ennen tekstiä. Alla ruudunlukija kuulee "Virhe Maksamaton". Pelkkä `statusLabel` käyttää suomenkielisiä oletuksia: Tiedote, Valmis, Varoitus ja Virhe.
+
+<Example name="badge/StatusLabel" lang="fi" />
+
+## Sisältöohjeet
+
+- Pidä teksti yhdessä tai kahdessa sanassa. Pitkä teksti ei katkea, vaan valuu badgen yli.
+- Kerro tila tekstissä: "Hylätty", ei pelkkä punainen väri.
+- Käytä samaa tekstiä samasta tilasta koko palvelussa.
+
+## Saavutettavuus
+
+**Komponentti hoitaa**
+
+- Tekstin ja taustan kontrasti ylittää 4,5:1 kaikissa varianteissa.
+- Tilaikonit ovat keskenään eri muotoisia, ja ne on piilotettu ruudunlukijalta.
+- Badge ei ole interaktiivinen: sillä ei ole roolia eikä fokusta, joten ruudunlukija lukee sen tavallisena tekstinä.
+- `statusLabel` lisää tilan nimen piilotettuna tekstinä.
+
+**Sinun vastuullasi**
+
+- Teksti kertoo tilan. Jos ei kerro, käytä `statusLabel`-propsia.
+- Muunkielisillä sivuilla anna `statusLabel` merkkijonona sivun kielellä. Oletukset ovat suomeksi.
+- Merkitse oma ikoni koristeeksi `aria-hidden`-attribuutilla.
+- Jos tila muuttuu sivulla käyttäjän toiminnan seurauksena, badge ei ilmoita muutosta ruudunlukijalle. Ilmoita muutos erikseen esimerkiksi live-alueella.
+
+WCAG-kriteerit: [1.4.1 Värien käyttö](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html), [1.4.3 Kontrasti (minimi)](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html), [4.1.3 Tilasanomat](https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html)
+
+## API
+
+<PropsTable
+  props={badgeProps}
+  label="Badgen propsit"
+  lang="fi"
+  overrides={{
+    status: { description: 'Tila, joka määrää värin. Ilman sitä badge on neutraali.' },
+    icon: {
+      type: 'ReactElement',
+      description: 'Neutraalin badgen oma ikoni. Ei käytössä, kun `status` on asetettu.',
+    },
+    inverted: { description: 'Tumma tausta ja vaalea teksti. Vain neutraalissa badgessa.' },
+    showIcon: { description: 'Näyttää tilan oman ikonin. Vain, kun `status` on asetettu.' },
+    statusLabel: {
+      description:
+        'Tilan nimi ruudunlukijalle ennen tekstiä. `true` käyttää suomenkielistä oletusta. Vain, kun `status` on asetettu.',
+    },
+    className: { hidden: true },
+    'data-testid': { hidden: true },
+  }}
+/>
+
+Badge ei välitä muita HTML-attribuutteja, kuten `id` tai `lang`, `<span>`-elementille.
+
+## Tunnetut ongelmat
+
+- [#157 Pitkä teksti valuu badgen yli eikä katkea](https://github.com/Tampere/Tampere-design-system/issues/157)
+- [#158 Badge ei välitä HTML-attribuutteja, kuten `id`, `role` tai `lang`](https://github.com/Tampere/Tampere-design-system/issues/158)
+
+## Liittyvät komponentit
+
+<RelatedComponents names={['Chip']} lang="fi" />
+
+<ComponentChanges name="Badge" lang="fi" />

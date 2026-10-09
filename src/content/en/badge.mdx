@@ -1,0 +1,116 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import badgeProps from '@/generated/Badge.props.json';
+
+# Badge
+
+<ComponentBadges name="Badge" lang="en" />
+
+A badge is a short label that states an item's status or category. It can't be pressed.
+
+<ComponentLinks name="Badge" lang="en" />
+
+<Example name="badge/Hero" lang="en" />
+
+## When to use
+
+Use a badge to mark an item's status, such as "In progress" or "Approved", or its category, such as "Draft", "New" or "Created with AI", in one or two words.
+
+**Don't use a badge when**
+
+- the user needs to select, filter or remove the label – use <ComponentRef name="Chip" lang="en" />
+- pressing it should go somewhere or do something – use <ComponentRef name="TextLink" lang="en" /> or <ComponentRef name="Button" lang="en" />
+- the message is longer than a few words – write it as text
+
+## Variants and situations
+
+### Neutral
+
+Without the `status` prop the badge is neutral. Use it for categories and properties that carry no success or problem. `inverted` gives the badge a dark background when it needs more attention.
+
+<Example name="badge/Neutral" lang="en" />
+
+### Neutral with an icon
+
+A neutral badge accepts its own icon through the `icon` prop. Marking AI involvement has its own icon, `AiIcon`.
+
+<Example name="badge/WithIcon" lang="en" />
+
+### Status
+
+`status` colours the badge by status: `info`, `success`, `warning` or `error`. `showIcon` adds the status's own icon. Use the icon: each status has a differently shaped icon, so the status isn't conveyed by colour alone.
+
+<Example name="badge/Statuses" lang="en" />
+
+### Status for screen readers
+
+When the text doesn't state the status itself, `statusLabel` reads the status name to screen readers before the text. Below, a screen reader hears "Error Unpaid". A bare `statusLabel` uses Finnish defaults (Tiedote, Valmis, Varoitus, Virhe), so give it a string on pages in other languages.
+
+<Example name="badge/StatusLabel" lang="en" />
+
+## Content guidelines
+
+- Keep the text to one or two words. Long text doesn't truncate but overflows the badge.
+- State the status in the text: "Rejected", not a red colour alone.
+- Use the same text for the same status throughout the service.
+
+## Accessibility
+
+**The component handles**
+
+- Text and background contrast exceeds 4.5:1 in every variant.
+- The status icons have distinct shapes and are hidden from screen readers.
+- A badge isn't interactive: it has no role or focus, so screen readers read it as plain text.
+- `statusLabel` adds the status name as hidden text.
+
+**Your responsibility**
+
+- The text states the status. If it doesn't, use `statusLabel`.
+- On pages in languages other than Finnish, give `statusLabel` as a string in the page language. The defaults are Finnish.
+- Mark your own icon as decorative with the `aria-hidden` attribute.
+- If the status changes on the page as a result of a user action, the badge doesn't announce the change. Announce it separately, for example in a live region.
+
+WCAG criteria: [1.4.1 Use of Color](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html), [1.4.3 Contrast (Minimum)](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html), [4.1.3 Status Messages](https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html)
+
+## API
+
+<PropsTable
+  props={badgeProps}
+  label="Badge props"
+  lang="en"
+  overrides={{
+    status: { description: 'Status that sets the colour. Without it the badge is neutral.' },
+    icon: {
+      type: 'ReactElement',
+      description: 'Own icon for a neutral badge. Not available when `status` is set.',
+    },
+    inverted: { description: 'Dark background with light text. Neutral badge only.' },
+    showIcon: { description: "Shows the status's own icon. Only when `status` is set." },
+    statusLabel: {
+      description:
+        'Status name read to screen readers before the text. `true` uses the Finnish default. Only when `status` is set.',
+    },
+    className: { hidden: true },
+    'data-testid': { hidden: true },
+  }}
+/>
+
+Badge doesn't pass other HTML attributes, such as `id` or `lang`, to its `<span>` element.
+
+## Known issues
+
+- [#157 Long text overflows the badge instead of truncating](https://github.com/Tampere/Tampere-design-system/issues/157)
+- [#158 Badge doesn't pass HTML attributes such as `id`, `role` or `lang`](https://github.com/Tampere/Tampere-design-system/issues/158)
+
+## Related components
+
+<RelatedComponents names={['Chip']} lang="en" />
+
+<ComponentChanges name="Badge" lang="en" />

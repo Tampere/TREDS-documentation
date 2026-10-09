@@ -1,0 +1,401 @@
+/*
+ * Docs-site styles. Colours and spacing come from TREDS tokens via the custom properties
+ * set in docs-ui/tokenVars.ts. Column widths and max widths have no TREDS token, so they
+ * are literal; media queries use TREDS breakpoint widths (768, 1024, 1440) because CSS
+ * can't read a variable inside @media.
+ */
+.docs-root {
+  --space-xs: var(--space-xs-narrow);
+  --space-sm: var(--space-sm-narrow);
+  --space-md: var(--space-md-narrow);
+  --space-lg: var(--space-lg-narrow);
+  --space-xl: var(--space-xl-narrow);
+  --border: var(--stroke-weight) solid var(--divider);
+}
+@media (min-width: 768px) {
+  .docs-root {
+    --space-xs: var(--space-xs-wide);
+    --space-sm: var(--space-sm-wide);
+    --space-md: var(--space-md-wide);
+    --space-lg: var(--space-lg-wide);
+    --space-xl: var(--space-xl-wide);
+  }
+}
+
+/* Page layout */
+.docs-layout {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: var(--space-lg);
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-lg) var(--space-xl);
+}
+.docs-content {
+  min-width: 0;
+}
+.doc {
+  display: grid;
+  grid-template-columns: minmax(0, 52rem) 13rem;
+  gap: var(--space-lg);
+}
+.doc-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+@media (max-width: 1439px) {
+  .doc {
+    grid-template-columns: minmax(0, 52rem);
+  }
+  .on-this-page {
+    display: none;
+  }
+}
+@media (max-width: 1023px) {
+  .docs-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-sm) var(--space-xl);
+  }
+}
+
+/* Sidebar, "On this page", prev/next */
+.sidebar ul,
+.on-this-page ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-section + .sidebar-section {
+  margin-top: var(--space-md);
+}
+.sidebar-heading,
+.on-this-page-title {
+  margin-bottom: var(--space-xs);
+  /* Caption size from Typography; bold header colour so section labels stand apart from links. */
+  color: var(--text-header);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.sidebar li + li,
+.on-this-page li + li {
+  margin-top: var(--space-xs);
+}
+.sidebar-group {
+  margin: var(--space-sm) 0 var(--space-xs);
+  color: var(--text-header);
+  font-weight: var(--weight-bold);
+}
+.sidebar-toggle {
+  display: none;
+}
+@media (max-width: 1023px) {
+  .sidebar-toggle {
+    display: inline-flex;
+  }
+  .sidebar-list[data-open='false'] {
+    display: none;
+  }
+  .sidebar-list {
+    margin-top: var(--space-sm);
+  }
+}
+@media (min-width: 1024px) {
+  .sidebar {
+    position: sticky;
+    top: var(--space-sm);
+    align-self: start;
+    /* The component list is taller than the viewport; scroll it on its own. */
+    max-height: calc(100vh - 2 * var(--space-sm));
+    overflow-y: auto;
+  }
+}
+.on-this-page {
+  position: sticky;
+  top: var(--space-sm);
+  align-self: start;
+}
+.prev-next {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  padding-top: var(--space-md);
+  border-top: var(--border);
+}
+.prev-next-next {
+  margin-left: auto;
+}
+/* TREDS 1.0.0 Breadcrumbs leaves the browser's default <ol> padding and margins in place (#181). */
+.crumbs ol {
+  margin: 0;
+  padding: 0;
+}
+/* TREDS's visuallyHidden class can't be imported into Server Components (#177). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.nowrap {
+  white-space: nowrap;
+}
+
+/* Vertical rhythm for MDX content. Equal specificity throughout (:where), so source order
+   decides: later rules win. */
+.prose > :where(*) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.prose > :where(*) + :where(*) {
+  margin-top: var(--space-sm);
+}
+.prose > :where(h1) + :where(*) {
+  margin-top: var(--space-md);
+}
+.prose > :where(h2, h3) + :where(*) {
+  margin-top: var(--space-xs);
+}
+.prose > :where(*) + :where(.example, .code-block, .table-wrap) {
+  margin-top: var(--space-md);
+}
+.prose > :where(.example, .code-block, .table-wrap) + :where(*) {
+  margin-top: var(--space-lg);
+}
+.prose > :where(*) + :where(h3) {
+  margin-top: var(--space-lg);
+}
+.prose > :where(*) + :where(h2) {
+  margin-top: var(--space-xl);
+}
+/* TREDS Typography doesn't wrap or hyphenate long words, and a Finnish compound such as
+   "Saavutettavuusseloste" overflows a 320px screen at h1 size. */
+.prose > :where(h1, h2, h3) {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+.prose > :where(p, ul) code {
+  overflow-wrap: anywhere;
+}
+/* Inline code: smaller than the surrounding text, because a monospace face looks larger at
+   the same size, and on a tinted surface so it reads as code without relying on the font
+   alone. Code blocks stay white: their Shiki colours drop to 4.5:1 on this surface. */
+code,
+pre {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+:not(pre) > code {
+  font-size: 0.875em;
+  padding: 0.125em 0.25em;
+  background: var(--code-surface);
+  border-radius: var(--corner-radius);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+/* No TREDS List component yet (#56). */
+.list {
+  padding-left: var(--space-md);
+  font-size: var(--p1-font-size);
+  line-height: var(--p1-line-height);
+  color: var(--text-primary);
+}
+/* Component page: the badges sit tight under the h1, as part of the title. */
+.prose > h1 + .component-badges {
+  margin-top: var(--space-xs);
+}
+.component-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+/* Components overview: Linkbox cards, as many columns as fit. */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  gap: var(--space-md);
+}
+/* Component page: link rows under the lead and in the changes section. */
+.component-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-md);
+  padding: 0;
+  list-style: none;
+}
+.changes li + li {
+  margin-top: var(--space-xs);
+}
+/* No TREDS Notification/Callout component yet. */
+.prose > blockquote {
+  margin-left: 0;
+  margin-right: 0;
+  padding: var(--space-sm);
+  border-left: calc(var(--stroke-weight) * 2) solid var(--accent);
+  background: var(--surface-subtle);
+}
+
+/* Examples, code and playground */
+.example {
+  border: var(--border);
+}
+.example-preview {
+  padding: var(--space-md);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+/* Shiki's github-light-high-contrast colours are checked against this white background. */
+.code,
+.example-code pre,
+.code-block > pre.shiki {
+  padding: var(--space-sm);
+  overflow-x: auto;
+  background: var(--surface) !important;
+  border: var(--border);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.code-block {
+  position: relative;
+}
+/* The surface behind the button keeps it legible over code that scrolls beneath it. */
+.code-copy {
+  position: absolute;
+  top: var(--stroke-weight);
+  right: var(--stroke-weight);
+  background: var(--surface);
+}
+/* Only code inside an example box drops its margin; a standalone block keeps the prose
+   rhythm, whose :where() rules lose to any class selector. */
+.example .code,
+.example-code pre {
+  margin: 0;
+  border-width: var(--stroke-weight) 0 0;
+}
+.playground {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18rem;
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+@media (max-width: 767px) {
+  .playground {
+    grid-template-columns: 1fr;
+  }
+}
+.playground-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Tables */
+/* position: relative keeps the cells' absolutely positioned visually-hidden text inside the
+   scroller; otherwise it escapes and widens the page. */
+.table-wrap {
+  position: relative;
+  overflow-x: auto;
+}
+.table-wrap > table {
+  width: 100%;
+}
+/* Outranks TREDS's single-class cell styles (p1, subheader); header weight is kept. */
+.table-wrap :is(td, th) {
+  font-size: var(--p2-font-size);
+  line-height: var(--p2-line-height);
+}
+/* A prop name such as aria-label would otherwise break at its hyphen. */
+.table-wrap th[scope='row'] code {
+  white-space: nowrap;
+}
+
+/* Foundations pages */
+.palette {
+  display: grid;
+  gap: var(--space-md);
+}
+.palette-title {
+  margin-bottom: var(--space-xs);
+  text-transform: capitalize;
+}
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: var(--space-sm);
+}
+.swatch {
+  border: var(--border);
+}
+.swatch-chip {
+  height: 3.5rem;
+}
+.swatch-label {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xs);
+}
+.swatch-dot {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: var(--border);
+  vertical-align: middle;
+}
+.spacing-bar {
+  display: inline-block;
+  height: 0.75rem;
+}
+.contrast-sample {
+  display: inline-block;
+  padding: 0 var(--space-xs);
+  font-weight: 700;
+  border: var(--border);
+}
+.legend {
+  margin-top: var(--space-xs);
+}
+
+/* Icons page */
+.icon-count {
+  margin: var(--space-sm) 0;
+}
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: var(--space-xs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* TREDS has no selectable tile; colours, border and focus ring still come from tokens. */
+.icon-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  width: 100%;
+  height: 100%;
+  padding: var(--space-sm) var(--space-xs);
+  border: var(--border);
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.icon-tile:hover {
+  background: var(--surface-subtle);
+}
+.icon-tile:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
+}
+.icon-name {
+  text-align: center;
+}

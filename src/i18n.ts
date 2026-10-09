@@ -1,0 +1,41 @@
+export const languages = ['fi', 'en'] as const;
+export type Lang = (typeof languages)[number];
+
+export const dict = {
+  fi: {
+    siteName: 'Design System',
+    navAriaLabel: 'Päänavigaatio',
+    languagesAriaLabel: 'Kieli',
+    menu: 'Valikko',
+    home: 'Etusivu',
+    breadcrumbs: 'Murupolku',
+    onThisPage: 'Tällä sivulla',
+    pages: 'Sivut',
+    sidebar: 'Dokumentaation sivut',
+    previous: 'Edellinen',
+    next: 'Seuraava',
+    search: 'Hae dokumentaatiosta',
+    searchButton: 'Hae',
+    clear: 'Tyhjennä',
+    noResults: 'Ei tuloksia',
+    accessibility: 'Saavutettavuusseloste',
+  },
+  en: {
+    siteName: 'Design System',
+    navAriaLabel: 'Main navigation',
+    languagesAriaLabel: 'Language',
+    menu: 'Menu',
+    home: 'Home',
+    breadcrumbs: 'Breadcrumb',
+    onThisPage: 'On this page',
+    pages: 'Pages',
+    sidebar: 'Documentation pages',
+    previous: 'Previous',
+    next: 'Next',
+    search: 'Search the documentation',
+    searchButton: 'Search',
+    clear: 'Clear',
+    noResults: 'No results',
+    accessibility: 'Accessibility statement',
+  },
+} satisfies Record<Lang, Record<string, string>>;

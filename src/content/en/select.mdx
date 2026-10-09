@@ -1,0 +1,209 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+
+# Select
+
+<ComponentBadges name="Select" lang="en" />
+
+A dropdown for choosing one option. The list can be filtered by typing, and options can be grouped.
+
+<ComponentLinks name="Select" lang="en" />
+
+<Example name="select/Hero" lang="en" />
+
+## When to use
+
+Use a select when the user picks one option from a list that is too long to show at once, such as a district or a service.
+
+**Don't use a select when**
+
+- there are only a few options – use <ComponentRef name="RadioButton" lang="en" />, so all options are visible at once
+- the user can pick more than one option – use <ComponentRef name="Checkbox" lang="en" /> or <ComponentRef name="Chip" lang="en" />
+- the answer is free text – use <ComponentRef name="TextField" lang="en" />
+- the choice takes the user to another page – use links
+
+## Variants and situations
+
+### Helper text and required
+
+`helperText` shows below the label, and `required` marks the field as required, the same way as in <ComponentRef name="TextField" lang="en" />.
+
+<Example name="select/HelperRequired" lang="en" />
+
+### Error
+
+`error` shows an error message. Say in the message what the user needs to do.
+
+<Example name="select/Error" lang="en" />
+
+### Grouped options
+
+`options` also accepts groups: `{ group, items }`. The group's heading shows above its options in the list and can't be selected.
+
+<Example name="select/Grouped" lang="en" />
+
+### Search
+
+Typing always filters the list. `showSearchIcon` adds a search icon that signals this. `noResultsMessage` shows when no option matches. Without it the list is empty.
+
+<Example name="select/Search" lang="en" />
+
+### Disabled
+
+`disabled` prevents selection.
+
+<Example name="select/Disabled" lang="en" />
+
+### Value in state
+
+When the selection is in state, pass `value` and `onChange`. Note that `onChange` is also called while typing, with the typed text, not only when an option is chosen. Check that the value is one of the options.
+
+<Example name="select/Controlled" lang="en" />
+
+## Content guidelines
+
+- Keep the label short and say what is chosen: "District", not "Choose a district from the list".
+- Order the options logically: alphabetically, or by their meaning if the order matters.
+- Use groups when the options fall into clear categories. Keep the group names short.
+- Always write a `noResultsMessage` when the list can be filtered.
+
+## Accessibility
+
+**The component handles**
+
+- `inputLabel` is the field's `<label>`. The helper text and error message are connected with `aria-describedby`, and an error sets `aria-invalid`.
+- The list works with the keyboard: Arrow Down opens the list and moves through the options, and Enter selects an option.
+- The selected option is marked with `aria-selected`, and each option has its position as its description, for example "2 / 5".
+- Each group is its own `group` role, named by the group's heading.
+
+**Your responsibility**
+
+- Always give a visible `inputLabel`. Select doesn't pass `aria-label` to the field, so without `inputLabel` the field has no name (#195).
+- Set `clearButtonLabel`, `expandButtonLabel` and `collapseButtonLabel`, because the buttons have no default names (#192).
+- Check that the value from `onChange` is one of the options before you use it.
+- Focus is lost to the top of the page when the clear button is pressed (#191). Select has no workaround for this, because the component doesn't forward a `ref`.
+- The field announces itself to screen readers as a text field, and the list's open or closed state isn't conveyed (#194). Test forms that use Select with a screen reader.
+
+WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [3.3.2 Labels or Instructions](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  label="Select props"
+  lang="en"
+  props={[
+    {
+      name: 'options',
+      type: 'string[] | SelectOptionGroup[]',
+      required: true,
+      description: 'Options as a list or as groups `{ group, items }`.',
+    },
+    {
+      name: 'inputLabel',
+      type: 'string',
+      required: false,
+      description:
+        "The field's visible label. Required in practice, because `aria-label` doesn't work.",
+    },
+    {
+      name: 'value',
+      type: 'string',
+      required: false,
+      description: 'The selected value, when the value is in state.',
+    },
+    {
+      name: 'onChange',
+      type: '(value: string) => void',
+      required: false,
+      description: 'Called on selection and also with typed text.',
+    },
+    {
+      name: 'placeholder',
+      type: 'string',
+      required: false,
+      description: "Placeholder text. Doesn't replace the label.",
+    },
+    {
+      name: 'helperText',
+      type: 'string',
+      required: false,
+      description: 'Helper text below the label.',
+    },
+    {
+      name: 'error',
+      type: 'string',
+      required: false,
+      description: 'Error message. Also sets `aria-invalid`.',
+    },
+    {
+      name: 'required',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Required field.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Prevents selection.',
+    },
+    {
+      name: 'showSearchIcon',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Search icon at the start of the field.',
+    },
+    {
+      name: 'noResultsMessage',
+      type: 'string',
+      required: false,
+      description: 'Message when no option matches the search.',
+    },
+    {
+      name: 'clearButtonLabel',
+      type: 'string',
+      required: false,
+      description: "The clear button's accessible name. No default (#192).",
+    },
+    {
+      name: 'expandButtonLabel',
+      type: 'string',
+      required: false,
+      description: "The open-list button's accessible name. No default (#192).",
+    },
+    {
+      name: 'collapseButtonLabel',
+      type: 'string',
+      required: false,
+      description: "The close-list button's accessible name. No default (#192).",
+    },
+  ]}
+/>
+
+This table is written by hand, because the props can't be read from the published package's types. The `SelectProps` type isn't exported from the package (#182, #141). Select accepts no other props.
+
+## Known issues
+
+- [#187 The field overflows a narrow container once a value is selected](https://github.com/Tampere/Tampere-design-system/issues/187)
+- [#191 Focus is lost to the top of the page when the clear button is pressed](https://github.com/Tampere/Tampere-design-system/issues/191)
+- [#192 The buttons have no accessible name without the label props](https://github.com/Tampere/Tampere-design-system/issues/192)
+- [#194 The field has no combobox role, and the list's state isn't exposed to screen readers](https://github.com/Tampere/Tampere-design-system/issues/194)
+- [#195 `aria-label` is ignored, so a Select without `inputLabel` has no name](https://github.com/Tampere/Tampere-design-system/issues/195)
+- [#141 The group types aren't exported from the package](https://github.com/Tampere/Tampere-design-system/issues/141)
+- [#138 A group heading can't be selected as an option](https://github.com/Tampere/Tampere-design-system/issues/138)
+
+## Related components
+
+<RelatedComponents names={['TextField', 'RadioButton', 'Checkbox', 'SearchField']} lang="en" />
+
+<ComponentChanges name="Select" lang="en" />

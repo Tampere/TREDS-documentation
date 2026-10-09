@@ -1,0 +1,48 @@
+import { BrandColors } from '@/docs-ui/tokens/BrandColors';
+import { ColorPalette } from '@/docs-ui/tokens/ColorPalette';
+import { ContrastMatrix } from '@/docs-ui/tokens/ContrastMatrix';
+import { SemanticColors } from '@/docs-ui/tokens/SemanticColors';
+
+# Colours
+
+Pick colours by **role**, not by shade. Each colour below is a semantic token that says what it is for — body text, a link, an error — so a change to the palette reaches every service without anyone searching for hex codes.
+
+Every value, swatch and contrast ratio on this page is read from the published `@tampere/treds` package when the site is built.
+
+## Text
+
+<SemanticColors group="text" lang="en" />
+
+## Interaction states
+
+Links, buttons and other controls share one set of state colours.
+
+<SemanticColors group="states" lang="en" />
+
+## Surfaces and borders
+
+<SemanticColors group="surfaces" lang="en" />
+
+## Focus
+
+The focus ring is drawn by TREDS components themselves. Use `vars.theme.focusRing` for your own interactive elements, and the inverted ring on dark or coloured backgrounds.
+
+<SemanticColors group="focus" lang="en" />
+
+## Contrast
+
+WCAG 2.1 level AA requires **4.5:1** for normal text and **3:1** for large text (24px, or 18.66px bold) and for the parts of a control you need to see to use it. Check text against the background it actually sits on:
+
+<ContrastMatrix lang="en" />
+
+## Brand colours
+
+Tampere's blues by role. Components reach them through the semantic tokens above.
+
+<BrandColors />
+
+## Palette
+
+The raw primitives behind everything above. Reach for one only when no semantic token fits — and consider reporting the gap, since it probably affects other services too.
+
+<ColorPalette />

@@ -1,0 +1,43 @@
+import { IconGallery } from '@/docs-ui/IconGallery';
+import { IconSizes } from '@/docs-ui/IconSizes';
+
+# Ikonit
+
+TREDS sisältää Tampereen kaupungin ikonisarjan React-komponentteina. Jokainen ikoni on piirretty 24px ruudukkoon ja saa värinsä ympäröivästä tekstistä, joten se seuraa linkkien, painikkeiden ja tilojen värejä ilman erillistä tyylittelyä.
+
+## Ikonin käyttö
+
+```tsx
+import { SearchIcon } from '@tampere/treds';
+
+<SearchIcon aria-hidden="true" />; // 24px, tekstin nykyinen väri
+<SearchIcon aria-hidden="true" width={20} />; // muut koot: aseta width
+```
+
+Ikonit hyväksyvät kaikki SVG-attribuutit. Vaihda väriä asettamalla `color` ikonille tai sen vanhemmalle.
+
+## Koot
+
+Komponentit käyttävät näitä kokoja. Suosi niitä omissa asetteluissasi mielivaltaisten arvojen sijaan.
+
+<IconSizes lang="fi" />
+
+## Saavutettavuus
+
+Useimmat ikonit ovat tekstin vieressä, joka jo kertoo niiden merkityksen. Ne ovat **koristeellisia**: piilota ne avustavalta teknologialta `aria-hidden="true"`-attribuutilla, jotta ruudunlukija ei ilmoita nimetöntä kuvaa.
+
+Kun ikoni on kontrollin **ainoa** sisältö, kontrolli tarvitsee saavutettavan nimen. `Button` vaatii sen jo käännösvaiheessa:
+
+```tsx
+<Button iconOnly aria-label="Hae">
+  <SearchIcon aria-hidden="true" />
+</Button>
+```
+
+Älä välitä merkitystä pelkällä ikonilla kontrollien ulkopuolella — liitä mukaan teksti.
+
+## Kaikki ikonit
+
+Valitse ikoni kopioidaksesi sen JSX-koodin.
+
+<IconGallery lang="fi" />

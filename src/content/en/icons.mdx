@@ -1,0 +1,43 @@
+import { IconGallery } from '@/docs-ui/IconGallery';
+import { IconSizes } from '@/docs-ui/IconSizes';
+
+# Icons
+
+TREDS includes the City of Tampere icon set as React components. Each icon is drawn on a 24px grid and takes its colour from the surrounding text, so it follows link, button and state colours without extra styling.
+
+## Using an icon
+
+```tsx
+import { SearchIcon } from '@tampere/treds';
+
+<SearchIcon aria-hidden="true" />; // 24px, current text colour
+<SearchIcon aria-hidden="true" width={20} />; // other sizes: set width
+```
+
+Icons accept any SVG attribute. To change the colour, set `color` on the icon or a parent.
+
+## Sizes
+
+Components use these sizes. Prefer them over arbitrary values in your own layouts.
+
+<IconSizes lang="en" />
+
+## Accessibility
+
+Most icons sit next to text that already says what they mean. Those are **decorative**: hide them from assistive technology with `aria-hidden="true"` so screen readers don't announce an unnamed image.
+
+When an icon is the **only** content of a control, the control needs an accessible name. `Button` requires one at compile time:
+
+```tsx
+<Button iconOnly aria-label="Hae">
+  <SearchIcon aria-hidden="true" />
+</Button>
+```
+
+Don't rely on an icon alone to convey meaning outside controls — pair it with text.
+
+## All icons
+
+Select an icon to copy its JSX.
+
+<IconGallery lang="en" />

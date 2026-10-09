@@ -1,0 +1,42 @@
+import { TypeScale } from '@/docs-ui/tokens/TypeScale';
+import { TypeStyles } from '@/docs-ui/tokens/TypeStyles';
+
+# Typography
+
+TREDS uses two typefaces: **Montserrat** for headings and **Open Sans** for everything else. `ThemeProvider` loads both as variable fonts, so there is nothing to install separately.
+
+## Type styles
+
+Nine styles cover headings, body text and small print. Use them through the `Typography` component rather than setting font sizes yourself:
+
+```tsx
+import { Typography } from '@tampere/treds';
+
+<Typography variant="h2">Asukaspalvelut</Typography>
+<Typography variant="p1">Leipäteksti…</Typography>
+```
+
+<TypeStyles lang="en" />
+
+## Look and level are separate
+
+`variant` sets how text **looks**; `component` sets which HTML element it **is**. Keep the heading levels of a page in order for screen-reader users, and choose the look independently:
+
+```tsx
+// An h2 in the document outline that looks like an h4
+<Typography variant="h4" component="h2">
+  Aukioloajat
+</Typography>
+```
+
+Use one `h1` per page, and don't skip levels — an `h4` directly under an `h2` breaks the outline that assistive technology users navigate by.
+
+## Responsive sizes
+
+Sizes scale down on narrower screens automatically. The table shows each style in pixels per breakpoint; see [Spacing and layout](/en/foundations/spacing-and-layout/) for which viewport widths each breakpoint covers.
+
+<TypeScale lang="en" />
+
+## Line length
+
+Keep body text to roughly **80 characters per line** or fewer (WCAG 1.4.8). Long lines are harder to follow back to the start of the next one, which matters most for readers with dyslexia or low vision. A content column of about 50rem does this at the p1 size.

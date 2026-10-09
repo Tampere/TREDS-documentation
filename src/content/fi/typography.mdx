@@ -1,0 +1,42 @@
+import { TypeScale } from '@/docs-ui/tokens/TypeScale';
+import { TypeStyles } from '@/docs-ui/tokens/TypeStyles';
+
+# Typografia
+
+TREDS käyttää kahta kirjasinta: **Montserrat** otsikoissa ja **Open Sans** kaikessa muussa. `ThemeProvider` lataa molemmat muuttuvina fontteina (variable fonts), joten erillistä asennusta ei tarvita.
+
+## Typografiatyylit
+
+Yhdeksän tyyliä kattaa otsikot, leipätekstin ja pienet tekstit. Käytä niitä `Typography`-komponentin kautta äläkä aseta fonttikokoja itse:
+
+```tsx
+import { Typography } from '@tampere/treds';
+
+<Typography variant="h2">Asukaspalvelut</Typography>
+<Typography variant="p1">Leipäteksti…</Typography>
+```
+
+<TypeStyles lang="fi" />
+
+## Ulkoasu ja taso ovat eri asioita
+
+`variant` määrää, miltä teksti **näyttää**; `component` määrää, mikä HTML-elementti se **on**. Pidä sivun otsikkotasot järjestyksessä ruudunlukijan käyttäjiä varten ja valitse ulkoasu erikseen:
+
+```tsx
+// Dokumentin rakenteessa h2, näyttää h4:ltä
+<Typography variant="h4" component="h2">
+  Aukioloajat
+</Typography>
+```
+
+Käytä yhtä `h1`-otsikkoa sivulla äläkä hyppää tasojen yli — `h4` suoraan `h2`:n alla rikkoo rakenteen, jonka avulla avustavan teknologian käyttäjät liikkuvat sivulla.
+
+## Responsiiviset koot
+
+Koot pienenevät kapeammilla näytöillä automaattisesti. Taulukossa on jokaisen tyylin koko pikseleinä breakpointeittain. [Välistys ja asettelu](/fi/foundations/spacing-and-layout/) -sivulla kerrotaan, mitä näytön leveyksiä kukin breakpoint kattaa.
+
+<TypeScale lang="fi" />
+
+## Rivin pituus
+
+Pidä leipätekstin rivit enintään noin **80 merkin** mittaisina (WCAG 1.4.8). Pitkiltä riveiltä on vaikea löytää seuraavan rivin alkua, mikä korostuu lukihäiriöisillä ja heikkonäköisillä. Noin 50rem levyinen sisältöpalsta pitää rivit tämän mittaisina p1-koossa.

@@ -1,0 +1,37 @@
+# Tampere Design System
+
+TREDS on Tampereen kaupungin digitaalisten palveluiden komponenttikirjasto. Se antaa tiimeille saavutettavat ja yhtenäiset rakennuspalikat, jotta jokainen Tampereen palvelu näyttää ja toimii saman kaupungin palvelulta — ilman että jokainen tiimi ratkaisee fokusreunukset, värikontrastit ja responsiivisen typografian uudelleen.
+
+TREDS on React-kirjasto, joka julkaistaan nimellä `@tampere/treds` ja rakentuu [Mantine v8](https://mantine.dev/) -kirjaston päälle. Mantine hoitaa perusrakenteet — popoverit, fokuksen hallinnan, lomakkeiden tilan — ja TREDS tuo niiden päälle Tampereen suunnittelupäätökset.
+
+## Kenelle
+
+**Jos rakennat Tampereen palveluita**, aloita alla olevasta asennuksesta ja siirry sitten komponenttisivuille. Kaikki on tyypitetty, joten editori kertoo suuren osan siitä, mitä dokumentaatio kertoisi.
+
+**Jos suunnittelet Tampereen palveluita**, hyödyllisintä ovat komponenttisivut: jokainen näyttää oikean komponentin sen eri tiloissa ja kertoo, milloin sitä kannattaa käyttää. Kokeile [Button](/fi/components/button/)-sivua.
+
+## Asennus
+
+```bash
+npm install @tampere/treds
+```
+
+Paketti julkaistaan GitHub Packagesiin eikä julkiseen npm-rekisteriin, joten se tarvitsee ensin yhden rivin `.npmrc`-tiedoston ja tokenin.
+
+Kääri sovellus kerran, juuressa:
+
+```jsx
+import { ThemeProvider } from '@tampere/treds';
+
+<ThemeProvider>
+  <App />
+</ThemeProvider>;
+```
+
+## Versiointi
+
+TREDS noudattaa semanttista versiointia versiosta 1.0.0 alkaen: rikkovat muutokset nostavat pääversiota. Jokaisen julkaisun rikkovat ja visuaaliset muutokset on listattu [muutoslokissa](https://github.com/Tampere/Tampere-design-system/blob/main/CHANGELOG.md) otsikon "Upgrade notes" alla.
+
+## Lisenssi
+
+Koodi on lisensoitu EUPL-1.2-lisenssillä. Tampereen kaupungin logot, vaakuna ja muut brändielementit eivät kuulu lisenssin piiriin.

@@ -1,0 +1,125 @@
+import { Example } from '@/docs-ui/Example';
+import { TextLinkPlayground } from '@/docs-ui/TextLinkPlayground';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import textLinkProps from '@/generated/TextLink.props.json';
+
+# TextLink
+
+<ComponentBadges name="TextLink" lang="en" />
+
+A text link takes the user to another page, another service or a file.
+
+<ComponentLinks name="TextLink" lang="en" />
+
+<Example name="text-link/Hero" lang="en" />
+
+## When to use
+
+Use a text link when activating it takes the user somewhere else: another page, another service, a file or another part of the same page. A link can sit inside body text or on its own line.
+
+**Don't use a text link when**
+
+- it triggers an action on this page – use <ComponentRef name="Button" lang="en" />
+- it belongs to the site's main or side navigation – use <ComponentRef name="NavigationLink" lang="en" />
+- a whole card or box must be clickable – use <ComponentRef name="Linkbox" lang="en" />
+- you need a link that skips to the main content – use <ComponentRef name="SkipLink" lang="en" />
+
+## Variants and situations
+
+### Inside text
+
+The link is P1 by default. When the surrounding text is another size, give the link the same size with the `size` prop so the link doesn't stand out by its size.
+
+<Example name="text-link/InText" lang="en" />
+
+### External link
+
+`openExternal` opens the link in a new tab and adds the external link icon. Screen readers hear a hidden suffix after the link. Its default is Finnish, so set `openExternalLabel` on pages in other languages. Only open a new tab when there is a reason, for example while the user is filling in a form.
+
+<Example name="text-link/External" lang="en" />
+
+### Visited link
+
+`visited` shows the link as visited in a darker blue. The state is a prop: the component doesn't follow the browser's own history, so the application decides which links have been visited.
+
+<Example name="text-link/Visited" lang="en" />
+
+### Heading-sized link
+
+`size` accepts the whole typography scale, from `h1` to `caption`. A heading-sized link can serve, for example, as the title of an item in a listing.
+
+<Example name="text-link/HeadingSize" lang="en" />
+
+### Router link
+
+`renderLink` replaces the `<a>` element with your own element, such as the `Link` component of Next.js or React Router. The function receives TextLink's class name, which you pass to your element. `href`, `openExternal` and the other props are then not applied: add them to your own element.
+
+<Example name="text-link/RouterLink" lang="en" />
+
+## Content guidelines
+
+- Say in the link text where the link goes: "City of Tampere website", not "here" or a bare "read more".
+- Don't use a web address as the link text unless the address itself is what the user needs.
+- When the link goes to a file, give its format and size, for example "Application form (PDF, 2 MB)".
+- Don't give the same link text to links that go to different places.
+
+## Accessibility
+
+**The component handles**
+
+- The link is a native `<a>` element, so it works with the keyboard and screen readers announce it as a link.
+- The link is always underlined, so it isn't distinguished from the surrounding text by colour alone. Its colours exceed 4.5:1 against a white background, also in the visited state.
+- Keyboard focus is shown as a focus ring.
+- `openExternal` adds hidden text announcing the new tab, hides the icon from screen readers and sets `rel="noopener noreferrer"`.
+
+**Your responsibility**
+
+- The link text states the destination even out of context.
+- The link's `size` matches the surrounding text when the link sits inside text.
+- On pages in languages other than Finnish, set `openExternalLabel` in the page language. The default is Finnish.
+- With `renderLink`, add the external link indication, `target` and `rel` yourself, because `openExternal` doesn't apply there.
+- A link must have `href` or `renderLink`. Without them it can't be reached with the keyboard.
+
+WCAG criteria: [1.4.1 Use of Color](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html), [2.4.4 Link Purpose (In Context)](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html), [2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## Try it
+
+<TextLinkPlayground lang="en" />
+
+## API
+
+<PropsTable
+  props={textLinkProps}
+  label="TextLink props"
+  lang="en"
+  overrides={{
+    href: { requiredWhen: '`renderLink` is not set', description: 'The link address.' },
+    size: {
+      description: 'The typography style the link is sized by. Match it to the surrounding text.',
+    },
+    visited: { description: 'Shows the link as visited.' },
+    openExternal: { description: 'Opens the link in a new tab and adds the external link icon.' },
+    openExternalLabel: { description: 'Text read to screen readers when `openExternal` is set.' },
+    renderLink: {
+      type: '(className: string) => ReactElement',
+      description:
+        'Replaces the `<a>` element, for example with a router `Link`. Receives the class name as its argument.',
+    },
+    className: { hidden: true },
+  }}
+/>
+
+Other props, such as `target`, `rel` and `aria-label`, are passed to the `<a>` element.
+
+## Related components
+
+<RelatedComponents names={['Button', 'NavigationLink', 'Linkbox']} lang="en" />
+
+<ComponentChanges name="TextLink" lang="en" />

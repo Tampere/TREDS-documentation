@@ -1,0 +1,48 @@
+import { BrandColors } from '@/docs-ui/tokens/BrandColors';
+import { ColorPalette } from '@/docs-ui/tokens/ColorPalette';
+import { ContrastMatrix } from '@/docs-ui/tokens/ContrastMatrix';
+import { SemanticColors } from '@/docs-ui/tokens/SemanticColors';
+
+# Värit
+
+Valitse väri sen **roolin** mukaan, ei sävyn. Jokainen alla oleva väri on semanttinen token, joka kertoo käyttötarkoituksensa — leipäteksti, linkki, virhe — joten paletin muutos päätyy kaikkiin palveluihin ilman, että kenenkään tarvitsee etsiä hex-arvoja.
+
+Kaikki tämän sivun arvot, värinäytteet ja kontrastisuhteet luetaan julkaistusta `@tampere/treds`-paketista sivuston buildin yhteydessä.
+
+## Teksti
+
+<SemanticColors group="text" lang="fi" />
+
+## Vuorovaikutuksen tilat
+
+Linkeillä, painikkeilla ja muilla kontrolleilla on yhteiset tilavärit.
+
+<SemanticColors group="states" lang="fi" />
+
+## Pinnat ja reunat
+
+<SemanticColors group="surfaces" lang="fi" />
+
+## Fokus
+
+TREDS-komponentit piirtävät fokusrenkaan itse. Käytä omissa interaktiivisissa elementeissä `vars.theme.focusRing`-tokenia ja tummalla tai värillisellä taustalla käänteistä rengasta.
+
+<SemanticColors group="focus" lang="fi" />
+
+## Kontrasti
+
+WCAG 2.1 AA -taso vaatii normaalille tekstille kontrastin **4.5:1** ja suurelle tekstille (24px tai lihavoituna 18.66px) sekä kontrollin käytön kannalta olennaisille osille **3:1**. Tarkista teksti sitä taustaa vasten, jolla se oikeasti on:
+
+<ContrastMatrix lang="fi" />
+
+## Brändivärit
+
+Tampereen siniset roolin mukaan. Komponentit käyttävät niitä yllä olevien semanttisten tokenien kautta.
+
+<BrandColors />
+
+## Paletti
+
+Kaiken yllä olevan takana olevat primitiivit. Käytä niitä vain, jos sopivaa semanttista tokenia ei ole — ja harkitse puutteen ilmoittamista, koska se koskee todennäköisesti muitakin palveluita.
+
+<ColorPalette />

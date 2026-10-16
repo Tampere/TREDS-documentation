@@ -65,7 +65,7 @@ Kun sovellus käyttää omaa reititintä, kuten Next.js:n `Link`-komponenttia, a
 
 - Kirjoita palvelun nimi lyhyeksi: "Asiointi", "Kirjastot".
 - Pidä päävalikon kohtia vähän ja kirjoita ne lyhyiksi: kaikkien pitää mahtua riville 1440 pikselin näytöllä.
-- Kirjoita kielten nimet kunkin kielen omalla kielellä: "Suomi", "Svenska", "English".
+- Figmassa kielet ovat kielikoodeina isoin kirjaimin: "FI", "SV", "EN". Valitun kielen `code` ja `currentLanguage` ovat pienin kirjaimin, kuten `fi`.
 - Komponentin oletustekstit ovat suomeksi: Valikko-painike ("Valikko"), kielivalinnan nimi ("Kieli") ja toissijaisen navigaation nimi. Muilla kielillä anna `menuButtonLabel`, `languagesAriaLabel` ja `secondaryNavAriaLabel`.
 
 ## Saavutettavuus
@@ -82,7 +82,7 @@ Kun sovellus käyttää omaa reititintä, kuten Next.js:n `Link`-komponenttia, a
 
 - Anna päävalikolle nimi `navAriaLabel`-propsilla, esimerkiksi "Päävalikko".
 - Lisää sivun alkuun <ComponentRef name="SkipLink" lang="fi">SkipLink</ComponentRef>, jolla näppäimistön käyttäjä ohittaa ylätunnisteen.
-- Kielten nimiltä puuttuu `lang`-attribuutti, joten suomenkielinen ruudunlukija lausuu "Svenska" ja "English" suomeksi (#230).
+- Ruudunlukija lukee kielikoodin, kuten "FI", sellaisenaan eikä kerro, mikä kieli on kyseessä. Kielilinkille ei vielä voi antaa kielen koko nimeä saavutettavaksi nimeksi, eikä linkillä ole `lang`-attribuuttia (#230).
 
 WCAG-kriteerit: [1.3.1 Informaatio ja suhteet](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.4.1 Ohita lohkot](https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html), [2.4.3 Kohdistusjärjestys](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html), [3.1.2 Osien kieli](https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts.html), [3.2.3 Johdonmukainen navigointi](https://www.w3.org/WAI/WCAG21/Understanding/consistent-navigation.html)
 
@@ -136,7 +136,7 @@ AppHeader ei välitä muita propseja.
 
 ## Tunnetut ongelmat
 
-- [#230 Kielten nimiltä puuttuu `lang`-attribuutti](https://github.com/Tampere/Tampere-design-system/issues/230)
+- [#230 Kielilinkeiltä puuttuu `lang`-attribuutti](https://github.com/Tampere/Tampere-design-system/issues/230)
 - [#187 Monirivisen ylätunnisteen hakupainike jää 320 pikselin näytöllä Valikko-painikkeen alle](https://github.com/Tampere/Tampere-design-system/issues/187)
 - [#209 Valikon toimintojen kuvakkeet ovat nimettömiä kuvia](https://github.com/Tampere/Tampere-design-system/issues/209)
 - [#161 Katselmoinnin jatkotoimet](https://github.com/Tampere/Tampere-design-system/issues/161)

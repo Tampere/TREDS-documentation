@@ -15,8 +15,8 @@ export default function MultiRow() {
       ]}
       secondaryNavigation={[{ label: 'Yhteystiedot', href: '#yhteystiedot' }]}
       languages={[
-        { code: 'fi', label: 'Suomi', href: '#fi' },
-        { code: 'en', label: 'English', href: '#en' },
+        { code: 'fi', label: 'FI', href: '#fi' },
+        { code: 'en', label: 'EN', href: '#en' },
       ]}
       currentLanguage="fi"
       search={

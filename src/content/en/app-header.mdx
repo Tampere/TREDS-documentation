@@ -65,7 +65,7 @@ When the app uses its own router, like Next.js's `Link` component, give the menu
 
 - Keep the service name short: "e-Services", "Libraries".
 - Keep the main menu short, with few items: all of them must fit on one row on a 1440-pixel screen.
-- Write each language's name in that language: "Suomi", "Svenska", "English".
+- In Figma the languages are uppercase language codes: "FI", "SV", "EN". Each language's `code` and `currentLanguage` are lowercase, like `fi`.
 - **The built-in texts are Finnish:** the Menu button ("Valikko"), the language switcher's name ("Kieli") and the secondary navigation's name. On an English page, pass `menuButtonLabel`, `languagesAriaLabel` and `secondaryNavAriaLabel`.
 
 ## Accessibility
@@ -82,7 +82,7 @@ When the app uses its own router, like Next.js's `Link` component, give the menu
 
 - Name the main menu with `navAriaLabel`, for example "Main menu".
 - Add a <ComponentRef name="SkipLink" lang="en" /> at the start of the page so keyboard users can skip the header.
-- The language names lack a `lang` attribute, so a Finnish screen reader voice reads "Svenska" and "English" as Finnish (#230).
+- Screen readers read a language code like "FI" as it is, without saying which language it is. A language link can't yet be given the full language name as its accessible name, and it has no `lang` attribute (#230).
 
 WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.4.1 Bypass Blocks](https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html), [2.4.3 Focus Order](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html), [3.1.2 Language of Parts](https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts.html), [3.2.3 Consistent Navigation](https://www.w3.org/WAI/WCAG21/Understanding/consistent-navigation.html)
 
@@ -134,7 +134,7 @@ AppHeader passes no other props on.
 
 ## Known issues
 
-- [#230 The language names lack a `lang` attribute](https://github.com/Tampere/Tampere-design-system/issues/230)
+- [#230 The language links lack a `lang` attribute](https://github.com/Tampere/Tampere-design-system/issues/230)
 - [#187 In the multi-row header at 320 pixels the search button ends up under the Menu button](https://github.com/Tampere/Tampere-design-system/issues/187)
 - [#209 The icons of the menu's actions are unnamed images](https://github.com/Tampere/Tampere-design-system/issues/209)
 - [#161 Review follow-ups](https://github.com/Tampere/Tampere-design-system/issues/161)

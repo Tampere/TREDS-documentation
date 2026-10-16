@@ -14,9 +14,9 @@ export default function Hero() {
         { label: 'Help', href: '#help' },
       ]}
       languages={[
-        { code: 'fi', label: 'Suomi', href: '#fi' },
-        { code: 'sv', label: 'Svenska', href: '#sv' },
-        { code: 'en', label: 'English', href: '#en' },
+        { code: 'fi', label: 'FI', href: '#fi' },
+        { code: 'sv', label: 'SV', href: '#sv' },
+        { code: 'en', label: 'EN', href: '#en' },
       ]}
       currentLanguage="en"
       languagesAriaLabel="Language"

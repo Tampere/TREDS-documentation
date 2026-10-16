@@ -266,7 +266,43 @@ import FiErrorTMF from './fi/time-field/Error';
 import EnErrorTMF from './en/time-field/Error';
 import FiDisabledTMF from './fi/time-field/Disabled';
 import EnDisabledTMF from './en/time-field/Disabled';
+import FiHeroSRF from './fi/search-field/Hero';
+import EnHeroSRF from './en/search-field/Hero';
+import FiSearchOnSelectSRF from './fi/search-field/SearchOnSelect';
+import EnSearchOnSelectSRF from './en/search-field/SearchOnSelect';
+import FiLoadingSRF from './fi/search-field/Loading';
+import EnLoadingSRF from './en/search-field/Loading';
+import FiCustomOptionSRF from './fi/search-field/CustomOption';
+import EnCustomOptionSRF from './en/search-field/CustomOption';
+import FiNoVisibleLabelSRF from './fi/search-field/NoVisibleLabel';
+import EnNoVisibleLabelSRF from './en/search-field/NoVisibleLabel';
+import FiHeroAH from './fi/app-header/Hero';
+import EnHeroAH from './en/app-header/Hero';
+import FiMultiRowAH from './fi/app-header/MultiRow';
+import EnMultiRowAH from './en/app-header/MultiRow';
+import FiActionsAH from './fi/app-header/Actions';
+import EnActionsAH from './en/app-header/Actions';
+import FiRouterLinksAH from './fi/app-header/RouterLinks';
+import EnRouterLinksAH from './en/app-header/RouterLinks';
+import FiHeroFT from './fi/footer/Hero';
+import EnHeroFT from './en/footer/Hero';
+import FiExtendedFT from './fi/footer/Extended';
+import EnExtendedFT from './en/footer/Extended';
+import FiDenseFT from './fi/footer/Dense';
+import EnDenseFT from './en/footer/Dense';
 const fi = {
+  'search-field/Hero': FiHeroSRF,
+  'search-field/SearchOnSelect': FiSearchOnSelectSRF,
+  'search-field/Loading': FiLoadingSRF,
+  'search-field/CustomOption': FiCustomOptionSRF,
+  'search-field/NoVisibleLabel': FiNoVisibleLabelSRF,
+  'app-header/Hero': FiHeroAH,
+  'app-header/MultiRow': FiMultiRowAH,
+  'app-header/Actions': FiActionsAH,
+  'app-header/RouterLinks': FiRouterLinksAH,
+  'footer/Hero': FiHeroFT,
+  'footer/Extended': FiExtendedFT,
+  'footer/Dense': FiDenseFT,
   'file-input/Hero': FiHeroFIN,
   'file-input/Multiple': FiMultipleFIN,
   'file-input/Send': FiSendFIN,
@@ -405,6 +441,18 @@ export type ExampleName = keyof typeof fi;
 export const examples: Record<Lang, Record<ExampleName, ComponentType>> = {
   fi,
   en: {
+    'search-field/Hero': EnHeroSRF,
+    'search-field/SearchOnSelect': EnSearchOnSelectSRF,
+    'search-field/Loading': EnLoadingSRF,
+    'search-field/CustomOption': EnCustomOptionSRF,
+    'search-field/NoVisibleLabel': EnNoVisibleLabelSRF,
+    'app-header/Hero': EnHeroAH,
+    'app-header/MultiRow': EnMultiRowAH,
+    'app-header/Actions': EnActionsAH,
+    'app-header/RouterLinks': EnRouterLinksAH,
+    'footer/Hero': EnHeroFT,
+    'footer/Extended': EnExtendedFT,
+    'footer/Dense': EnDenseFT,
     'file-input/Hero': EnHeroFIN,
     'file-input/Multiple': EnMultipleFIN,
     'file-input/Send': EnSendFIN,

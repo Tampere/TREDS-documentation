@@ -251,6 +251,15 @@ pre {
   gap: var(--space-sm);
   align-items: center;
 }
+/* Page chrome sits in normal block flow on a real page, so it fills the row. The header may
+   shrink and wrap; the Footer's brand row needs about 300px, more than a preview at 320,
+   so its examples scroll instead of clipping the wordmark. */
+.example-preview > :is(header, footer) {
+  flex: 1 1 100%;
+}
+.example-preview > header {
+  min-width: 0;
+}
 /* For components wider than a 320px column (Pagination, #217): scroll here
    instead of widening the page. */
 .example-preview.scroll {

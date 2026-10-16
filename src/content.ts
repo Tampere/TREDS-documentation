@@ -143,6 +143,18 @@ export const content: Partial<Record<string, Record<Lang, Loader>>> = {
     fi: () => import('./content/fi/time-field.mdx'),
     en: () => import('./content/en/time-field.mdx'),
   },
+  'components/search-field': {
+    fi: () => import('./content/fi/search-field.mdx'),
+    en: () => import('./content/en/search-field.mdx'),
+  },
+  'components/app-header': {
+    fi: () => import('./content/fi/app-header.mdx'),
+    en: () => import('./content/en/app-header.mdx'),
+  },
+  'components/footer': {
+    fi: () => import('./content/fi/footer.mdx'),
+    en: () => import('./content/en/footer.mdx'),
+  },
   'components/select': {
     fi: () => import('./content/fi/select.mdx'),
     en: () => import('./content/en/select.mdx'),

@@ -1,0 +1,141 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import searchFieldProps from '@/generated/SearchField.props.json';
+
+# SearchField
+
+<ComponentBadges name="SearchField" lang="fi" />
+
+Hakukentässä käyttäjä kirjoittaa hakusanan ja valitsee hakuehdotuksen listasta. Hakupainike tai ehdotuksen valinta käynnistää haun.
+
+<ComponentLinks name="SearchField" lang="fi" />
+
+<Example name="search-field/Hero" lang="fi" />
+
+## Milloin käyttää
+
+Käytä hakukenttää, kun käyttäjä etsii yhtä kohdetta suuresta joukosta ja tunnet valittavat kohteet, esimerkiksi palvelun, kadun tai kirjaston.
+
+**Älä käytä hakukenttää, kun**
+
+- vaihtoehtoja on vähän, alle parikymmentä – käytä <ComponentRef name="Select" lang="fi">Select-komponenttia</ComponentRef>
+- haku tehdään vapaalla tekstillä, kuten sivuston tekstihaku – hakukenttä hakee vain listasta valitulla ehdotuksella (#ISSUE_FREETEXT). Käytä <ComponentRef name="TextField" lang="fi">TextField-komponenttia</ComponentRef> ja omaa hakupainiketta lomakkeessa.
+
+## Variantit ja käyttötilanteet
+
+### Hakuehdotukset
+
+Hakukenttä ei suodata ehdotuksia itse. Lue kirjoitettu teksti `onChange`-propsilla, suodata tai hae ehdotukset ja anna ne `data`-propsille, kuten sivun alun esimerkissä. Ehdotuksissa hakusanaa vastaava osa näkyy lihavoituna. Lista aukeaa, kun `data` ei ole tyhjä.
+
+Haku käynnistyy vasta, kun käyttäjä on valinnut ehdotuksen ja painaa hakupainiketta. `onSearch` saa valitun ehdotuksen. Pelkkä kirjoitettu teksti ei käynnistä hakua, eikä Enter tee mitään ilman valittua ehdotusta.
+
+### Haku valinnasta
+
+`searchOnItemSelect` käynnistää haun heti, kun käyttäjä valitsee ehdotuksen. Silloin hakupainiketta ei tarvitse painaa.
+
+<Example name="search-field/SearchOnSelect" lang="fi" />
+
+### Lataus
+
+Kun ehdotukset haetaan palvelimelta, `isLoading` näyttää listassa latausanimaation haun ajan.
+
+<Example name="search-field/Loading" lang="fi" />
+
+### Oma ehdotuksen sisältö
+
+`labelElement` korvaa ehdotuksen näkyvän sisällön, esimerkiksi lisätiedolla toisella rivillä. Ruudunlukija lukee silti vain `label`-tekstin.
+
+<Example name="search-field/CustomOption" lang="fi" />
+
+### Ilman näkyvää otsikkoa
+
+Ylätunnisteessa hakukentällä ei yleensä ole näkyvää otsikkoa. Anna silloin `aria-label`, kuten <ComponentRef name="AppHeader" lang="fi">AppHeader-komponentin</ComponentRef> monirivisessä asettelussa. `fillAvailableSpace` venyttää kentän koko leveyteen.
+
+<Example name="search-field/NoVisibleLabel" lang="fi" />
+
+## Sisältöohjeet
+
+- Kerro otsikossa, mitä haetaan: "Hae palvelua", "Katuosoite".
+- Jos ehdotukset tulevat vasta muutaman kirjaimen jälkeen, kerro se ohjetekstissä.
+- Anna hakupainikkeelle nimi, joka kertoo, mitä se hakee, jos sivulla on useampi hakukenttä.
+
+## Saavutettavuus
+
+**Komponentti hoitaa**
+
+- `inputLabel` on kentän `<label>`. Hakupainikkeen nimi tulee `searchButtonLabel`-propsista, ja tyhjennyspainikkeen `clearButtonLabel`-propsista. Molemmat ovat pakollisia.
+- Ehdotukset ovat `listbox`-listassa. Nuolinäppäimet liikkuvat ehdotuksissa, Enter valitsee ja Esc sulkee listan.
+- Jokaisen ehdotuksen nimi on sen `label`, ja ehdotus kertoo sijaintinsa listassa, esimerkiksi "1 / 5".
+
+**Sinun vastuullasi**
+
+- Anna kentälle näkyvä `inputLabel`. Ilman sitä anna `aria-label`.
+- Kerro tulos tai siirry tulossivulle `onSearch`-käsittelijässä. Hakukenttä ei ilmoita mitään itse.
+- Kentältä puuttuu `combobox`-rooli ja `aria-expanded`, joten ruudunlukija ei kerro, että ehdotuslista aukesi (#194).
+- Latausanimaatio on nimetön, joten ruudunlukija ei kerro latauksesta (#219).
+- Tyhjennyspainike katoaa, kun kenttä tyhjenee, ja kohdistus putoaa sivun alkuun (#191).
+- Kun käytät `labelElement`-propsia, varmista, että `label` riittää yksinään erottamaan ehdotukset toisistaan.
+
+WCAG-kriteerit: [1.3.1 Informaatio ja suhteet](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.1.1 Näppäimistö](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [2.4.3 Kohdistusjärjestys](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html), [4.1.2 Nimi, rooli, arvo](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  props={searchFieldProps}
+  label="SearchFieldin propsit"
+  lang="fi"
+  overrides={{
+    data: {
+      description: 'Näytettävät ehdotukset: `{ value, label, labelElement? }`. Suodata ne itse.',
+    },
+    onSearch: {
+      description:
+        'Kutsutaan valitulla ehdotuksella, kun käyttäjä painaa hakupainiketta, tai heti valinnasta, kun `searchOnItemSelect` on käytössä.',
+    },
+    onClearClick: { description: 'Kutsutaan, kun tyhjennyspainiketta painetaan.' },
+    fillAvailableSpace: { description: 'Venyttää kentän koko leveyteen flex-asettelussa.' },
+    clearButtonLabel: { description: 'Tyhjennyspainikkeen nimi.' },
+    searchButtonLabel: { description: 'Hakupainikkeen nimi.' },
+    searchOnItemSelect: {
+      description: 'Käynnistää haun heti, kun ehdotus valitaan.',
+      defaultValue: 'false',
+    },
+    isLoading: { description: 'Näyttää listassa latausanimaation.', defaultValue: 'false' },
+    searchButtonProps: {
+      description:
+        'Lisäpropsit hakupainikkeelle, esimerkiksi `variant`. Nimeä ja `iconOnly`-propsia ei voi ohittaa.',
+    },
+    inputLabel: { description: 'Kentän näkyvä otsikko. Ilman sitä anna `aria-label`.' },
+    helperText: { description: 'Ohjeteksti otsikon alla.' },
+    error: { description: 'Virheviesti. Asettaa myös `aria-invalid`-attribuutin.' },
+    showSearchIcon: { description: 'Näyttää suurennuslasin kentän sisällä.' },
+    showClearButton: { hidden: true },
+    endInstance: { hidden: true },
+    onClearButtonClick: { hidden: true },
+  }}
+/>
+
+Muut <ComponentRef name="TextField" lang="fi">TextFieldin</ComponentRef> propsit, kuten `aria-label`, `placeholder` ja `disabled`, välitetään kentälle. `onChange` saa kentän muutostapahtuman.
+
+## Tunnetut ongelmat
+
+- [#ISSUE_FREETEXT Kirjoitetulla tekstillä ei voi hakea](https://github.com/Tampere/Tampere-design-system/issues/ISSUE_FREETEXT)
+- [#194 Kentältä puuttuvat `combobox`-rooli ja `aria-expanded`](https://github.com/Tampere/Tampere-design-system/issues/194)
+- [#219 Latausanimaatiolla ei ole nimeä](https://github.com/Tampere/Tampere-design-system/issues/219)
+- [#191 Kohdistus katoaa, kun tyhjennyspainiketta painetaan](https://github.com/Tampere/Tampere-design-system/issues/191)
+- [#187 Kenttä ei kapene kapeassa säiliössä](https://github.com/Tampere/Tampere-design-system/issues/187)
+- [#151 Hakupainikkeeseen ei voi lisätä näkyvää tekstiä](https://github.com/Tampere/Tampere-design-system/issues/151)
+- [#182 `SearchFieldData`-tyyppiä ei viedä paketista](https://github.com/Tampere/Tampere-design-system/issues/182)
+
+## Liittyvät komponentit
+
+<RelatedComponents names={['TextField', 'Select', 'AppHeader']} lang="fi" />
+
+<ComponentChanges name="SearchField" lang="fi" />

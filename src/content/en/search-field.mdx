@@ -1,0 +1,142 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import searchFieldProps from '@/generated/SearchField.props.json';
+
+# SearchField
+
+<ComponentBadges name="SearchField" lang="en" />
+
+A search field lets the user type a search term and pick a suggestion from a list. The search button or picking a suggestion starts the search.
+
+<ComponentLinks name="SearchField" lang="en" />
+
+<Example name="search-field/Hero" lang="en" />
+
+## When to use
+
+Use a search field when the user looks for one item in a large set and you know the items that can be chosen, for example a service, a street or a library.
+
+**Don't use a search field when**
+
+- there are few options, under twenty or so – use <ComponentRef name="Select" lang="en" />
+- the search uses free text, like a site-wide text search – the search field only searches with a suggestion picked from the list (#ISSUE_FREETEXT). Use <ComponentRef name="TextField" lang="en" /> and your own search button in a form.
+
+## Variants and situations
+
+### Suggestions
+
+The search field doesn't filter suggestions itself. Read the typed text with `onChange`, filter or fetch the suggestions and pass them to `data`, as in the example at the top of the page. The part of a suggestion that matches the search term is shown in bold. The list opens when `data` is not empty.
+
+The search only starts once the user has picked a suggestion and presses the search button. `onSearch` receives the picked suggestion. Typed text alone doesn't start a search, and Enter does nothing without a picked suggestion.
+
+### Search on selection
+
+`searchOnItemSelect` starts the search as soon as the user picks a suggestion, so the search button isn't needed.
+
+<Example name="search-field/SearchOnSelect" lang="en" />
+
+### Loading
+
+When suggestions are fetched from a server, `isLoading` shows a loading animation in the list while the request runs.
+
+<Example name="search-field/Loading" lang="en" />
+
+### Custom suggestion content
+
+`labelElement` replaces a suggestion's visible content, for example with extra information on a second line. Screen readers still read only the `label` text.
+
+<Example name="search-field/CustomOption" lang="en" />
+
+### Without a visible label
+
+In a site header the search field usually has no visible label. Pass `aria-label` instead, as in the multi-row layout of <ComponentRef name="AppHeader" lang="en" />. `fillAvailableSpace` stretches the field to the full width.
+
+<Example name="search-field/NoVisibleLabel" lang="en" />
+
+## Content guidelines
+
+- Say in the label what is searched for: "Search for a service", "Street address".
+- If suggestions only appear after a few letters, say so in the help text.
+- If the page has more than one search field, give each search button a name that says what it searches.
+
+## Accessibility
+
+**The component handles**
+
+- `inputLabel` is the field's `<label>`. The search button's name comes from `searchButtonLabel` and the clear button's from `clearButtonLabel`. Both are required.
+- The suggestions are in a `listbox`. The arrow keys move between suggestions, Enter picks one and Esc closes the list.
+- Each suggestion is named by its `label` and tells its position in the list, for example "1 / 5".
+
+**Your responsibility**
+
+- Give the field a visible `inputLabel`. Without it, pass `aria-label`.
+- Announce the result or move to the results page in your `onSearch` handler. The search field announces nothing itself.
+- The field lacks the `combobox` role and `aria-expanded`, so screen readers don't announce that the suggestion list opened (#194).
+- The loading animation has no name, so screen readers don't announce loading (#219).
+- The clear button disappears when the field empties, and focus drops to the start of the page (#191).
+- When you use `labelElement`, make sure `label` alone tells the suggestions apart.
+
+WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [2.4.3 Focus Order](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  props={searchFieldProps}
+  label="SearchField props"
+  lang="en"
+  overrides={{
+    data: {
+      description:
+        'The suggestions to show: `{ value, label, labelElement? }`. Filter them yourself.',
+    },
+    onSearch: {
+      description:
+        'Called with the picked suggestion when the user presses the search button, or right on picking when `searchOnItemSelect` is set.',
+    },
+    onClearClick: { description: 'Called when the clear button is pressed.' },
+    fillAvailableSpace: { description: 'Stretches the field to the full width in a flex layout.' },
+    clearButtonLabel: { description: 'Name of the clear button.' },
+    searchButtonLabel: { description: 'Name of the search button.' },
+    searchOnItemSelect: {
+      description: 'Starts the search as soon as a suggestion is picked.',
+      defaultValue: 'false',
+    },
+    isLoading: { description: 'Shows a loading animation in the list.', defaultValue: 'false' },
+    searchButtonProps: {
+      description:
+        'Extra props for the search button, for example `variant`. The name and `iconOnly` can’t be overridden.',
+    },
+    inputLabel: { description: 'Visible label of the field. Without it, pass `aria-label`.' },
+    helperText: { description: 'Help text below the label.' },
+    error: { description: 'Error message. Also sets `aria-invalid`.' },
+    showSearchIcon: { description: 'Shows a magnifying glass inside the field.' },
+    showClearButton: { hidden: true },
+    endInstance: { hidden: true },
+    onClearButtonClick: { hidden: true },
+  }}
+/>
+
+Other <ComponentRef name="TextField" lang="en">TextField</ComponentRef> props, like `aria-label`, `placeholder` and `disabled`, are passed to the field. `onChange` receives the field's change event.
+
+## Known issues
+
+- [#ISSUE_FREETEXT Typed text can't be searched](https://github.com/Tampere/Tampere-design-system/issues/ISSUE_FREETEXT)
+- [#194 The field lacks the `combobox` role and `aria-expanded`](https://github.com/Tampere/Tampere-design-system/issues/194)
+- [#219 The loading animation has no name](https://github.com/Tampere/Tampere-design-system/issues/219)
+- [#191 Focus is lost when the clear button is pressed](https://github.com/Tampere/Tampere-design-system/issues/191)
+- [#187 The field doesn't shrink in a narrow container](https://github.com/Tampere/Tampere-design-system/issues/187)
+- [#151 The search button can't have visible text](https://github.com/Tampere/Tampere-design-system/issues/151)
+- [#182 The `SearchFieldData` type is not exported](https://github.com/Tampere/Tampere-design-system/issues/182)
+
+## Related components
+
+<RelatedComponents names={['TextField', 'Select', 'AppHeader']} lang="en" />
+
+<ComponentChanges name="SearchField" lang="en" />

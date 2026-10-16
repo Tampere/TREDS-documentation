@@ -1,9 +1,10 @@
 import { IconGallery } from '@/docs-ui/IconGallery';
 import { IconSizes } from '@/docs-ui/IconSizes';
+import { ComponentRef } from '@/docs-ui/ComponentPage';
 
 # Ikonit
 
-TREDS sisältää Tampereen kaupungin ikonisarjan React-komponentteina. Jokainen ikoni on piirretty 24px ruudukkoon ja saa värinsä ympäröivästä tekstistä, joten se seuraa linkkien, painikkeiden ja tilojen värejä ilman erillistä tyylittelyä.
+TREDS sisältää Tampereen kaupungin ikonisarjan React-komponentteina. Jokainen ikoni on piirretty 24 px:n ruudukkoon ja saa värinsä ympäröivästä tekstistä, joten se seuraa linkkien, painikkeiden ja tilojen värejä ilman erillistä tyylittelyä.
 
 ## Ikonin käyttö
 
@@ -26,7 +27,7 @@ Komponentit käyttävät näitä kokoja. Suosi niitä omissa asetteluissasi miel
 
 Useimmat ikonit ovat tekstin vieressä, joka jo kertoo niiden merkityksen. Ne ovat **koristeellisia**: piilota ne avustavalta teknologialta `aria-hidden="true"`-attribuutilla, jotta ruudunlukija ei ilmoita nimetöntä kuvaa.
 
-Kun ikoni on kontrollin **ainoa** sisältö, kontrolli tarvitsee saavutettavan nimen. `Button` vaatii sen jo käännösvaiheessa:
+Kun ikoni on kontrollin **ainoa** sisältö, kontrolli tarvitsee saavutettavan nimen. <ComponentRef name="Button" lang="fi">Button</ComponentRef> vaatii sen jo käännösvaiheessa:
 
 ```tsx
 <Button iconOnly aria-label="Hae">
@@ -34,10 +35,21 @@ Kun ikoni on kontrollin **ainoa** sisältö, kontrolli tarvitsee saavutettavan n
 </Button>
 ```
 
-Älä välitä merkitystä pelkällä ikonilla kontrollien ulkopuolella — liitä mukaan teksti.
+Pelkälle ikonipainikkeelle on myös oma <ComponentRef name="IconButton" lang="fi">IconButton-komponentti</ComponentRef>, ja kuvakkeelle tekstin kanssa <ComponentRef name="LabeledIconButton" lang="fi">LabeledIconButton</ComponentRef>.
+
+Älä välitä merkitystä pelkällä ikonilla kontrollien ulkopuolella, vaan liitä mukaan teksti.
+
+WCAG-kriteerit: [1.1.1 Ei-tekstuaalinen sisältö](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html), [4.1.2 Nimi, rooli, arvo](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
 
 ## Kaikki ikonit
 
 Valitse ikoni kopioidaksesi sen JSX-koodin.
 
 <IconGallery lang="fi" />
+
+## Tunnetut ongelmat
+
+Ikonit eivät piilota itseään ruudunlukijalta, ja osa komponenteista piirtää ikonin ilman `aria-hidden`-attribuuttia:
+
+- [#193 TextFieldin hakuikoni näkyy ruudunlukijalle nimettömänä kuvana](https://github.com/Tampere/Tampere-design-system/issues/193)
+- [#209 NavigationLinkin `startIcon` ja `endIcon` näkyvät ruudunlukijalle nimettöminä kuvina](https://github.com/Tampere/Tampere-design-system/issues/209)

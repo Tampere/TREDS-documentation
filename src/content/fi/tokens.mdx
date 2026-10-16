@@ -8,14 +8,14 @@ Tämä sivu on kehittäjille. Itse arvot ovat sivuilla [Värit](/fi/foundations/
 
 Tokenit on kerrostettu, ja lähes aina oikea taso on **theme**.
 
-- **Primitives** — raaka paletti ilman merkitystä: `primitives.colors.blue['400']`.
-- **Brand** — Tampereen siniset roolin mukaan: `brand.blue.main`, `.mainLight`, `.mainDark`.
-- **Theme** — mihin arvo on tarkoitettu: `vars.theme.text.primary`, `vars.theme.states.hover` sekä komponenttikohtaiset tokenit, kuten `vars.theme.components.button.fontWeight`.
-- **Breakpoint** — taulukot breakpointeittain. Theme-taso valitsee oikean automaattisesti.
+- **Primitives**: raaka paletti ilman merkitystä: `primitives.colors.blue['400']`.
+- **Brand**: Tampereen siniset roolin mukaan: `brand.blue.main`, `.mainLight`, `.mainDark`.
+- **Theme**: mihin arvo on tarkoitettu: `vars.theme.text.primary`, `vars.theme.states.hover` sekä komponenttikohtaiset tokenit, kuten `vars.theme.components.button.fontWeight`.
+- **Breakpoint**: taulukot breakpointeittain. Theme-taso valitsee oikean automaattisesti.
 
 ## Tokenien käyttö
 
-`vars` sisältää viittauksia CSS-muuttujiin, joten se toimii kaikkialla, missä tyylin arvo on merkkijono — Vanilla Extract, inline-tyylit, CSS-in-JS:
+`vars` sisältää viittauksia CSS-muuttujiin, joten se toimii kaikkialla, missä tyylin arvo on merkkijono: Vanilla Extract, inline-tyylit ja CSS-in-JS.
 
 ```ts
 import { vars } from '@tampere/treds';
@@ -32,10 +32,16 @@ const field = {
 
 Mediakyselyt vaihtavat muuttujien arvot, joten theme-token vastaa aina nykyisen näytön leveyden arvoa.
 
-Tavallisista CSS-tiedostoista tokeneihin ei voi vielä viitata, koska muuttujien nimissä on build-hash. Asia on kirjattu issueksi [#180](https://github.com/Tampere/Tampere-design-system/issues/180).
+Tavallisista CSS-tiedostoista tokeneihin ei voi vielä viitata, koska muuttujien nimissä on build-hash. Asia on kirjattu issueksi (#180).
 
 ## Miksi ei vain hex-arvoa?
 
-Koska tokeneihin sisältyy päätöksiä, jotka eivät näy arvossa. `states.visited` on selvin esimerkki: Figman linkkiväri yltää valkoista vasten vain kontrastiin 3.24:1, mikä jää tekstiltä vaaditun WCAG AA -tason 4.5:1 alle, joten token käyttää tummempaa sinistä. Hex-arvon kopioiminen Figmasta tuottaisi saavutettavuusvirheen, jota ei huomaisi.
+Koska tokeneihin sisältyy päätöksiä, jotka eivät näy arvossa. `states.visited` on selvin esimerkki: Figman linkkiväri yltää valkoista vasten vain kontrastiin 3,24:1, mikä jää tekstiltä vaaditun WCAG AA -tason 4,5:1 alle, joten token käyttää tummempaa sinistä. Hex-arvon kopioiminen Figmasta tuottaisi saavutettavuusvirheen, jota ei huomaisi.
 
 **Jos tarvitsemallesi arvolle ei ole tokenia, puute kannattaa ilmoittaa** sen sijaan, että arvo kirjoitettaisiin koodiin.
+
+## Tunnetut ongelmat
+
+- [#180 Tokeneihin ei voi viitata tavallisesta CSS:stä, eikä tekstilohkojen väleille ole tokenia](https://github.com/Tampere/Tampere-design-system/issues/180)
+- [#89 Tokenit puuttuvat JSON-muodossa](https://github.com/Tampere/Tampere-design-system/issues/89)
+- [#177 Paketin tuonti React Server Componentista kaatuu](https://github.com/Tampere/Tampere-design-system/issues/177)

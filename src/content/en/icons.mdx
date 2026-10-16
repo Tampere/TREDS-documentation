@@ -1,9 +1,10 @@
 import { IconGallery } from '@/docs-ui/IconGallery';
 import { IconSizes } from '@/docs-ui/IconSizes';
+import { ComponentRef } from '@/docs-ui/ComponentPage';
 
 # Icons
 
-TREDS includes the City of Tampere icon set as React components. Each icon is drawn on a 24px grid and takes its colour from the surrounding text, so it follows link, button and state colours without extra styling.
+TREDS includes the City of Tampere icon set as React components. Each icon is drawn on a 24 px grid and takes its colour from the surrounding text, so it follows link, button and state colours without extra styling.
 
 ## Using an icon
 
@@ -26,7 +27,7 @@ Components use these sizes. Prefer them over arbitrary values in your own layout
 
 Most icons sit next to text that already says what they mean. Those are **decorative**: hide them from assistive technology with `aria-hidden="true"` so screen readers don't announce an unnamed image.
 
-When an icon is the **only** content of a control, the control needs an accessible name. `Button` requires one at compile time:
+When an icon is the **only** content of a control, the control needs an accessible name. <ComponentRef name="Button" lang="en" /> requires one at compile time:
 
 ```tsx
 <Button iconOnly aria-label="Hae">
@@ -34,10 +35,21 @@ When an icon is the **only** content of a control, the control needs an accessib
 </Button>
 ```
 
-Don't rely on an icon alone to convey meaning outside controls — pair it with text.
+There is also a dedicated <ComponentRef name="IconButton" lang="en" /> for icon-only buttons, and <ComponentRef name="LabeledIconButton" lang="en" /> for an icon with a label.
+
+Don't rely on an icon alone to convey meaning outside controls: pair it with text.
+
+WCAG criteria: [1.1.1 Non-text Content](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
 
 ## All icons
 
 Select an icon to copy its JSX.
 
 <IconGallery lang="en" />
+
+## Known issues
+
+Icons don't hide themselves from screen readers, and some components render an icon without `aria-hidden`:
+
+- [#193 TextField's search icon is exposed to screen readers as an unnamed image](https://github.com/Tampere/Tampere-design-system/issues/193)
+- [#209 NavigationLink's `startIcon` and `endIcon` are exposed to screen readers as unnamed images](https://github.com/Tampere/Tampere-design-system/issues/209)

@@ -8,14 +8,14 @@ This page is for developers. The values themselves are on [Colours](/en/foundati
 
 Tokens are layered, and the one you should reach for is almost always **theme**.
 
-- **Primitives** — the raw palette, with no meaning attached: `primitives.colors.blue['400']`.
-- **Brand** — Tampere's blues by role: `brand.blue.main`, `.mainLight`, `.mainDark`.
-- **Theme** — what a value is _for_: `vars.theme.text.primary`, `vars.theme.states.hover`, and per-component tokens such as `vars.theme.components.button.fontWeight`.
-- **Breakpoint** — per-breakpoint tables. The theme tier already resolves to the right one.
+- **Primitives**: the raw palette, with no meaning attached: `primitives.colors.blue['400']`.
+- **Brand**: Tampere's blues by role: `brand.blue.main`, `.mainLight`, `.mainDark`.
+- **Theme**: what a value is _for_: `vars.theme.text.primary`, `vars.theme.states.hover`, and per-component tokens such as `vars.theme.components.button.fontWeight`.
+- **Breakpoint**: per-breakpoint tables. The theme tier already resolves to the right one.
 
 ## Using tokens
 
-`vars` holds CSS variable references, so it works anywhere a style value is a string — Vanilla Extract, inline styles, CSS-in-JS:
+`vars` holds CSS variable references, so it works anywhere a style value is a string: Vanilla Extract, inline styles and CSS-in-JS.
 
 ```ts
 import { vars } from '@tampere/treds';
@@ -32,10 +32,16 @@ const field = {
 
 The variables are rebound by media queries, so a theme token always resolves to the value for the current screen width.
 
-Plain CSS files can't reference tokens yet: the variable names carry a build hash. This is tracked in [#180](https://github.com/Tampere/Tampere-design-system/issues/180).
+Plain CSS files can't reference tokens yet: the variable names carry a build hash. This is tracked in #180.
 
 ## Why not just use the hex code?
 
 Because tokens carry decisions that aren't visible in the value. `states.visited` is the clearest example: Figma's link colour reaches only 3.24:1 against white, below the 4.5:1 WCAG AA needs for text, so the token uses a darker blue. Copying the hex from Figma would ship an inaccessible link with no way to know.
 
 **If a value you need has no token, that's a gap worth reporting** rather than a reason to inline a literal.
+
+## Known issues
+
+- [#180 Tokens can't be referenced from plain CSS, and there is no token for text-block spacing](https://github.com/Tampere/Tampere-design-system/issues/180)
+- [#89 The tokens aren't available as JSON](https://github.com/Tampere/Tampere-design-system/issues/89)
+- [#177 Importing the package from a React Server Component fails](https://github.com/Tampere/Tampere-design-system/issues/177)

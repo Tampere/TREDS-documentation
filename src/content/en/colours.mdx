@@ -5,7 +5,7 @@ import { SemanticColors } from '@/docs-ui/tokens/SemanticColors';
 
 # Colours
 
-Pick colours by **role**, not by shade. Each colour below is a semantic token that says what it is for — body text, a link, an error — so a change to the palette reaches every service without anyone searching for hex codes.
+Pick colours by **role**, not by shade. Each colour below is a semantic token that says what it is for (body text, a link, an error), so a change to the palette reaches every service without anyone searching for hex codes.
 
 Every value, swatch and contrast ratio on this page is read from the published `@tampere/treds` package when the site is built.
 
@@ -31,9 +31,11 @@ The focus ring is drawn by TREDS components themselves. Use `vars.theme.focusRin
 
 ## Contrast
 
-WCAG 2.1 level AA requires **4.5:1** for normal text and **3:1** for large text (24px, or 18.66px bold) and for the parts of a control you need to see to use it. Check text against the background it actually sits on:
+WCAG 2.1 level AA requires **4.5:1** for normal text and **3:1** for large text (24 px, or 18.66 px bold) and for the parts of a control you need to see to use it. Check text against the background it actually sits on:
 
 <ContrastMatrix lang="en" />
+
+WCAG criteria: [1.4.1 Use of Color](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html), [1.4.3 Contrast (Minimum)](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html), [1.4.11 Non-text Contrast](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html)
 
 ## Brand colours
 
@@ -43,6 +45,11 @@ Tampere's blues by role. Components reach them through the semantic tokens above
 
 ## Palette
 
-The raw primitives behind everything above. Reach for one only when no semantic token fits — and consider reporting the gap, since it probably affects other services too.
+The raw primitives behind everything above. Reach for one only when no semantic token fits, and consider reporting the gap, since it probably affects other services too.
 
 <ColorPalette />
+
+## Known issues
+
+- [#183 Status colours (info, success, warning, error) exist only as Badge tokens, and there is no notification component](https://github.com/Tampere/Tampere-design-system/issues/183)
+- [#180 Tokens can't be referenced from plain CSS](https://github.com/Tampere/Tampere-design-system/issues/180)

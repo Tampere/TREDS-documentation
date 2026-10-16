@@ -1,7 +1,11 @@
 import { Breakpoints } from '@/docs-ui/tokens/Breakpoints';
 import { SpacingScale } from '@/docs-ui/tokens/SpacingScale';
 
+import { ComponentRef } from '@/docs-ui/ComponentPage';
+
 # Välistys ja asettelu
+
+Välistysasteikko ja breakpointit pitävät tilan elementtien välissä yhtenäisenä kaikissa palveluissa. Molemmat mukautuvat näytön leveyteen automaattisesti.
 
 ## Välistysasteikko
 
@@ -11,12 +15,16 @@ Seitsemän askelta, `xxs`:stä `xxl`:ään. Typografian tavoin asteikko on respo
 
 ## Tekstilohkojen välit
 
-TREDS ei vielä määrittele otsikoiden ja kappaleiden välejä — `Typography` ei aseta marginaaleja, joten jokainen palvelu päättää ne itse. Puuttuva token on kirjattu issueksi [#180](https://github.com/Tampere/Tampere-design-system/issues/180). Siihen asti tämä sivusto käyttää yllä olevaa asteikkoa: kappaleiden välissä `sm`, ennen `h2`-otsikkoa `xl` ja otsikon jälkeen `xs`.
+TREDS ei vielä määrittele otsikoiden ja kappaleiden välejä: <ComponentRef name="Typography" lang="fi">Typography</ComponentRef> ei aseta marginaaleja, joten jokainen palvelu päättää ne itse. Puuttuva token on kirjattu issueksi (#180). Siihen asti tämä sivusto käyttää yllä olevaa asteikkoa: kappaleiden välissä `sm`, ennen `h2`-otsikkoa `xl` ja otsikon jälkeen `xs`.
 
 ## Breakpointit
 
-Kuusi breakpointia. Huomaa, että avaimen arvot ovat voimassa sen oman leveyden **alapuolella** — `lg` (1024px) kattaa näytön leveydet 768px:stä 1024px:iin. Tokenit vaihtuvat automaattisesti CSS-mediakyselyillä, joten komponentit eivät tarvitse JavaScript-logiikkaa breakpointeille.
+Kuusi breakpointia. Huomaa, että avaimen arvot ovat voimassa sen oman leveyden **alapuolella**: `lg` (1024 px) kattaa näytön leveydet 768 px:stä 1024 px:iin. Tokenit vaihtuvat automaattisesti CSS-mediakyselyillä, joten komponentit eivät tarvitse JavaScript-logiikkaa breakpointeille.
 
-Asettelun ruudukko — palstat, gutter ja reunamarginaali — muuttuu samoissa kohdissa.
+Asettelun ruudukko (palstat, gutter ja reunamarginaali) muuttuu samoissa kohdissa.
 
 <Breakpoints lang="fi" />
+
+## Tunnetut ongelmat
+
+- [#180 Tekstilohkojen väleille ei ole tokenia](https://github.com/Tampere/Tampere-design-system/issues/180)

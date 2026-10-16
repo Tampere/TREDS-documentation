@@ -1,7 +1,11 @@
 import { Breakpoints } from '@/docs-ui/tokens/Breakpoints';
 import { SpacingScale } from '@/docs-ui/tokens/SpacingScale';
 
+import { ComponentRef } from '@/docs-ui/ComponentPage';
+
 # Spacing and layout
+
+The spacing scale and the breakpoints keep the space between elements consistent across services. Both adapt to the screen width automatically.
 
 ## Spacing scale
 
@@ -11,12 +15,16 @@ Seven steps, from `xxs` to `xxl`. Like type, the scale is responsive: the same s
 
 ## Spacing between text blocks
 
-TREDS doesn't yet define spacing between headings and paragraphs — `Typography` sets no margins, so each service decides its own. This is tracked as a missing token in [#180](https://github.com/Tampere/Tampere-design-system/issues/180). Until it lands, this site uses the scale above: `sm` between paragraphs, `xl` before an `h2` and `xs` after a heading.
+TREDS doesn't yet define spacing between headings and paragraphs: <ComponentRef name="Typography" lang="en" /> sets no margins, so each service decides its own. This is tracked as a missing token (#180). Until it lands, this site uses the scale above: `sm` between paragraphs, `xl` before an `h2` and `xs` after a heading.
 
 ## Breakpoints
 
-Six breakpoints. Note that a key's values apply **below** its own width — `lg` (1024px) covers viewports from 768px to 1024px. Tokens switch automatically with CSS media queries, so components need no JavaScript breakpoint logic.
+Six breakpoints. Note that a key's values apply **below** its own width: `lg` (1024 px) covers viewports from 768 px to 1024 px. Tokens switch automatically with CSS media queries, so components need no JavaScript breakpoint logic.
 
-The layout grid — columns, gutter and outer margin — changes at the same breakpoints.
+The layout grid (columns, gutter and outer margin) changes at the same breakpoints.
 
 <Breakpoints lang="en" />
+
+## Known issues
+
+- [#180 There is no token for the spacing between text blocks](https://github.com/Tampere/Tampere-design-system/issues/180)

@@ -1,0 +1,240 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+
+# FileInput
+
+<ComponentBadges name="FileInput" lang="en" />
+
+A file input lets the user attach files to a form. The selected files are listed below the field, and each one can be removed.
+
+<ComponentLinks name="FileInput" lang="en" />
+
+<Example name="file-input/Hero" lang="en" />
+
+## When to use
+
+Use a file input when the form has little space or the attachment is secondary, for example an optional attachment to feedback.
+
+**Don't use a file input when**
+
+- the attachments are central to the form or the user attaches several files – use <ComponentRef name="Dropzone" lang="en" />. It is the recommended way to attach files in TREDS, because files can also be dragged onto it.
+- you show files that were already saved, without a picker – use <ComponentRef name="FileList" lang="en" />
+
+## Variants and situations
+
+### One file
+
+By default one file is selected. A new choice replaces the previous one. The file name shows in the field and in the list below it, where it can be removed.
+
+`accept` limits the file types and `maxSize` the size in bytes, as in the example at the top of the page. The component rejects other files and shows an error message. Also state the limits in the help text, so the user knows them before choosing.
+
+### Several files
+
+`multiple` allows more than one file, and new choices are added to the list. `maxFiles` limits the count. The field shows how many files are selected, and the files are listed below it.
+
+<Example name="file-input/Multiple" lang="en" />
+
+### Sending the files
+
+The file input does not take part in a normal form submission: it has no `name` prop, and the browser's own file input does not keep the selection. Hold the files in state with `value` and `onChange` and send them yourself, for example in a `FormData` object.
+
+<Example name="file-input/Send" lang="en" />
+
+### Error
+
+`error` shows your own error message, for example when the upload to the server fails. It overrides the component's own rejection message.
+
+<Example name="file-input/Error" lang="en" />
+
+### Disabled
+
+`disabled` prevents choosing and removing files. A disabled button can't be focused with the keyboard, so explain why in the help text.
+
+<Example name="file-input/Disabled" lang="en" />
+
+## Content guidelines
+
+- Name the label after what is attached: "Attachment", "Photos", "Site plan".
+- State the allowed file types, the maximum size and the maximum count in the help text.
+- **All built-in texts are Finnish**, including the rejection messages. On an English page, pass `buttonLabel`, `placeholder`, `removeLabel`, `selectedCountLabel` and `rejectionMessage`, as the examples on this page do.
+
+## Accessibility
+
+**The component handles**
+
+- The picker button is named by the label and its own text, for example "Attachment Choose file". Clicking the label opens the picker.
+- The help text, the error message and the selection status are connected to the button with `aria-describedby`, and an error sets `aria-invalid="true"`.
+- The selection status ("site-plan.pdf", "2 files chosen") is a `role="status"` region, so screen readers announce changes.
+- Each remove button's name includes the file name, for example "Remove file: site-plan.pdf". After a removal, focus moves to the next remove button or, if the list empties, to the picker button.
+
+**Your responsibility**
+
+- Always give the field an `inputLabel`. If that isn't possible, give `aria-label`.
+- State the file limits in the help text before the user chooses.
+- The error message for a rejected file is not announced by screen readers (#ISSUE_ANNOUNCE). A screen reader user only hears it when they return to the picker button.
+- In narrow layouts the field's status text is cut off with an ellipsis: at 320 pixels even "No file chosen" is cut (#ISSUE_TRUNCATE). The names of selected files still show in full in the list. If the form is narrow, use <ComponentRef name="Dropzone" lang="en" />.
+
+WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [3.3.1 Error Identification](https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html), [3.3.2 Labels or Instructions](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html), [4.1.3 Status Messages](https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html)
+
+## API
+
+<PropsTable
+  label="FileInput props"
+  lang="en"
+  props={[
+    {
+      name: 'inputLabel',
+      type: 'string',
+      required: false,
+      description: 'Visible label of the field. Without it, give `aria-label`.',
+    },
+    {
+      name: 'aria-label',
+      type: 'string',
+      required: false,
+      description:
+        'Accessible name when `inputLabel` is missing. The only `aria-*` prop the component passes on.',
+    },
+    {
+      name: 'helperText',
+      type: 'ReactNode',
+      required: false,
+      description: 'Help text below the label.',
+    },
+    {
+      name: 'error',
+      type: 'string',
+      required: false,
+      description: 'Your own error message. Overrides the built-in rejection message.',
+    },
+    {
+      name: 'multiple',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Allows more than one file.',
+    },
+    {
+      name: 'accept',
+      type: 'string',
+      required: false,
+      description:
+        'Allowed file types, as in the native attribute: `.pdf`, `image/*`, `application/pdf`.',
+    },
+    {
+      name: 'maxSize',
+      type: 'number',
+      required: false,
+      description: 'Maximum size of one file, in bytes.',
+    },
+    {
+      name: 'maxFiles',
+      type: 'number',
+      required: false,
+      description: 'Maximum number of files when `multiple` is set.',
+    },
+    {
+      name: 'value',
+      type: 'File[]',
+      required: false,
+      description: 'The selected files, when you hold the selection in state.',
+    },
+    {
+      name: 'defaultValue',
+      type: 'File[]',
+      required: false,
+      description: 'Initial selection when the selection is not in state.',
+    },
+    {
+      name: 'onChange',
+      type: '(files: File[]) => void',
+      required: false,
+      description: 'Called with the new selection when files are added or removed.',
+    },
+    {
+      name: 'onReject',
+      type: '(rejections: FileRejection[]) => void',
+      required: false,
+      description: 'Called with the rejected files. The reason is `type`, `size` or `count`.',
+    },
+    {
+      name: 'rejectionMessage',
+      type: '(rejections: FileRejection[]) => string',
+      required: false,
+      description: 'Replaces the built-in Finnish rejection message.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Prevents choosing and removing files.',
+    },
+    {
+      name: 'buttonLabel',
+      type: 'string',
+      required: false,
+      defaultValue: "'Valitse tiedostoja'",
+      description: 'Text of the picker button.',
+    },
+    {
+      name: 'placeholder',
+      type: 'string',
+      required: false,
+      defaultValue: "'Ei valittua tiedostoa'",
+      description: 'Status text when nothing is selected.',
+    },
+    {
+      name: 'removeLabel',
+      type: 'string',
+      required: false,
+      defaultValue: "'Poista tiedosto'",
+      description: 'Start of each remove button’s name. The file name is appended.',
+    },
+    {
+      name: 'selectedCountLabel',
+      type: '(count: number) => string',
+      required: false,
+      description:
+        'Status text when several files are selected. Default: "1 tiedosto valittu", "2 tiedostoa valittu".',
+    },
+    {
+      name: 'id',
+      type: 'string',
+      required: false,
+      description: 'Id of the picker button. Generated by default.',
+    },
+    {
+      name: 'className',
+      type: 'string',
+      required: false,
+      description: 'Extra class for the root element.',
+    },
+    {
+      name: 'style',
+      type: 'CSSProperties',
+      required: false,
+      description: 'Styles for the root element.',
+    },
+  ]}
+/>
+
+FileInput passes no other props on. `name` and `form` are missing on purpose, because the selection doesn't travel in a native form submission.
+
+## Known issues
+
+- [#ISSUE_ANNOUNCE The rejection message for a file is not announced by screen readers](https://github.com/Tampere/Tampere-design-system/issues/ISSUE_ANNOUNCE)
+- [#ISSUE_TRUNCATE The status text is cut off in narrow layouts](https://github.com/Tampere/Tampere-design-system/issues/ISSUE_TRUNCATE)
+
+## Related components
+
+<RelatedComponents names={['Dropzone', 'FileList', 'Fieldset']} lang="en" />
+
+<ComponentChanges name="FileInput" lang="en" />

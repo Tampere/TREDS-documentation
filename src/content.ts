@@ -123,6 +123,26 @@ export const content: Partial<Record<string, Record<Lang, Loader>>> = {
     fi: () => import('./content/fi/button.mdx'),
     en: () => import('./content/en/button.mdx'),
   },
+  'components/file-input': {
+    fi: () => import('./content/fi/file-input.mdx'),
+    en: () => import('./content/en/file-input.mdx'),
+  },
+  'components/dropzone': {
+    fi: () => import('./content/fi/dropzone.mdx'),
+    en: () => import('./content/en/dropzone.mdx'),
+  },
+  'components/file-list': {
+    fi: () => import('./content/fi/file-list.mdx'),
+    en: () => import('./content/en/file-list.mdx'),
+  },
+  'components/date-field': {
+    fi: () => import('./content/fi/date-field.mdx'),
+    en: () => import('./content/en/date-field.mdx'),
+  },
+  'components/time-field': {
+    fi: () => import('./content/fi/time-field.mdx'),
+    en: () => import('./content/en/time-field.mdx'),
+  },
   'components/select': {
     fi: () => import('./content/fi/select.mdx'),
     en: () => import('./content/en/select.mdx'),

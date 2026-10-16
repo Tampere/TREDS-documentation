@@ -1,0 +1,198 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+import dateFieldProps from '@/generated/DateField.props.json';
+
+# DateField
+
+<ComponentBadges name="DateField" lang="en" />
+
+A date field lets the user type a date or choose it from a calendar.
+
+<ComponentLinks name="DateField" lang="en" />
+
+<Example name="date-field/Hero" lang="en" />
+
+## When to use
+
+Use a date field when you ask for one date, for example a moving date, a booking date or a date of birth.
+
+**Don't use a date field when**
+
+- you ask for a time – use <ComponentRef name="TimeField" lang="en" />, also next to a date field
+- there are only a few options, for example three event dates – use <ComponentRef name="RadioButton" lang="en" />
+
+## Variants and situations
+
+### Typing and the calendar
+
+The user can type the date as day.month.year, with or without leading zeros: 1.8.2026 and 01.08.2026 both work. The field formats the value as 01.08.2026 when the user leaves it. The field accepts only this Finnish order, also on an English page.
+
+The calendar button opens the calendar. The user picks a day and confirms it with the Choose button. Cancel and Esc close the calendar without changing the value. The Today button moves to the current day.
+
+The calendar's three buttons need names: `calendarButtonLabel`, `prevMonthLabel` and `nextMonthLabel` are required. Say in the calendar button's name which date is chosen, as in the example at the top of the page.
+
+### Allowed range
+
+`min` and `max` limit the selectable days. In the calendar, days outside the range are disabled. If the user types a date outside the range, the field shows an error. Also state the range in the help text.
+
+<Example name="date-field/Range" lang="en" />
+
+### Value in state and form submission
+
+`value` and `onChange` hold the value in state. `onChange` receives a `Date` object, or `null` when the field is cleared. It is called as soon as the typed date is valid, not on every keystroke.
+
+DateField doesn't pass on a `name` prop, so it doesn't travel in a normal form submission (#ISSUE_DFNAME). If needed, add a hidden input whose value comes from state.
+
+<Example name="date-field/Controlled" lang="en" />
+
+### Required field
+
+`required` adds an asterisk after the label and the native `required` attribute to the field.
+
+<Example name="date-field/Required" lang="en" />
+
+### Error
+
+The field checks the typed date itself when the user leaves it. An invalid date, like 31.2.2026, shows the `invalidDateError` message and keeps the field's last valid value. A date outside the range shows `outOfRangeError`.
+
+`error` shows your own error message, for example when a required date is missing. It overrides the field's own messages.
+
+<Example name="date-field/Error" lang="en" />
+
+### Disabled
+
+`disabled` prevents typing and opening the calendar.
+
+<Example name="date-field/Disabled" lang="en" />
+
+## Content guidelines
+
+- Name the label after the date you ask for: "Moving date", not "Date".
+- The field already tells screen readers the date format. Put an example in the visible help text, like "For example 1.8.2026", because the placeholder disappears when the user types.
+- **The calendar is always in Finnish:** the month names, the weekday abbreviations, the names screen readers read for the days and the announcement of a month change. Only the texts that have a prop can be translated. On an English page, pass all of them, as the examples on this page do.
+
+## Accessibility
+
+**The component handles**
+
+- `label` is the field's `<label>`. The date format ("Päivämäärän muoto: päivä.kuukausi.vuosi", or your `formatDescription`) is connected to the field as a hidden description.
+- The error message is connected to the field with `aria-describedby`, and an error sets `aria-invalid="true"`.
+- The clear button moves focus to the calendar button when it disappears.
+- The calendar button tells with `aria-expanded` whether the calendar is open. The calendar is a named dialog that keeps focus inside it.
+- The calendar opens at the selected day or today. The arrow keys move from day to day, also across the month boundary. Esc closes the calendar and returns focus to the calendar button.
+- Today is marked with `aria-current="date"` and the selected day with `aria-pressed`. A month change is announced to screen readers.
+
+**Your responsibility**
+
+- Always give the field a visible `label`. If that isn't possible, give `aria-label` or `aria-labelledby`.
+- Give the calendar's buttons descriptive names.
+- If there is no room for the calendar below the field, it opens above it, and near the top of the page part of it can end up outside the view (#ISSUE_POPOVER). Don't place a date field at the very top of a page.
+- Screen readers read the calendar's days in Finnish as "16 lokakuu 2026", without the weekday and not inflected (#ISSUE_DAYLABEL).
+- The error message is not announced when it appears. When a form is submitted with errors, move focus to the first invalid field or to an error summary.
+
+WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [3.3.1 Error Identification](https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html), [3.3.2 Labels or Instructions](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+## API
+
+<PropsTable
+  props={dateFieldProps}
+  label="DateField props"
+  lang="en"
+  overrides={{
+    value: {
+      description: 'The selected date, when the value is in state. `null` is empty.',
+    },
+    onChange: {
+      description:
+        'Called with the new date, or `null` when the field is cleared. Not called with invalid input.',
+    },
+    label: { description: 'Visible label of the field.' },
+    'aria-label': {
+      description: 'Accessible name when there is no visible label.',
+    },
+    'aria-labelledby': {
+      description: 'Id of the element that names the field, when there is no visible label.',
+    },
+    formatDescription: {
+      description: 'Date format told to screen readers. An empty string leaves it out.',
+      defaultValue: "'Päivämäärän muoto: päivä.kuukausi.vuosi'",
+    },
+    helperText: { description: 'Help text below the label.' },
+    error: {
+      description: 'Your own error message. Overrides the field’s own messages.',
+    },
+    invalidDateError: {
+      description: 'Message when the typed text is not a date.',
+      defaultValue: "'Virheellinen päivämäärä'",
+    },
+    outOfRangeError: {
+      description: 'Message when the date is outside `min`–`max`.',
+      defaultValue: "'Päivämäärä on sallitun välin ulkopuolella'",
+    },
+    placeholder: {
+      description: 'Placeholder in an empty field.',
+      defaultValue: "'PP.KK.VVVV'",
+    },
+    min: { description: 'Earliest allowed day.' },
+    max: { description: 'Latest allowed day.' },
+    disabled: { description: 'Prevents typing and opening the calendar.' },
+    required: { description: 'Required field.' },
+    calendarButtonLabel: { description: 'Name of the calendar button.' },
+    clearButtonLabel: {
+      description: 'Name of the clear button.',
+      defaultValue: "'Tyhjennä päivämäärä'",
+    },
+    calendarDialogLabel: {
+      description: 'Name of the calendar dialog.',
+      defaultValue: "'Valitse päivämäärä'",
+    },
+    prevMonthLabel: { description: 'Name of the previous month button.' },
+    nextMonthLabel: { description: 'Name of the next month button.' },
+    yearLabel: {
+      description: 'Name of the year menu.',
+      defaultValue: "'Vuosi'",
+    },
+    monthLabel: {
+      description: 'Name of the month menu.',
+      defaultValue: "'Kuukausi'",
+    },
+    todayLabel: {
+      description: 'Text of the Today button.',
+      defaultValue: "'Tänään'",
+    },
+    cancelLabel: {
+      description: 'Text of the Cancel button.',
+      defaultValue: "'Peruuta'",
+    },
+    confirmLabel: {
+      description: 'Text of the confirm button.',
+      defaultValue: "'Valitse'",
+    },
+    classNames: {
+      description:
+        'Extra classes for the parts `root`, `input` and `calendar`. `input` targets the field’s frame, not the `<input>` element (#129).',
+    },
+  }}
+/>
+
+DateField passes no other props on. For example `name`, `id` and `defaultValue` are TypeScript errors.
+
+## Known issues
+
+- [#ISSUE_DFNAME The `name` and `id` props are missing](https://github.com/Tampere/Tampere-design-system/issues/ISSUE_DFNAME)
+- [#ISSUE_POPOVER The calendar can open partly above the top of the page](https://github.com/Tampere/Tampere-design-system/issues/ISSUE_POPOVER)
+- [#ISSUE_DAYLABEL The calendar's day names are not inflected and lack the weekday](https://github.com/Tampere/Tampere-design-system/issues/ISSUE_DAYLABEL)
+- [#129 `classNames.input` targets a different element than in TimeField](https://github.com/Tampere/Tampere-design-system/issues/129)
+
+## Related components
+
+<RelatedComponents names={['TimeField', 'TextField', 'Fieldset']} lang="en" />
+
+<ComponentChanges name="DateField" lang="en" />

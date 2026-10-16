@@ -220,7 +220,76 @@ import EnWithPaginationTBL from './en/table/WithPagination';
 
 // Static maps: the bundler must see every example import to include it. Each language has
 // its own files so the code a reader copies carries labels in the page language.
+import FiHeroFIN from './fi/file-input/Hero';
+import EnHeroFIN from './en/file-input/Hero';
+import FiMultipleFIN from './fi/file-input/Multiple';
+import EnMultipleFIN from './en/file-input/Multiple';
+import FiSendFIN from './fi/file-input/Send';
+import EnSendFIN from './en/file-input/Send';
+import FiErrorFIN from './fi/file-input/Error';
+import EnErrorFIN from './en/file-input/Error';
+import FiDisabledFIN from './fi/file-input/Disabled';
+import EnDisabledFIN from './en/file-input/Disabled';
+import FiHeroDZ from './fi/dropzone/Hero';
+import EnHeroDZ from './en/dropzone/Hero';
+import FiSingleDZ from './fi/dropzone/Single';
+import EnSingleDZ from './en/dropzone/Single';
+import FiCustomMessageDZ from './fi/dropzone/CustomMessage';
+import EnCustomMessageDZ from './en/dropzone/CustomMessage';
+import FiErrorDZ from './fi/dropzone/Error';
+import EnErrorDZ from './en/dropzone/Error';
+import FiDisabledDZ from './fi/dropzone/Disabled';
+import EnDisabledDZ from './en/dropzone/Disabled';
+import FiHeroFL from './fi/file-list/Hero';
+import EnHeroFL from './en/file-list/Hero';
+import FiDisabledFL from './fi/file-list/Disabled';
+import EnDisabledFL from './en/file-list/Disabled';
+import FiHeroDF from './fi/date-field/Hero';
+import EnHeroDF from './en/date-field/Hero';
+import FiRangeDF from './fi/date-field/Range';
+import EnRangeDF from './en/date-field/Range';
+import FiControlledDF from './fi/date-field/Controlled';
+import EnControlledDF from './en/date-field/Controlled';
+import FiRequiredDF from './fi/date-field/Required';
+import EnRequiredDF from './en/date-field/Required';
+import FiErrorDF from './fi/date-field/Error';
+import EnErrorDF from './en/date-field/Error';
+import FiDisabledDF from './fi/date-field/Disabled';
+import EnDisabledDF from './en/date-field/Disabled';
+import FiHeroTMF from './fi/time-field/Hero';
+import EnHeroTMF from './en/time-field/Hero';
+import FiRangeStepTMF from './fi/time-field/RangeStep';
+import EnRangeStepTMF from './en/time-field/RangeStep';
+import FiDateAndTimeTMF from './fi/time-field/DateAndTime';
+import EnDateAndTimeTMF from './en/time-field/DateAndTime';
+import FiErrorTMF from './fi/time-field/Error';
+import EnErrorTMF from './en/time-field/Error';
+import FiDisabledTMF from './fi/time-field/Disabled';
+import EnDisabledTMF from './en/time-field/Disabled';
 const fi = {
+  'file-input/Hero': FiHeroFIN,
+  'file-input/Multiple': FiMultipleFIN,
+  'file-input/Send': FiSendFIN,
+  'file-input/Error': FiErrorFIN,
+  'file-input/Disabled': FiDisabledFIN,
+  'dropzone/Hero': FiHeroDZ,
+  'dropzone/Single': FiSingleDZ,
+  'dropzone/CustomMessage': FiCustomMessageDZ,
+  'dropzone/Error': FiErrorDZ,
+  'dropzone/Disabled': FiDisabledDZ,
+  'file-list/Hero': FiHeroFL,
+  'file-list/Disabled': FiDisabledFL,
+  'date-field/Hero': FiHeroDF,
+  'date-field/Range': FiRangeDF,
+  'date-field/Controlled': FiControlledDF,
+  'date-field/Required': FiRequiredDF,
+  'date-field/Error': FiErrorDF,
+  'date-field/Disabled': FiDisabledDF,
+  'time-field/Hero': FiHeroTMF,
+  'time-field/RangeStep': FiRangeStepTMF,
+  'time-field/DateAndTime': FiDateAndTimeTMF,
+  'time-field/Error': FiErrorTMF,
+  'time-field/Disabled': FiDisabledTMF,
   'typography/Hero': FiHeroTY,
   'typography/Scale': FiScaleTY,
   'typography/Level': FiLevelTY,
@@ -336,6 +405,29 @@ export type ExampleName = keyof typeof fi;
 export const examples: Record<Lang, Record<ExampleName, ComponentType>> = {
   fi,
   en: {
+    'file-input/Hero': EnHeroFIN,
+    'file-input/Multiple': EnMultipleFIN,
+    'file-input/Send': EnSendFIN,
+    'file-input/Error': EnErrorFIN,
+    'file-input/Disabled': EnDisabledFIN,
+    'dropzone/Hero': EnHeroDZ,
+    'dropzone/Single': EnSingleDZ,
+    'dropzone/CustomMessage': EnCustomMessageDZ,
+    'dropzone/Error': EnErrorDZ,
+    'dropzone/Disabled': EnDisabledDZ,
+    'file-list/Hero': EnHeroFL,
+    'file-list/Disabled': EnDisabledFL,
+    'date-field/Hero': EnHeroDF,
+    'date-field/Range': EnRangeDF,
+    'date-field/Controlled': EnControlledDF,
+    'date-field/Required': EnRequiredDF,
+    'date-field/Error': EnErrorDF,
+    'date-field/Disabled': EnDisabledDF,
+    'time-field/Hero': EnHeroTMF,
+    'time-field/RangeStep': EnRangeStepTMF,
+    'time-field/DateAndTime': EnDateAndTimeTMF,
+    'time-field/Error': EnErrorTMF,
+    'time-field/Disabled': EnDisabledTMF,
     'typography/Hero': EnHeroTY,
     'typography/Scale': EnScaleTY,
     'typography/Level': EnLevelTY,

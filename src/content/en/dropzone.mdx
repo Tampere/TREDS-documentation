@@ -1,0 +1,249 @@
+import { Example } from '@/docs-ui/Example';
+import { PropsTable } from '@/docs-ui/PropsTable';
+import {
+  ComponentBadges,
+  ComponentLinks,
+  ComponentRef,
+  ComponentChanges,
+  RelatedComponents,
+} from '@/docs-ui/ComponentPage';
+
+# Dropzone
+
+<ComponentBadges name="Dropzone" lang="en" />
+
+A dropzone is an area the user drags files onto, or chooses them with a button. The selected files are listed below the area, and each one can be removed.
+
+<ComponentLinks name="Dropzone" lang="en" />
+
+<Example name="dropzone/Hero" lang="en" />
+
+## When to use
+
+The dropzone is the recommended way to attach files in TREDS. Use it when the attachments are an essential part of the form, for example the attachments of an application.
+
+**Don't use a dropzone when**
+
+- the form has little space and the attachment is secondary – use <ComponentRef name="FileInput" lang="en" />
+- you show files that were already saved, without a picker – use <ComponentRef name="FileList" lang="en" />
+
+## Variants and situations
+
+The dropzone works like <ComponentRef name="FileInput" lang="en" />: the props, the file checks, the error messages and the file list are the same. Files can be chosen with the button or dropped onto the area, and both are checked the same way.
+
+### Several files
+
+`multiple` allows more than one file, as in the example at the top of the page. `accept` limits the file types, `maxSize` the size of one file in bytes and `maxFiles` the count. If a drop contains both valid and rejected files, the valid ones are added and the error message gives the reason for the rejection.
+
+While a dragged file is over the area, the area's border changes. If `accept` limits the file types and the dragged file is of the wrong type, the border turns red before the drop.
+
+### One file
+
+Without `multiple`, one file is selected and a new choice replaces the previous one. Change the area's heading (`title`) and the button text (`buttonLabel`) to the singular.
+
+<Example name="dropzone/Single" lang="en" />
+
+### Custom rejection message
+
+The component shows one error message, which gives the first reason in the order file type, size, count. `rejectionMessage` replaces it with your own. It receives the rejected files and reasons, so the message can name the files.
+
+<Example name="dropzone/CustomMessage" lang="en" />
+
+Hold the files in state with `value` and `onChange` and send them yourself. The dropzone does not take part in a normal form submission (see the example on the <ComponentRef name="FileInput" lang="en">FileInput page</ComponentRef>).
+
+### Error
+
+`error` shows your own error message, for example when a required attachment is missing or the upload fails. The message shows below the area.
+
+<Example name="dropzone/Error" lang="en" />
+
+### Disabled
+
+`disabled` prevents choosing, dropping and removing files. Explain why in the help text.
+
+<Example name="dropzone/Disabled" lang="en" />
+
+## Content guidelines
+
+- Name the label after what is attached: "Attachments", "Site plan".
+- State the allowed file types, the maximum size and the maximum count in the help text.
+- **All built-in texts are Finnish**, including the rejection messages. On an English page, pass `title`, `buttonLabel`, `placeholder`, `removeLabel`, `selectedCountLabel` and `rejectionMessage`.
+
+## Accessibility
+
+**The component handles**
+
+- Dropping is not the only way: everything can be done with the picker button, which is the only focusable part of the area.
+- The picker button is named by the label and its own text, for example "Attachments Choose files". The area's heading ("Drop files here"), the help text, the error message and the selection status are connected to the button with `aria-describedby`, and an error sets `aria-invalid="true"`.
+- The selection status is a `role="status"` region, so screen readers announce changes.
+- The remove buttons' names include the file name, and after a removal focus moves to the next file or to the picker button.
+
+**Your responsibility**
+
+- Always give the field an `inputLabel`. If that isn't possible, give `aria-label`.
+- State the file limits in the help text before the user chooses. The red border while dragging is only visible to sighted users.
+- The error message for a rejected file is not announced by screen readers (#ISSUE_ANNOUNCE).
+
+WCAG criteria: [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [2.5.7 Dragging Movements](https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html), [3.3.1 Error Identification](https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html), [3.3.2 Labels or Instructions](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html), [4.1.3 Status Messages](https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html)
+
+## API
+
+<PropsTable
+  label="Dropzone props"
+  lang="en"
+  props={[
+    {
+      name: 'inputLabel',
+      type: 'string',
+      required: false,
+      description: 'Visible label of the field. Without it, give `aria-label`.',
+    },
+    {
+      name: 'aria-label',
+      type: 'string',
+      required: false,
+      description: 'Accessible name when `inputLabel` is missing.',
+    },
+    {
+      name: 'title',
+      type: 'string',
+      required: false,
+      defaultValue: "'Pudota tiedostot tähän'",
+      description: 'Heading inside the drop area.',
+    },
+    {
+      name: 'helperText',
+      type: 'ReactNode',
+      required: false,
+      description: 'Help text below the label.',
+    },
+    {
+      name: 'error',
+      type: 'string',
+      required: false,
+      description: 'Your own error message. Overrides the built-in rejection message.',
+    },
+    {
+      name: 'multiple',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Allows more than one file.',
+    },
+    {
+      name: 'accept',
+      type: 'string',
+      required: false,
+      description:
+        'Allowed file types, as in the native attribute: `.pdf`, `image/*`, `application/pdf`.',
+    },
+    {
+      name: 'maxSize',
+      type: 'number',
+      required: false,
+      description: 'Maximum size of one file, in bytes.',
+    },
+    {
+      name: 'maxFiles',
+      type: 'number',
+      required: false,
+      description: 'Maximum number of files when `multiple` is set.',
+    },
+    {
+      name: 'value',
+      type: 'File[]',
+      required: false,
+      description: 'The selected files, when you hold the selection in state.',
+    },
+    {
+      name: 'defaultValue',
+      type: 'File[]',
+      required: false,
+      description: 'Initial selection when the selection is not in state.',
+    },
+    {
+      name: 'onChange',
+      type: '(files: File[]) => void',
+      required: false,
+      description: 'Called with the new selection when files are added or removed.',
+    },
+    {
+      name: 'onReject',
+      type: '(rejections: FileRejection[]) => void',
+      required: false,
+      description: 'Called with the rejected files. The reason is `type`, `size` or `count`.',
+    },
+    {
+      name: 'rejectionMessage',
+      type: '(rejections: FileRejection[]) => string',
+      required: false,
+      description: 'Replaces the built-in Finnish rejection message.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      required: false,
+      defaultValue: 'false',
+      description: 'Prevents choosing, dropping and removing files.',
+    },
+    {
+      name: 'buttonLabel',
+      type: 'string',
+      required: false,
+      defaultValue: "'Valitse tiedostoja'",
+      description: 'Text of the picker button.',
+    },
+    {
+      name: 'placeholder',
+      type: 'string',
+      required: false,
+      defaultValue: "'Ei valittua tiedostoa'",
+      description: 'Status text when nothing is selected.',
+    },
+    {
+      name: 'removeLabel',
+      type: 'string',
+      required: false,
+      defaultValue: "'Poista tiedosto'",
+      description: 'Start of each remove button’s name. The file name is appended.',
+    },
+    {
+      name: 'selectedCountLabel',
+      type: '(count: number) => string',
+      required: false,
+      description:
+        'Status text when several files are selected. Default: "1 tiedosto valittu", "2 tiedostoa valittu".',
+    },
+    {
+      name: 'id',
+      type: 'string',
+      required: false,
+      description: 'Id of the picker button. Generated by default.',
+    },
+    {
+      name: 'className',
+      type: 'string',
+      required: false,
+      description: 'Extra class for the root element.',
+    },
+    {
+      name: 'style',
+      type: 'CSSProperties',
+      required: false,
+      description: 'Styles for the root element.',
+    },
+  ]}
+/>
+
+Dropzone passes no other props on. `name` and `form` are missing on purpose, because the selection doesn't travel in a native form submission.
+
+## Known issues
+
+- [#ISSUE_ANNOUNCE The rejection message for a file is not announced by screen readers](https://github.com/Tampere/Tampere-design-system/issues/ISSUE_ANNOUNCE)
+- [#148 Error placement and field padding differ from Figma](https://github.com/Tampere/Tampere-design-system/issues/148)
+
+## Related components
+
+<RelatedComponents names={['FileInput', 'FileList', 'Fieldset']} lang="en" />
+
+<ComponentChanges name="Dropzone" lang="en" />

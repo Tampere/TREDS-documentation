@@ -1,6 +1,7 @@
 import { TypeScale } from '@/docs-ui/tokens/TypeScale';
 import { TypeStyles } from '@/docs-ui/tokens/TypeStyles';
 import { ComponentRef } from '@/docs-ui/ComponentPage';
+import { Example } from '@/docs-ui/Example';
 
 # Typografia
 
@@ -10,25 +11,15 @@ TREDS käyttää kahta kirjasinta: **Montserrat** otsikoissa ja **Open Sans** ka
 
 Yhdeksän tyyliä kattaa otsikot, leipätekstin ja pienet tekstit. Käytä niitä <ComponentRef name="Typography" lang="fi">Typography-komponentin</ComponentRef> kautta äläkä aseta fonttikokoja itse:
 
-```tsx
-import { Typography } from '@tampere/treds';
-
-<Typography variant="h2">Asukaspalvelut</Typography>
-<Typography variant="p1">Leipäteksti…</Typography>
-```
+<Example name="typography/Hero" lang="fi" />
 
 <TypeStyles lang="fi" />
 
 ## Ulkoasu ja taso ovat eri asioita
 
-`variant` määrää, miltä teksti **näyttää**; `component` määrää, mikä HTML-elementti se **on**. Pidä sivun otsikkotasot järjestyksessä ruudunlukijan käyttäjiä varten ja valitse ulkoasu erikseen:
+`variant` määrää, miltä teksti **näyttää**, ja `component`, mikä HTML-elementti se **on**. Pidä sivun otsikkotasot järjestyksessä ruudunlukijan käyttäjiä varten ja valitse ulkoasu erikseen:
 
-```tsx
-// Dokumentin rakenteessa h2, näyttää h4:ltä
-<Typography variant="h4" component="h2">
-  Aukioloajat
-</Typography>
-```
+<Example name="typography/Level" lang="fi" />
 
 Käytä yhtä `h1`-otsikkoa sivulla äläkä hyppää tasojen yli: `h4` suoraan `h2`:n alla rikkoo rakenteen, jonka avulla avustavan teknologian käyttäjät liikkuvat sivulla.
 

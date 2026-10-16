@@ -1,6 +1,7 @@
 import { TypeScale } from '@/docs-ui/tokens/TypeScale';
 import { TypeStyles } from '@/docs-ui/tokens/TypeStyles';
 import { ComponentRef } from '@/docs-ui/ComponentPage';
+import { Example } from '@/docs-ui/Example';
 
 # Typography
 
@@ -10,12 +11,7 @@ TREDS uses two typefaces: **Montserrat** for headings and **Open Sans** for ever
 
 Nine styles cover headings, body text and small print. Use them through the <ComponentRef name="Typography" lang="en" /> component rather than setting font sizes yourself:
 
-```tsx
-import { Typography } from '@tampere/treds';
-
-<Typography variant="h2">Asukaspalvelut</Typography>
-<Typography variant="p1">Leipäteksti…</Typography>
-```
+<Example name="typography/Hero" lang="en" />
 
 <TypeStyles lang="en" />
 
@@ -23,12 +19,7 @@ import { Typography } from '@tampere/treds';
 
 `variant` sets how text **looks**, and `component` sets which HTML element it **is**. Keep the heading levels of a page in order for screen-reader users, and choose the look independently:
 
-```tsx
-// An h2 in the document outline that looks like an h4
-<Typography variant="h4" component="h2">
-  Aukioloajat
-</Typography>
-```
+<Example name="typography/Level" lang="en" />
 
 Use one `h1` per page, and don't skip levels: an `h4` directly under an `h2` breaks the outline that assistive technology users navigate by.
 

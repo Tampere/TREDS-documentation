@@ -1,0 +1,9 @@
+{
+  "label": "Procurement",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "slug": "/procurement",
+    "description": "Guidance for procurement teams and suppliers."
+  }
+}

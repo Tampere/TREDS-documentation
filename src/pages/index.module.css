@@ -1,0 +1,10 @@
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  background-color: var(--ifm-color-primary-darkest);
+  color: #fff;
+}
+
+.heroBanner h1 {
+  color: #fff;
+}

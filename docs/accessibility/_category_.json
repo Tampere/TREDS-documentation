@@ -1,0 +1,9 @@
+{
+  "label": "Accessibility",
+  "position": 6,
+  "link": {
+    "type": "generated-index",
+    "slug": "/accessibility",
+    "description": "Accessibility guidance for TREDS and services built with it."
+  }
+}

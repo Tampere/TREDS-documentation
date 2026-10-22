@@ -1,0 +1,9 @@
+{
+  "label": "Foundations",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "slug": "/foundations",
+    "description": "Foundational design elements of TREDS."
+  }
+}

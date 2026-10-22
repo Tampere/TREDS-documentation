@@ -1,0 +1,9 @@
+{
+  "label": "Governance",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "slug": "/governance",
+    "description": "How TREDS is governed and maintained."
+  }
+}

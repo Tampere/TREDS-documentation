@@ -12,18 +12,23 @@ import {
 import type { Lang } from '@/i18n';
 import { bpKeys, toPx } from './utils';
 
+const labels = {
+  en: { table: 'Type scale per breakpoint', style: 'Style' },
+};
+
 const styles = Object.keys(
   breakpoint.xl.typography.size
 ) as (keyof typeof breakpoint.xl.typography.size)[];
 
 export function TypeScale({ lang }: { lang: Lang }) {
+  const l = labels[lang];
   return (
     <>
       <div className="table-wrap">
-        <Table aria-label={lang === 'fi' ? 'Koot breakpointeittain' : 'Type scale per breakpoint'}>
+        <Table aria-label={l.table}>
           <TableHeader>
             <TableRow>
-              <TableHeaderCell scope="col">{lang === 'fi' ? 'Tyyli' : 'Style'}</TableHeaderCell>
+              <TableHeaderCell scope="col">{l.style}</TableHeaderCell>
               {bpKeys.map((bp) => (
                 <TableHeaderCell scope="col" key={bp}>
                   {bp}

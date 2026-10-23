@@ -18,7 +18,6 @@ type Value = string | boolean | undefined;
 
 // Select's icon buttons have no default names, so every Select here must be given them.
 const selectLabels = {
-  fi: { clear: 'Tyhjennä valinta', expand: 'Avaa vaihtoehdot', collapse: 'Sulje vaihtoehdot' },
   en: { clear: 'Clear selection', expand: 'Show options', collapse: 'Hide options' },
 };
 

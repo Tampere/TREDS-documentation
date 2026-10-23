@@ -12,17 +12,6 @@ import type { PropMeta } from './Playground';
 import { Prose } from './Prose';
 
 const text = {
-  fi: {
-    stubNote: 'Tälle komponentille ei ole vielä käyttöohjetta. Esimerkit ja tilat löytyvät',
-    storybook: 'Storybookista',
-    propsNote:
-      'Taulukossa ovat vain TREDSin itse määrittelemät propsit. Mantinelta periytyviä propseja ei näytetä.',
-    noProps: 'Propseja ei saatu luettua julkaistun paketin tyypeistä. Katso propsit',
-    propsLabel: 'propsit',
-    overviewIntro:
-      'TREDS-komponentit käyttötarkoituksen mukaan ryhmiteltyinä. Merkinnällä "Ohjeistus tulossa" olevilla komponenteilla on toistaiseksi vain propsit ja muutoshistoria.',
-    stub: 'Ohjeistus tulossa',
-  },
   en: {
     stubNote: 'This component has no usage guidance yet. Examples and states are in',
     storybook: 'Storybook',
@@ -33,10 +22,11 @@ const text = {
     overviewIntro:
       'TREDS components grouped by purpose. Components marked "Guidance coming" have only their props and change history for now.',
     stub: 'Guidance coming',
+    overviewTitle: 'Components',
   },
 } satisfies Record<Lang, Record<string, string>>;
 
-const opensInNewTab = { fi: ' (avautuu uuteen välilehteen)', en: ' (opens in a new tab)' };
+const opensInNewTab = { en: ' (opens in a new tab)' };
 
 // Zero-width spaces between camel-case parts, so a long name such as LabeledIconButton can
 // wrap in a narrow card instead of overflowing it (TREDS Typography doesn't wrap, #184).
@@ -97,7 +87,7 @@ export function ComponentOverview({ lang }: { lang: Lang }) {
   const t = text[lang];
   return (
     <Prose>
-      <Typography variant="h1">{lang === 'fi' ? 'Komponentit' : 'Components'}</Typography>
+      <Typography variant="h1">{t.overviewTitle}</Typography>
       <Typography variant="p1">{t.overviewIntro}</Typography>
       {Object.entries(groups).map(([id, group]) => (
         <Fragment key={id}>

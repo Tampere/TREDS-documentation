@@ -13,19 +13,24 @@ import {
 import type { Lang } from '@/i18n';
 import { toPx } from './tokens/utils';
 
+const labels = {
+  en: { table: 'Icon sizes', size: 'Size', sample: 'Sample' },
+};
+
 const sizes = getTheme('xl').components.icon.size;
 
 export function IconSizes({ lang }: { lang: Lang }) {
+  const l = labels[lang];
   return (
     <div className="table-wrap">
-      <Table aria-label={lang === 'fi' ? 'Ikonien koot' : 'Icon sizes'}>
+      <Table aria-label={l.table}>
         <TableHeader>
           <TableRow>
             <TableHeaderCell scope="col">
               Token (<code>components.icon.size.…</code>)
             </TableHeaderCell>
-            <TableHeaderCell scope="col">{lang === 'fi' ? 'Koko' : 'Size'}</TableHeaderCell>
-            <TableHeaderCell scope="col">{lang === 'fi' ? 'Näyte' : 'Sample'}</TableHeaderCell>
+            <TableHeaderCell scope="col">{l.size}</TableHeaderCell>
+            <TableHeaderCell scope="col">{l.sample}</TableHeaderCell>
           </TableRow>
         </TableHeader>
         <TableBody>

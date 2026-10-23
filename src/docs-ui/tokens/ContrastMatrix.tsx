@@ -33,9 +33,12 @@ const backgrounds: [string, string][] = [
   ['brand.blue.mainDark', brand.blue.mainDark],
 ];
 
+const headings = {
+  en: { table: 'Text colour contrast against backgrounds', corner: 'Text \\ background' },
+};
+
 // WCAG 2.1 AA: 4.5:1 for normal text, 3:1 for large text (≥ 24px, or ≥ 18.66px bold).
 const verdicts = {
-  fi: { pass: 'AA', large: 'vain suuri teksti', fail: 'ei tekstille' },
   en: { pass: 'AA', large: 'large text only', fail: 'not for text' },
 };
 
@@ -49,18 +52,10 @@ function verdict(ratio: number, lang: Lang) {
 export function ContrastMatrix({ lang }: { lang: Lang }) {
   return (
     <div className="table-wrap">
-      <Table
-        aria-label={
-          lang === 'fi'
-            ? 'Tekstivärien kontrasti taustoja vasten'
-            : 'Text colour contrast against backgrounds'
-        }
-      >
+      <Table aria-label={headings[lang].table}>
         <TableHeader>
           <TableRow>
-            <TableHeaderCell scope="col">
-              {lang === 'fi' ? 'Teksti \\ tausta' : 'Text \\ background'}
-            </TableHeaderCell>
+            <TableHeaderCell scope="col">{headings[lang].corner}</TableHeaderCell>
             {backgrounds.map(([name]) => (
               <TableHeaderCell scope="col" key={name}>
                 <code>

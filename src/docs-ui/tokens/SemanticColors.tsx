@@ -43,14 +43,6 @@ function tokensFor(keys: readonly string[]): [string, string][] {
 }
 
 const labels = {
-  fi: {
-    table: 'Värit',
-    token: 'Token',
-    use: 'Käyttö',
-    value: 'Arvo',
-    primitive: 'Primitiivi',
-    onWhite: 'Valkoisella',
-  },
   en: {
     table: 'Colours',
     token: 'Token',

@@ -18,14 +18,6 @@ export interface PropOverride {
 }
 
 const text = {
-  fi: {
-    prop: 'Props',
-    type: 'Tyyppi',
-    default: 'Oletus',
-    description: 'Kuvaus',
-    required: 'Pakollinen',
-    when: 'Pakollinen, kun',
-  },
   en: {
     prop: 'Prop',
     type: 'Type',

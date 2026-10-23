@@ -1,4 +1,4 @@
-import type { Lang } from './i18n';
+import { languages, type Lang } from './i18n';
 import { componentSlug, components, groups } from './components';
 
 type Localized = Record<Lang, string>;
@@ -23,50 +23,50 @@ export interface DocSection {
 export const sections: DocSection[] = [
   {
     id: 'getting-started',
-    title: { fi: 'Aloitus', en: 'Getting started' },
+    title: { en: 'Getting started' },
     pages: [
       {
         slug: '',
-        title: { fi: 'Johdanto', en: 'Introduction' },
+        title: { en: 'Introduction' },
       },
     ],
   },
   {
     id: 'foundations',
-    title: { fi: 'Perusteet', en: 'Foundations' },
+    title: { en: 'Foundations' },
     pages: [
       {
         slug: 'foundations/colours',
-        title: { fi: 'Värit', en: 'Colours' },
+        title: { en: 'Colours' },
       },
       {
         slug: 'foundations/typography',
-        title: { fi: 'Typografia', en: 'Typography' },
+        title: { en: 'Typography' },
       },
       {
         slug: 'foundations/spacing-and-layout',
-        title: { fi: 'Välistys ja asettelu', en: 'Spacing and layout' },
+        title: { en: 'Spacing and layout' },
       },
       {
         slug: 'foundations/icons',
-        title: { fi: 'Ikonit', en: 'Icons' },
+        title: { en: 'Icons' },
       },
       {
         slug: 'foundations/tokens',
-        title: { fi: 'Design tokenit', en: 'Design tokens' },
+        title: { en: 'Design tokens' },
       },
     ],
   },
   {
     id: 'components',
-    title: { fi: 'Komponentit', en: 'Components' },
+    title: { en: 'Components' },
     pages: [
-      { slug: 'components', title: { fi: 'Yleiskatsaus', en: 'Overview' } },
+      { slug: 'components', title: { en: 'Overview' } },
       ...Object.entries(groups).flatMap(([id, group]) =>
         components
           .filter((c) => c.group === id)
           .sort((a, b) => a.name.localeCompare(b.name))
-          .map((c) => ({ slug: componentSlug(c.name), title: { fi: c.name, en: c.name }, group }))
+          .map((c) => ({ slug: componentSlug(c.name), title: { en: c.name }, group }))
       ),
     ],
   },
@@ -76,7 +76,7 @@ export const sections: DocSection[] = [
 export const standalonePages: DocPage[] = [
   {
     slug: 'accessibility',
-    title: { fi: 'Saavutettavuusseloste', en: 'Accessibility statement' },
+    title: { en: 'Accessibility statement' },
   },
 ];
 
@@ -101,4 +101,4 @@ export function findPage(slug: string) {
 
 /** Pathname → slug, tolerant of trailing slashes. */
 export const slugFromPath = (pathname: string) =>
-  pathname.replace(/^\/(fi|en)/, '').replace(/^\/|\/$/g, '');
+  pathname.replace(new RegExp(`^/(${languages.join('|')})`), '').replace(/^\/|\/$/g, '');

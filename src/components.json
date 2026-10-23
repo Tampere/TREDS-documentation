@@ -4,7 +4,6 @@
     "group": "actions",
     "since": "0.0.1",
     "description": {
-      "fi": "Painike käynnistää toiminnon nykyisellä sivulla.",
       "en": "A button triggers an action on the current page."
     }
   },
@@ -13,7 +12,6 @@
     "group": "actions",
     "since": "0.0.1",
     "description": {
-      "fi": "Painike, jossa on pelkkä ikoni.",
       "en": "A button with an icon only."
     }
   },
@@ -22,7 +20,6 @@
     "group": "actions",
     "since": "0.8.0",
     "description": {
-      "fi": "Ikonipainike, jonka alla on lyhyt teksti.",
       "en": "An icon button with a short label below it."
     }
   },
@@ -31,7 +28,6 @@
     "group": "forms",
     "since": "0.0.1",
     "description": {
-      "fi": "Valintaruutu, jolla valitaan yksi tai useampi vaihtoehto.",
       "en": "A checkbox for selecting one or more options."
     }
   },
@@ -40,7 +36,6 @@
     "group": "forms",
     "since": "0.9.0",
     "description": {
-      "fi": "Interaktiivinen tunniste suodattamiseen tai poistettavaksi tagiksi.",
       "en": "An interactive label for filtering or as a removable tag."
     }
   },
@@ -49,7 +44,6 @@
     "group": "forms",
     "since": "0.5.0",
     "description": {
-      "fi": "Päivämääräkenttä, jossa on kalenterivalitsin.",
       "en": "A date field with a calendar picker."
     }
   },
@@ -58,7 +52,6 @@
     "group": "forms",
     "since": "1.0.0",
     "description": {
-      "fi": "Alue, johon tiedostoja voi raahata ja pudottaa.",
       "en": "An area that files can be dragged and dropped onto."
     }
   },
@@ -67,7 +60,6 @@
     "group": "forms",
     "since": "1.0.0",
     "description": {
-      "fi": "Ryhmittelee toisiinsa liittyvät lomakekentät yhteisen otsikon alle.",
       "en": "Groups related form fields under a shared legend."
     }
   },
@@ -76,7 +68,6 @@
     "group": "forms",
     "since": "1.0.0",
     "description": {
-      "fi": "Tiedostovalitsin, jolla käyttäjä liittää tiedostoja lomakkeeseen.",
       "en": "A file picker for attaching files to a form."
     }
   },
@@ -85,7 +76,6 @@
     "group": "forms",
     "since": "1.0.0",
     "description": {
-      "fi": "Lista valituista tiedostoista. Jokaisen tiedoston voi poistaa.",
       "en": "A list of selected files. Each file can be removed."
     }
   },
@@ -94,7 +84,6 @@
     "group": "forms",
     "since": "0.1.0",
     "description": {
-      "fi": "Valintanappi, jolla valitaan yksi vaihtoehto monesta.",
       "en": "A radio button for choosing one option of many."
     }
   },
@@ -103,7 +92,6 @@
     "group": "forms",
     "since": "0.0.1",
     "description": {
-      "fi": "Hakukenttä, jossa on hakupainike ja valinnaiset hakuehdotukset.",
       "en": "A search field with a search button and optional suggestions."
     }
   },
@@ -112,7 +100,6 @@
     "group": "forms",
     "since": "0.0.1",
     "description": {
-      "fi": "Pudotusvalikko, josta valitaan yksi vaihtoehto. Tukee hakua ja ryhmiä.",
       "en": "A dropdown for choosing one option. Supports search and groups."
     }
   },
@@ -121,7 +108,6 @@
     "group": "forms",
     "since": "0.0.1",
     "description": {
-      "fi": "Kytkin, jolla asetus otetaan käyttöön tai pois käytöstä.",
       "en": "A switch for turning a setting on or off."
     }
   },
@@ -130,7 +116,6 @@
     "group": "forms",
     "since": "0.2.0",
     "description": {
-      "fi": "Monirivinen tekstikenttä pidemmälle tekstille.",
       "en": "A multi-line text field for longer text."
     }
   },
@@ -139,7 +124,6 @@
     "group": "forms",
     "since": "0.0.1",
     "description": {
-      "fi": "Yksirivinen tekstikenttä.",
       "en": "A single-line text field."
     }
   },
@@ -148,7 +132,6 @@
     "group": "forms",
     "since": "1.0.0",
     "description": {
-      "fi": "Kellonaikakenttä, jossa on kellonaikavalitsin.",
       "en": "A time field with a time picker."
     }
   },
@@ -157,7 +140,6 @@
     "group": "navigation",
     "since": "1.0.0",
     "description": {
-      "fi": "Sivuston ylätunniste: logo, päänavigaatio, kielivalinta, haku ja kirjautuminen.",
       "en": "The site header: logo, main navigation, language switcher, search and login."
     }
   },
@@ -166,7 +148,6 @@
     "group": "navigation",
     "since": "0.0.1",
     "description": {
-      "fi": "Murupolku, joka näyttää sivun paikan sivuston rakenteessa.",
       "en": "A breadcrumb trail that shows the page's place in the site structure."
     }
   },
@@ -175,7 +156,6 @@
     "group": "navigation",
     "since": "1.0.0",
     "description": {
-      "fi": "Sivuston alatunniste: yhteystiedot, linkit ja somekanavat.",
       "en": "The site footer: contact details, links and social media."
     }
   },
@@ -184,7 +164,6 @@
     "group": "navigation",
     "since": "0.0.1",
     "description": {
-      "fi": "Navigointilinkki ylä- ja alatunnisteeseen sekä sivunavigaatioon. Näyttää valitun sivun.",
       "en": "A navigation link for headers, footers and side navigation. Shows the current page."
     }
   },
@@ -193,7 +172,6 @@
     "group": "navigation",
     "since": "0.0.1",
     "description": {
-      "fi": "Sivutus, jolla liikutaan pitkän listan sivujen välillä.",
       "en": "Pagination for moving between the pages of a long list."
     }
   },
@@ -202,7 +180,6 @@
     "group": "navigation",
     "since": "1.0.0",
     "description": {
-      "fi": "Ohituslinkki, jolla näppäimistön käyttäjä siirtyy suoraan pääsisältöön.",
       "en": "A skip link that takes keyboard users straight to the main content."
     }
   },
@@ -211,7 +188,6 @@
     "group": "navigation",
     "since": "0.9.0",
     "description": {
-      "fi": "Tekstilinkki toiselle sivulle, palveluun tai tiedostoon.",
       "en": "A text link to another page, service or file."
     }
   },
@@ -220,7 +196,6 @@
     "group": "content",
     "since": "0.0.1",
     "description": {
-      "fi": "Avattavat osiot, joilla pitkän sisällön voi jakaa otsikoiden alle.",
       "en": "Expandable sections that split long content under headings."
     }
   },
@@ -229,7 +204,6 @@
     "group": "content",
     "since": "0.9.0",
     "description": {
-      "fi": "Sisältökortti, joka kokoaa otsikon, tekstin ja toiminnot yhteen. Kortti ei ole itse linkki.",
       "en": "A content card that groups a title, text and actions. The card itself is not a link."
     }
   },
@@ -238,7 +212,6 @@
     "group": "content",
     "since": "0.9.0",
     "description": {
-      "fi": "Laatikon muotoinen linkki: koko laatikko vie yhteen kohteeseen.",
       "en": "A box-shaped link: the whole box goes to one destination."
     }
   },
@@ -247,7 +220,6 @@
     "group": "content",
     "since": "0.9.0",
     "description": {
-      "fi": "Pinta, jolla on tausta, kulmat ja valinnainen reunus tai varjo.",
       "en": "A surface with a background, corners and an optional border or shadow."
     }
   },
@@ -256,7 +228,6 @@
     "group": "content",
     "since": "0.0.1",
     "description": {
-      "fi": "Taulukko rivien ja sarakkeiden tiedoille.",
       "en": "A table for data in rows and columns."
     }
   },
@@ -265,7 +236,6 @@
     "group": "content",
     "since": "1.0.0",
     "description": {
-      "fi": "Välilehdet, joilla vaihdetaan saman sivun sisällön näkymästä toiseen.",
       "en": "Tabs for switching between views of content on the same page."
     }
   },
@@ -274,7 +244,6 @@
     "group": "content",
     "since": "0.0.1",
     "description": {
-      "fi": "Tekstityylit otsikoista leipätekstiin.",
       "en": "Text styles from headings to body text."
     }
   },
@@ -283,7 +252,6 @@
     "group": "feedback",
     "since": "1.0.0",
     "description": {
-      "fi": "Lyhyt tunniste, joka kertoo kohteen tilan tai luokan.",
       "en": "A short label that states an item's status or category."
     }
   },
@@ -292,7 +260,6 @@
     "group": "feedback",
     "since": "0.4.0",
     "description": {
-      "fi": "Latausindikaattori, joka kertoo sisällön latautuvan.",
       "en": "A loading indicator that shows content is loading."
     }
   },
@@ -301,7 +268,6 @@
     "group": "feedback",
     "since": "0.0.1",
     "description": {
-      "fi": "Dialogi, joka avautuu sivun päälle ja vaatii käyttäjän huomion.",
       "en": "A dialog that opens on top of the page and needs the user's attention."
     }
   }

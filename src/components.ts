@@ -5,11 +5,11 @@ export const repoUrl = 'https://github.com/Tampere/Tampere-design-system';
 export const storybookUrl = 'https://tampere.github.io/Tampere-design-system/';
 
 export const groups = {
-  actions: { fi: 'Toiminnot', en: 'Actions' },
-  forms: { fi: 'Lomakkeet ja valinnat', en: 'Forms and selection' },
-  navigation: { fi: 'Navigointi', en: 'Navigation' },
-  content: { fi: 'Sisältö ja asettelu', en: 'Content and layout' },
-  feedback: { fi: 'Tila ja palaute', en: 'Status and feedback' },
+  actions: { en: 'Actions' },
+  forms: { en: 'Forms and selection' },
+  navigation: { en: 'Navigation' },
+  content: { en: 'Content and layout' },
+  feedback: { en: 'Status and feedback' },
 } satisfies Record<string, Record<Lang, string>>;
 
 export interface ComponentEntry {

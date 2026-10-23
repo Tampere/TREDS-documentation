@@ -6,19 +6,6 @@ import changes from '@/generated/changes.json';
 import { inlineCode } from './inlineCode';
 
 const text = {
-  fi: {
-    meta: 'Komponentin tiedot',
-    source: 'Lähdekoodi',
-    since: 'Versiosta',
-    stub: 'Ohjeistus tulossa',
-    history: 'Muutokset',
-    opensInNewTab: '(avautuu uuteen välilehteen)',
-    changesTitle: 'Muutokset ja palaute',
-    noChanges: 'Ei kirjattuja muutoksia.',
-    fullHistory: 'Koko muutoshistoria (englanniksi)',
-    openIssues: 'Avoimet issuet',
-    feedback: 'Ilmoita ongelmasta tai ehdota muutosta',
-  },
   en: {
     meta: 'Component details',
     source: 'Source code',
@@ -34,7 +21,7 @@ const text = {
   },
 } satisfies Record<Lang, Record<string, string>>;
 
-const changesId = { fi: 'muutokset-ja-palaute', en: 'changes-and-feedback' };
+const changesId = { en: 'changes-and-feedback' };
 
 function External({
   href,

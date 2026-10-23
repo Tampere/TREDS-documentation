@@ -12,23 +12,9 @@ const icons = Object.entries(treds)
   .sort(([a], [b]) => a.localeCompare(b)) as [string, ComponentType<SVGProps<SVGSVGElement>>][];
 
 const labels = {
-  fi: {
-    filter: 'Suodata ikoneita',
-    count: (shown: number, total: number) =>
-      shown === total ? `${total} ikonia` : `${shown} / ${total} ikonia`,
-    none: 'Ei osumia. Ikonien nimet ovat englanniksi, esim. "search" tai "arrow".',
-    tile: {
-      actions: 'lataa tai kopioi',
-      png: 'Lataa PNG',
-      svg: 'Lataa SVG',
-      copy: 'Kopioi koodi',
-      copied: (snippet: string) => `${snippet} kopioitu leikepöydälle`,
-      downloaded: (fileName: string) => `${fileName} ladattu`,
-      failed: (fileName: string) => `Tiedoston ${fileName} lataus epäonnistui. Yritä uudelleen.`,
-    },
-  },
   en: {
     filter: 'Filter icons',
+    clear: 'Clear',
     count: (shown: number, total: number) =>
       shown === total ? `${total} icons` : `${shown} of ${total} icons`,
     none: 'No matches. Try e.g. "search" or "arrow".',
@@ -59,7 +45,7 @@ export function IconGallery({ lang }: { lang: Lang }) {
         value={query}
         onChange={(e) => setQuery(e.currentTarget.value)}
         showClearButton
-        clearButtonLabel={lang === 'fi' ? 'Tyhjennä' : 'Clear'}
+        clearButtonLabel={l.clear}
         onClearButtonClick={() => setQuery('')}
       />
       <Typography variant="p2" className="icon-count" aria-live="polite">

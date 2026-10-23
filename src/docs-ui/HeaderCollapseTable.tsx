@@ -12,20 +12,6 @@ import type { Lang } from '@/i18n';
 
 // Mirrors the media queries in AppHeader.css.ts (xl, lg and md appWidth).
 const text = {
-  fi: {
-    label: 'AppHeaderin osat näytön leveyden mukaan',
-    head: ['Näytön leveys', 'Rivillä näkyvät', 'Valikossa'],
-    rows: [
-      [
-        'vähintään 1440 px',
-        'logo, palvelun nimi, päävalikko, kielet, toiminnot, kirjautuminen',
-        'ei Valikko-painiketta',
-      ],
-      ['1024–1439 px', 'logo, palvelun nimi, kielet, toiminnot, kirjautuminen', 'päävalikko'],
-      ['768–1023 px', 'logo, palvelun nimi, toiminnot, kirjautuminen', 'päävalikko, kielet'],
-      ['alle 768 px', 'logo, kirjautuminen', 'päävalikko, toiminnot, kielet'],
-    ],
-  },
   en: {
     label: 'AppHeader parts by screen width',
     head: ['Screen width', 'On the row', 'In the menu'],

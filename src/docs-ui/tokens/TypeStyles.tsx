@@ -32,15 +32,8 @@ function colourName(rgb: string) {
 }
 
 const labels = {
-  fi: {
-    style: 'Tyyli',
-    sample: 'Näyte',
-    font: 'Fontti',
-    weight: 'Paino / riviväli',
-    colour: 'Väri',
-    text: 'Tampere',
-  },
   en: {
+    table: 'Type styles',
     style: 'Style',
     sample: 'Sample',
     font: 'Font',
@@ -65,7 +58,7 @@ export function TypeStyles({ lang }: { lang: Lang }) {
 
   return (
     <div className="table-wrap">
-      <Table aria-label={lang === 'fi' ? 'Typografiatyylit' : 'Type styles'}>
+      <Table aria-label={l.table}>
         <TableHeader>
           <TableRow>
             <TableHeaderCell scope="col">{l.style}</TableHeaderCell>

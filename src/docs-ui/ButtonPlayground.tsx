@@ -5,6 +5,8 @@ import props from '@/generated/Button.props.json';
 import type { Lang } from '@/i18n';
 import { Playground } from './Playground';
 
+const defaultChildren = { en: 'Save' };
+
 // iconOnly needs an icon child and aria-label together, which a lone checkbox can't express.
 export function ButtonPlayground({ lang }: { lang: Lang }) {
   return (
@@ -14,7 +16,7 @@ export function ButtonPlayground({ lang }: { lang: Lang }) {
       props={props}
       exclude={['iconOnly']}
       lang={lang}
-      defaultChildren={lang === 'fi' ? 'Tallenna' : 'Save'}
+      defaultChildren={defaultChildren[lang]}
     />
   );
 }

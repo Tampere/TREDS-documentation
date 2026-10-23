@@ -13,17 +13,20 @@ import {
 import type { Lang } from '@/i18n';
 import { bpKeys, toPx } from './utils';
 
+const labels = {
+  en: { table: 'Spacing scale per breakpoint', step: 'Step' },
+};
+
 const steps = Object.keys(breakpoint.xl.spacing) as (keyof typeof breakpoint.xl.spacing)[];
 
 export function SpacingScale({ lang }: { lang: Lang }) {
+  const l = labels[lang];
   return (
     <div className="table-wrap">
-      <Table
-        aria-label={lang === 'fi' ? 'Välistys breakpointeittain' : 'Spacing scale per breakpoint'}
-      >
+      <Table aria-label={l.table}>
         <TableHeader>
           <TableRow>
-            <TableHeaderCell scope="col">{lang === 'fi' ? 'Askel' : 'Step'}</TableHeaderCell>
+            <TableHeaderCell scope="col">{l.step}</TableHeaderCell>
             {bpKeys.map((bp) => (
               <TableHeaderCell scope="col" key={bp}>
                 {bp}

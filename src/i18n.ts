@@ -1,25 +1,7 @@
-export const languages = ['fi', 'en'] as const;
+export const languages = ['en'] as const;
 export type Lang = (typeof languages)[number];
 
 export const dict = {
-  fi: {
-    siteName: 'Design System',
-    navAriaLabel: 'Päänavigaatio',
-    languagesAriaLabel: 'Kieli',
-    menu: 'Valikko',
-    home: 'Etusivu',
-    breadcrumbs: 'Murupolku',
-    onThisPage: 'Tällä sivulla',
-    pages: 'Sivut',
-    sidebar: 'Dokumentaation sivut',
-    previous: 'Edellinen',
-    next: 'Seuraava',
-    search: 'Hae dokumentaatiosta',
-    searchButton: 'Hae',
-    clear: 'Tyhjennä',
-    noResults: 'Ei tuloksia',
-    accessibility: 'Saavutettavuusseloste',
-  },
   en: {
     siteName: 'Design System',
     navAriaLabel: 'Main navigation',

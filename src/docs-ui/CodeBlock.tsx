@@ -6,11 +6,6 @@ import { CheckmarkIcon, IconButton } from '@tampere/treds';
 import type { Lang } from '@/i18n';
 
 const labels = {
-  fi: {
-    copy: 'Kopioi koodi',
-    copied: 'Koodi kopioitu leikepöydälle',
-    failed: 'Kopiointi epäonnistui',
-  },
   en: { copy: 'Copy code', copied: 'Code copied to clipboard', failed: 'Copying failed' },
 };
 
@@ -27,7 +22,7 @@ function CopyIcon({ width = 24, ...props }: SVGProps<SVGSVGElement>) {
 // Reads the code from the rendered block, so it works for Shiki HTML and plain <pre> alike.
 export function CodeBlock({ children }: { children: ReactNode }) {
   const { lang } = useParams<{ lang: Lang }>();
-  const l = labels[lang] ?? labels.fi;
+  const l = labels[lang] ?? labels.en;
   const ref = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<'idle' | 'copied' | 'failed'>('idle');
 

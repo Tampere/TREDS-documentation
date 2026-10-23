@@ -34,11 +34,16 @@ export function SiteChrome({ lang, children }: { lang: Lang; children: ReactNode
               ),
             };
           })}
-          languages={languages.map((code) => ({
-            code,
-            label: code.toUpperCase(),
-            href: href(code, current),
-          }))}
+          // A switcher with one option only adds noise.
+          languages={
+            languages.length > 1
+              ? languages.map((code) => ({
+                  code,
+                  label: code.toUpperCase(),
+                  href: href(code, current),
+                }))
+              : undefined
+          }
           currentLanguage={lang}
           languagesAriaLabel={t.languagesAriaLabel}
           menuButtonLabel={t.menu}

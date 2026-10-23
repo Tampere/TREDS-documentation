@@ -3,8 +3,8 @@
 export default function RootPage() {
   return (
     <>
-      <meta httpEquiv="refresh" content="0; url=/fi/" />
-      <a href="/fi/">Tampere Design System</a>
+      <meta httpEquiv="refresh" content="0; url=/en/" />
+      <a href="/en/">Tampere Design System</a>
     </>
   );
 }

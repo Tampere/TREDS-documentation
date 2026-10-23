@@ -13,15 +13,16 @@ import {
 import type { Lang } from '@/i18n';
 import { bpKeys, toPx, viewportRange } from './utils';
 
+const tableLabel = { en: 'Breakpoints' };
+
 const labels: Record<Lang, string[]> = {
-  fi: ['Avain', 'Näytön leveys', 'Palstat', 'Gutter', 'Reunamarginaali', 'Kontrollin korkeus'],
   en: ['Key', 'Applies at viewport', 'Columns', 'Gutter', 'Margin', 'Control height'],
 };
 
 export function Breakpoints({ lang }: { lang: Lang }) {
   return (
     <div className="table-wrap">
-      <Table aria-label={lang === 'fi' ? 'Breakpointit' : 'Breakpoints'}>
+      <Table aria-label={tableLabel[lang]}>
         <TableHeader>
           <TableRow>
             <TableHeaderCell scope="col">{labels[lang][0]}</TableHeaderCell>

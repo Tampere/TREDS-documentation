@@ -413,3 +413,34 @@ pre {
 .icon-name {
   text-align: center;
 }
+/* Same surface and shadow as the AppHeader menu. Scoped under .icon-grid to outrank
+   Mantine's own dropdown class, which sets border, padding and radius. */
+.icon-grid .icon-menu {
+  display: grid;
+  min-width: 12rem;
+  padding: var(--space-xs) 0;
+  border: none;
+  border-radius: var(--corner-radius);
+  background: var(--surface);
+  box-shadow: var(--drop-shadow-tile);
+}
+.icon-menu button {
+  padding: var(--space-xs) var(--space-sm);
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.icon-menu button:hover {
+  background: var(--surface-subtle);
+}
+.icon-menu button:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
+}
+.icon-menu-divider {
+  margin: var(--space-xs) 0;
+  border-top: var(--border);
+}

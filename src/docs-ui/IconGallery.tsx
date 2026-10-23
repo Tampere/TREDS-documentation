@@ -4,6 +4,7 @@ import { useState, type ComponentType, type SVGProps } from 'react';
 import * as treds from '@tampere/treds';
 import { TextField, Typography } from '@tampere/treds';
 import type { Lang } from '@/i18n';
+import { IconTile } from './IconTile';
 
 // Read from the package's own exports, so a new icon appears here without editing this file.
 const icons = Object.entries(treds)
@@ -16,16 +17,30 @@ const labels = {
     count: (shown: number, total: number) =>
       shown === total ? `${total} ikonia` : `${shown} / ${total} ikonia`,
     none: 'Ei osumia. Ikonien nimet ovat englanniksi, esim. "search" tai "arrow".',
-    copy: 'Kopioi',
-    copied: (name: string) => `${name} kopioitu leikepöydälle`,
+    tile: {
+      actions: 'lataa tai kopioi',
+      png: 'Lataa PNG',
+      svg: 'Lataa SVG',
+      copy: 'Kopioi koodi',
+      copied: (snippet: string) => `${snippet} kopioitu leikepöydälle`,
+      downloaded: (fileName: string) => `${fileName} ladattu`,
+      failed: (fileName: string) => `Tiedoston ${fileName} lataus epäonnistui. Yritä uudelleen.`,
+    },
   },
   en: {
     filter: 'Filter icons',
     count: (shown: number, total: number) =>
       shown === total ? `${total} icons` : `${shown} of ${total} icons`,
     none: 'No matches. Try e.g. "search" or "arrow".',
-    copy: 'Copy',
-    copied: (name: string) => `${name} copied to clipboard`,
+    tile: {
+      actions: 'download or copy',
+      png: 'Download PNG',
+      svg: 'Download SVG',
+      copy: 'Copy code',
+      copied: (snippet: string) => `${snippet} copied to clipboard`,
+      downloaded: (fileName: string) => `${fileName} downloaded`,
+      failed: (fileName: string) => `Downloading ${fileName} failed. Try again.`,
+    },
   },
 };
 
@@ -33,18 +48,9 @@ export function IconGallery({ lang }: { lang: Lang }) {
   const l = labels[lang];
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState('');
+  const [openName, setOpenName] = useState<string | null>(null);
   const q = query.trim().toLowerCase().replace(/\s+/g, '');
   const shown = icons.filter(([name]) => name.toLowerCase().includes(q));
-
-  async function copy(name: string) {
-    const snippet = `<${name} />`;
-    try {
-      await navigator.clipboard.writeText(snippet);
-      setStatus(l.copied(snippet));
-    } catch {
-      setStatus(snippet);
-    }
-  }
 
   return (
     <div className="icon-gallery">
@@ -61,21 +67,15 @@ export function IconGallery({ lang }: { lang: Lang }) {
       </Typography>
       <ul className="icon-grid">
         {shown.map(([name, Icon]) => (
-          <li key={name}>
-            <button type="button" className="icon-tile" onClick={() => copy(name)}>
-              <Icon aria-hidden="true" width={32} />
-              <Typography variant="caption" component="span" className="icon-name">
-                {/* Break between words of the camelCase name, not mid-word. */}
-                {name
-                  .replace(/Icon$/, '')
-                  .split(/(?=[A-Z])/)
-                  .flatMap((part, i) => (i === 0 ? [part] : [<wbr key={i} />, part]))}
-              </Typography>
-              <span className="visually-hidden">
-                {l.copy} {`<${name} />`}
-              </span>
-            </button>
-          </li>
+          <IconTile
+            key={name}
+            name={name}
+            Icon={Icon}
+            opened={openName === name}
+            onOpenChange={(opened) => setOpenName(opened ? name : null)}
+            onStatus={setStatus}
+            labels={l.tile}
+          />
         ))}
       </ul>
       <p className="visually-hidden" role="status">

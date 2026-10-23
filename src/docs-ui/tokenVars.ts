@@ -30,6 +30,7 @@ export const tokenVars = {
   '--surface': vars.theme.background.default,
   '--surface-subtle': vars.theme.background.disabled,
   '--divider': vars.theme.divider,
+  '--drop-shadow-tile': vars.theme.dropShadowTile,
   '--accent': vars.theme.states.default,
   // TREDS has no code style (#185). Neutral 100 is Figma's tag fill; text.primary on it is 12:1.
   '--code-surface': vars.primitives.colors.neutral['100'],

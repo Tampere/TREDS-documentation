@@ -101,7 +101,7 @@ export function IconTile({ name, Icon, opened, onOpenChange, onStatus, labels }:
             aria-controls={opened ? menuId : undefined}
             onClick={() => onOpenChange(!opened)}
           >
-            <Icon ref={iconRef} aria-hidden="true" width={32} />
+            <Icon ref={iconRef} aria-hidden="true" width={32} className="icon-sample" />
             <Typography variant="caption" component="span" className="icon-name">
               {/* Break between words of the camelCase name, not mid-word. */}
               {label

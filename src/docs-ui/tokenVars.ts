@@ -22,6 +22,8 @@ export const tokenVars = {
   '--p2-line-height': vars.theme.components.typography.p2.lineHeight,
   '--text-primary': vars.theme.text.primary,
   '--text-header': vars.theme.text.header,
+  // Icons shown on their own take IconButton's resting colour, not the text colour.
+  '--icon-default': vars.theme.components.iconButton.states.default,
   '--weight-bold': vars.theme.components.typography.h3.fontWeight,
   // focusRing is an object (outline + offset), so the docs' own controls rebuild it.
   '--focus-outline': vars.theme.focusRing.outline,

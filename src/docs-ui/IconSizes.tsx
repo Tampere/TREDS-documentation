@@ -41,7 +41,12 @@ export function IconSizes({ lang }: { lang: Lang }) {
               </TableHeaderCell>
               <TableCell>{toPx(value)}</TableCell>
               <TableCell>
-                <SearchIcon aria-hidden="true" width={value} height={value} />
+                <SearchIcon
+                  aria-hidden="true"
+                  width={value}
+                  height={value}
+                  className="icon-sample"
+                />
               </TableCell>
             </TableRow>
           ))}

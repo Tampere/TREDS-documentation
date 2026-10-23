@@ -5,10 +5,10 @@ export const iconFileName = (name: string, ext: 'png' | 'svg') =>
   `${name.replace(/(?<=[a-z0-9])(?=[A-Z])/g, '-').toLowerCase()}.${ext}`;
 
 // The icons fill with currentColor, which turns black or invisible once the file leaves the
-// page, so the site's text colour is written into the file.
+// page, so the colour the gallery shows is written into the file.
 export function iconSvg(svg: SVGSVGElement): string {
-  const color = getComputedStyle(svg).getPropertyValue('--text-primary').trim();
-  if (!color) throw new Error('--text-primary is not set');
+  const color = getComputedStyle(svg).getPropertyValue('--icon-default').trim();
+  if (!color) throw new Error('--icon-default is not set');
   const copy = svg.cloneNode(true) as SVGSVGElement;
   copy.removeAttribute('aria-hidden');
   copy.setAttribute('width', String(SIZE));

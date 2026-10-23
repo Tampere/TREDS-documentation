@@ -410,6 +410,9 @@ pre {
   outline: var(--focus-outline);
   outline-offset: var(--focus-offset);
 }
+.icon-sample {
+  color: var(--icon-default);
+}
 .icon-name {
   text-align: center;
 }

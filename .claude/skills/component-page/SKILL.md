@@ -17,7 +17,9 @@ shape. Its examples are in `src/examples/en/button/`.
 
 In this order:
 
-1. Imports, `# Name`, `<ComponentBadges>`, a one-sentence lead, `<ComponentLinks>`.
+1. Imports, `# Name`, `<ComponentBadges>`, the lead, `<ComponentLinks>`. The lead's first
+   sentence is also the component's card text on the Components overview page, so make it
+   stand on its own and keep the lead to one paragraph.
 2. A hero `<Example>` directly under the links, with no heading.
 3. `## When to use`: one paragraph, then **Don't use … when** with each case pointing at the
    alternative component via `<ComponentRef>`.

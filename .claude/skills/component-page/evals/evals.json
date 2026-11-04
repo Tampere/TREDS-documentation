@@ -1,0 +1,17 @@
+{
+  "skill_name": "component-page",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Slim the Checkbox page down to the same light shape as the Button page.",
+      "expected_output": "checkbox.mdx rewritten to the light template; unused examples and index.ts entries removed; builds clean",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Modal doesn't have a docs page yet. Write the Modal component page with examples.",
+      "expected_output": "new modal.mdx in the light template, content.ts loader, example files registered in index.ts; builds clean",
+      "files": []
+    }
+  ]
+}

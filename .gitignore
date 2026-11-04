@@ -6,3 +6,5 @@ src/generated/
 # Temporary stub written by scripts/props.mjs.
 scripts/.props-stub.tsx
 .DS_Store
+# Skill eval runs, local only.
+.claude/skills/component-page-workspace/

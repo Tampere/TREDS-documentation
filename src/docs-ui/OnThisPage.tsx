@@ -10,9 +10,20 @@ export function OnThisPage({ label }: { label: string }) {
   const pathname = usePathname();
   const [headings, setHeadings] = useState<{ id: string; text: string }[]>([]);
 
+  // Also rebuilt on DOM changes, because a hot reload in `next dev` swaps the content without
+  // changing the path.
   useEffect(() => {
-    const found = [...document.querySelectorAll<HTMLElement>('.doc-main article h2[id]')];
-    setHeadings(found.map((h) => ({ id: h.id, text: h.textContent ?? '' })));
+    const main = document.querySelector('.doc-main');
+    const read = () => {
+      const found = [...document.querySelectorAll<HTMLElement>('.doc-main article h2[id]')];
+      const next = found.map((h) => ({ id: h.id, text: h.textContent ?? '' }));
+      setHeadings((prev) => (JSON.stringify(prev) === JSON.stringify(next) ? prev : next));
+    };
+    read();
+    if (!main) return;
+    const observer = new MutationObserver(read);
+    observer.observe(main, { childList: true, subtree: true, characterData: true });
+    return () => observer.disconnect();
   }, [pathname]);
 
   if (headings.length < 2) return null;

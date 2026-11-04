@@ -8,6 +8,9 @@ type Loader = () => Promise<{ default: ComponentType }>;
 // Pages without an entry: components get a generated stub, `components` the overview.
 export const content: Partial<Record<string, Record<Lang, Loader>>> = {
   '': {
+    en: () => import('./content/en/home.mdx'),
+  },
+  introduction: {
     en: () => import('./content/en/introduction.mdx'),
   },
   'foundations/colours': {

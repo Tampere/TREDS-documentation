@@ -7,10 +7,12 @@ const entries = [];
 
 if (existsSync(file)) {
   let release;
+  let section;
   for (const line of readFileSync(file, 'utf8').split('\n')) {
     const heading = line.match(/^## \[(\d+\.\d+\.\d+)\] - (\S+)/);
     if (heading) release = { version: heading[1], date: heading[2] };
     else if (line.startsWith('## ')) release = undefined; // [Unreleased]
+    if (line.startsWith('### ')) section = line.slice(4).trim();
     if (!release || !line.startsWith('- ')) continue;
 
     const text = line.slice(2);
@@ -37,6 +39,11 @@ if (existsSync(file)) {
       summary,
       issue: text.match(/\[#(\d+)\]/)?.[1],
       mentions: [...new Set([...text.matchAll(/`([A-Z][A-Za-z]+)`/g)].map((m) => m[1]))],
+      // A new component's entry bolds its name: "**`Badge`** — …", "**`FileInput`** and **`Dropzone`** — …".
+      added:
+        section === 'Added'
+          ? [...text.matchAll(/\*\*`([A-Z][A-Za-z]+)`\*\*/g)].map((m) => m[1])
+          : [],
     });
   }
 } else {

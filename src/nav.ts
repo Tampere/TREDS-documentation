@@ -27,6 +27,10 @@ export const sections: DocSection[] = [
     pages: [
       {
         slug: '',
+        title: { en: 'Home' },
+      },
+      {
+        slug: 'introduction',
         title: { en: 'Introduction' },
       },
     ],

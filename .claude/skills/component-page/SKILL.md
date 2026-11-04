@@ -91,6 +91,21 @@ When slimming an existing page, delete the example files the new page no longer 
 their `index.ts` entries, and delete any docs-ui component that only that page used (for
 example a per-component playground).
 
+## Foundations pages
+
+The same staleness rules cover `src/content/en/{colours,typography,spacing-and-layout,icons,tokens}.mdx`,
+though those pages don't follow the component template. Their values (colours, contrast, type
+sizes, spacing, breakpoints) are rendered at build time from the package's token exports by the
+components in `src/docs-ui/tokens/`, so:
+
+- Don't repeat in the text what a generated table shows: no counts ("nine styles"), sizes or
+  pixel values. Describe the behaviour instead ("the same step is smaller on narrow screens").
+- A new value goes into the renderer, read from the package exports, not into the MDX.
+- No issue numbers, gap descriptions or WCAG criteria lines; end the page with
+  `<KnownIssues also={[…]} lang="en" />` for the open issues that affect it.
+- Keep the design reasoning (why tokens, look vs. level, decorative icons): it is what these
+  pages are for.
+
 ## Verify
 
 Never run `npm install` in this folder from a Linux sandbox: `node_modules` belongs to the

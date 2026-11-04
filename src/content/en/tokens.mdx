@@ -34,8 +34,6 @@ const field = {
 
 The variables are rebound by media queries, so a theme token always resolves to the value for the current screen width.
 
-Plain CSS files can't reference tokens yet: the variable names carry a build hash.
-
 ## Why not just use the hex code?
 
 Because tokens carry decisions that aren't visible in the value. `states.visited` is the clearest example: Figma's link colour reaches only 3.24:1 against white, below the 4.5:1 WCAG AA needs for text, so the token uses a darker blue. Copying the hex from Figma would ship an inaccessible link with no way to know.

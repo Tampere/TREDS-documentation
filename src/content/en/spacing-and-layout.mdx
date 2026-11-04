@@ -9,17 +9,19 @@ The spacing scale and the breakpoints keep the space between elements consistent
 
 ## Spacing scale
 
-Seven steps, from `xxs` to `xxl`. Like type, the scale is responsive: the same step is smaller on narrow screens. Components use it internally; use the same steps in your own layouts so spacing stays consistent with them.
+Like type, the spacing scale is responsive: the same step is smaller on narrow screens. Components use it internally; use the same steps in your own layouts so spacing stays consistent with them.
 
 <SpacingScale lang="en" />
 
 ## Spacing between text blocks
 
-TREDS doesn't yet define spacing between headings and paragraphs: <ComponentRef name="Typography" lang="en" /> sets no margins, so each service decides its own. Until it lands, this site uses the scale above: `sm` between paragraphs, `xl` before an `h2` and `xs` after a heading.
+<ComponentRef name="Typography" lang="en" /> sets no margins, so each service decides the spacing
+between headings and paragraphs. This site uses the scale above: `sm` between paragraphs, `xl`
+before an `h2` and `xs` after a heading.
 
 ## Breakpoints
 
-Six breakpoints. Note that a key's values apply **below** its own width: `lg` (1024 px) covers viewports from 768 px to 1024 px. Tokens switch automatically with CSS media queries, so components need no JavaScript breakpoint logic.
+Note that a key's values apply **below** its own width: `lg` covers viewports from the next smaller breakpoint up to its own width. Tokens switch automatically with CSS media queries, so components need no JavaScript breakpoint logic.
 
 The layout grid (columns, gutter and outer margin) changes at the same breakpoints.
 

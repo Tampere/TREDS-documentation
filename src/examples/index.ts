@@ -87,7 +87,6 @@ import EnHeroAC from './en/accordion/Hero';
 import EnNoSpacingAC from './en/accordion/NoSpacing';
 import EnOpenCloseLabelsAC from './en/accordion/OpenCloseLabels';
 import EnHeroTB from './en/tabs/Hero';
-import EnCenteredTB from './en/tabs/Centered';
 import EnScrollableTB from './en/tabs/Scrollable';
 
 import EnHeroTY from './en/typography/Hero';
@@ -111,13 +110,9 @@ import EnWithPaginationTBL from './en/table/WithPagination';
 import EnHeroFIN from './en/file-input/Hero';
 import EnMultipleFIN from './en/file-input/Multiple';
 import EnSendFIN from './en/file-input/Send';
-import EnErrorFIN from './en/file-input/Error';
-import EnDisabledFIN from './en/file-input/Disabled';
 import EnHeroDZ from './en/dropzone/Hero';
 import EnSingleDZ from './en/dropzone/Single';
 import EnCustomMessageDZ from './en/dropzone/CustomMessage';
-import EnErrorDZ from './en/dropzone/Error';
-import EnDisabledDZ from './en/dropzone/Disabled';
 import EnHeroFL from './en/file-list/Hero';
 import EnDisabledFL from './en/file-list/Disabled';
 import EnHeroDF from './en/date-field/Hero';
@@ -160,13 +155,9 @@ const en = {
   'file-input/Hero': EnHeroFIN,
   'file-input/Multiple': EnMultipleFIN,
   'file-input/Send': EnSendFIN,
-  'file-input/Error': EnErrorFIN,
-  'file-input/Disabled': EnDisabledFIN,
   'dropzone/Hero': EnHeroDZ,
   'dropzone/Single': EnSingleDZ,
   'dropzone/CustomMessage': EnCustomMessageDZ,
-  'dropzone/Error': EnErrorDZ,
-  'dropzone/Disabled': EnDisabledDZ,
   'file-list/Hero': EnHeroFL,
   'file-list/Disabled': EnDisabledFL,
   'date-field/Hero': EnHeroDF,
@@ -211,7 +202,6 @@ const en = {
   'accordion/NoSpacing': EnNoSpacingAC,
   'accordion/OpenCloseLabels': EnOpenCloseLabelsAC,
   'tabs/Hero': EnHeroTB,
-  'tabs/Centered': EnCenteredTB,
   'tabs/Scrollable': EnScrollableTB,
   'text-area/Hero': EnHeroTA,
   'text-area/Autosize': EnAutosizeTA,

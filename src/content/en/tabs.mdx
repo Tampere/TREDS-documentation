@@ -5,9 +5,9 @@ import {
   ComponentLinks,
   ComponentRef,
   ComponentChanges,
-  RelatedComponents,
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
+import tabsProps from '@/generated/Tabs.props.json';
 
 # Tabs
 
@@ -34,183 +34,28 @@ Use tabs when content splits into a few parallel views that users don't need at 
 
 ### Structure
 
-Tabs has four parts: `Tabs` holds the state, `TabsList` contains the tabs, `TabsTab` is one tab and `TabsPanel` its content. A tab and its panel are paired with the same `value`. `defaultValue` selects the tab shown first, as in the example at the top of the page.
-
-### Alignment
-
-`align` is `left` (default), `center` or `right`. It aligns the tab group on the full-width line.
-
-<Example name="tabs/Centered" lang="en" />
+Tabs has four parts: `Tabs` holds the state, `TabsList` contains the tabs, `TabsTab` is one tab and `TabsPanel` its content. A tab and its panel are paired with the same `value`. `defaultValue` selects the tab shown first, as in the example at the top of the page. To keep the selected tab in state, for example in the URL, use `value` and `onChange`.
 
 ### Scrollable tabs
 
-`scrollable` shows arrow buttons when the tabs don't fit on one row. The selected tab is scrolled into view. Without `scrollable` the tabs don't wrap, so use it whenever there are many tabs or long names.
+Without `scrollable` the tabs don't wrap, so use it whenever there are many tabs or long names. Arrow buttons then appear when the tabs don't fit on one row. `align` (`left`, `center` or `right`) aligns the tab group.
 
 <Example name="tabs/Scrollable" lang="en" />
 
-### Controlled
+### Tab names
 
-`value` and `onChange` keep the selected tab in state, for example when the tab is stored in the URL.
-
-## Content guidelines
-
-- Give tabs short names of one or two words.
-- Use parallel names: "Borrowing, Events, Rooms", not "Borrowing, See events".
-- Keep the number of tabs low. With more than five, consider another structure.
+Give tabs short names of one or two words, and keep them parallel: "Borrowing, Events, Rooms", not "Borrowing, See events". With more than five tabs, consider another structure.
 
 ## Accessibility
 
-**The component handles**
-
-- The tabs use the `tablist`, `tab` and `tabpanel` roles, and `aria-selected` marks the selected tab. A panel is named after its tab.
-- The left and right arrow keys move between tabs and select them. The list wraps from end to start.
-- The Tab key moves on from the tabs, so the tab row is a single focus stop.
-- The selected tab is bold and underlined, not shown by colour alone. A focused tab gets the TREDS focus ring.
-- The scroll buttons have Finnish default names.
-
-**Your responsibility**
-
 - Give `TabsList` an `aria-label` that says what the tabs are about.
-- Give the scroll buttons names in the page's language with `scrollLeftLabel` and `scrollRightLabel` if the page isn't in Finnish.
+- If the page isn't in Finnish, give the scroll buttons names with `scrollLeftLabel` and `scrollRightLabel`.
 - If a panel has no focusable content, the Tab key skips it. Make sure the panel's content can also be found in a screen reader's browse mode.
-
-WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.1 Use of Color](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html), [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
 
 ## API
 
-### Tabs
-
-<PropsTable
-  label="Tabs props"
-  lang="en"
-  props={[
-    {
-      name: 'defaultValue',
-      type: 'string | null',
-      required: false,
-      description: 'The tab selected at first.',
-    },
-    {
-      name: 'value',
-      type: 'string | null',
-      required: false,
-      description: 'The selected tab, when you keep it in state.',
-    },
-    {
-      name: 'onChange',
-      type: '(value: string | null) => void',
-      required: false,
-      description: 'Called when the tab changes.',
-    },
-    {
-      name: 'align',
-      type: "'left' | 'center' | 'right'",
-      required: false,
-      defaultValue: "'left'",
-      description: 'Alignment of the tab group.',
-    },
-    {
-      name: 'scrollable',
-      type: 'boolean',
-      required: false,
-      defaultValue: 'false',
-      description: "Arrow buttons when the tabs don't fit on one row.",
-    },
-    {
-      name: 'scrollLeftLabel',
-      type: 'string',
-      required: false,
-      defaultValue: "'Vieritä vasemmalle'",
-      description: "The left scroll button's name.",
-    },
-    {
-      name: 'scrollRightLabel',
-      type: 'string',
-      required: false,
-      defaultValue: "'Vieritä oikealle'",
-      description: "The right scroll button's name.",
-    },
-    {
-      name: 'loop',
-      type: 'boolean',
-      required: false,
-      defaultValue: 'true',
-      description: 'Arrow keys wrap from end to start.',
-    },
-    {
-      name: 'activateTabWithKeyboard',
-      type: 'boolean',
-      required: false,
-      defaultValue: 'true',
-      description: 'An arrow key also selects the tab, not just moves focus.',
-    },
-    {
-      name: 'keepMounted',
-      type: 'boolean',
-      required: false,
-      defaultValue: 'true',
-      description: 'Hidden panels stay on the page. `false` removes them.',
-    },
-    {
-      name: 'id',
-      type: 'string',
-      required: false,
-      description: "Base for the tabs' and panels' `id`s.",
-    },
-    {
-      name: 'classNames',
-      type: '{ root?: string }',
-      required: false,
-      description: 'Extra class for the root.',
-    },
-  ]}
-/>
-
-### TabsList, TabsTab and TabsPanel
-
-<PropsTable
-  label="TabsList, TabsTab and TabsPanel props"
-  lang="en"
-  props={[
-    {
-      name: 'TabsList: aria-label',
-      type: 'string',
-      required: false,
-      description: "The tab group's name. Required in practice.",
-    },
-    {
-      name: 'TabsTab: value',
-      type: 'string',
-      required: true,
-      description: "The tab's value. The same as the panel's `value`.",
-    },
-    {
-      name: 'TabsTab: children',
-      type: 'ReactNode',
-      required: true,
-      description: "The tab's name.",
-    },
-    {
-      name: 'TabsPanel: value',
-      type: 'string',
-      required: true,
-      description: "The panel's value. The same as the tab's `value`.",
-    },
-    {
-      name: 'TabsPanel: children',
-      type: 'ReactNode',
-      required: true,
-      description: "The panel's content.",
-    },
-  ]}
-/>
-
-Every part also takes a `classNames` prop. TabsList passes on `aria-*` attributes; the other parts pass no other props on.
+<PropsTable props={tabsProps} label="Tabs props" lang="en" />
 
 <KnownIssues name="Tabs" lang="en" />
-
-## Related components
-
-<RelatedComponents names={['Accordion', 'NavigationLink']} lang="en" />
 
 <ComponentChanges name="Tabs" lang="en" />

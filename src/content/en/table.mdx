@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 
 # Table
@@ -36,11 +37,11 @@ Table is made of parts that match the HTML table elements: `Table`, `TableHeader
 
 ### Title
 
-The `title` of `TableHeader` is shown above the table as a `<caption>` and is the table's name, as in the example at the top of the page. If a heading already sits above the table, name the table with `aria-label` on `Table`. The visible caption can't be hidden (#176).
+The `title` of `TableHeader` is shown above the table as a `<caption>` and is the table's name, as in the example at the top of the page. If a heading already sits above the table, name the table with `aria-label` on `Table`.
 
 ### Wide table
 
-Table doesn't scroll itself. A wide table overflows the page, so wrap it in a scrollable element (#176). Give the wrapper `tabIndex={0}` so it can be scrolled with the keyboard, plus `role="region"` and a name.
+Table doesn't scroll itself. A wide table overflows the page, so wrap it in a scrollable element. Give the wrapper `tabIndex={0}` so it can be scrolled with the keyboard, plus `role="region"` and a name.
 
 <Example name="table/Scroll" lang="en" />
 
@@ -49,12 +50,6 @@ Table doesn't scroll itself. A wide table overflows the page, so wrap it in a sc
 A long table can be split into pages with <ComponentRef name="Pagination" lang="en" />. Put it after the table in a `TableFooter` with `variant="div"`. State the page number in the table's title, and move focus when the page changes, as the <ComponentRef name="Pagination" lang="en">Pagination page</ComponentRef> explains.
 
 <Example name="table/WithPagination" lang="en" />
-
-`TableFooter` is a `<tfoot>` by default, but that breaks the table's columns: the footer row doesn't line up with the columns (#220). Put a totals row, for example, in `TableBody` instead.
-
-### Selectable rows
-
-`TableRow` takes `selected` and `onSelectedChange` props that make the row clickable. Selection only works with a mouse, because the row can't be focused with the keyboard (#221). Don't use it. If users need to select rows, put a <ComponentRef name="Checkbox" lang="en" /> or a button in the row. The table's interactive features are still being designed (#69).
 
 ## Content guidelines
 
@@ -74,7 +69,6 @@ A long table can be split into pages with <ComponentRef name="Pagination" lang="
 - Name the table: `title` or `aria-label`.
 - Give every header cell a `scope`.
 - Wrap a wide table in a scrollable region with a name and `tabIndex={0}`.
-- Don't use selectable rows (#221).
 - Every row changes its background under the mouse, even though it can't be clicked. Don't let that mislead users: for example, don't write "click a row".
 
 WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.10 Reflow](https://www.w3.org/WAI/WCAG21/Understanding/reflow.html), [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
@@ -102,7 +96,7 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
       type: 'boolean',
       required: false,
       requiredWhen: 'onSelectedChange is set',
-      description: 'Whether the row is selected. Mouse only (#221).',
+      description: 'Whether the row is selected.',
     },
     {
       name: 'TableRow: onSelectedChange',
@@ -116,20 +110,14 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
       type: "'tfoot' | 'div'",
       required: false,
       defaultValue: "'tfoot'",
-      description:
-        '`div` after the table, for example for pagination. `tfoot` breaks the columns (#220).',
+      description: '`div` after the table, for example for pagination.',
     },
   ]}
 />
 
 Each part passes other props to its HTML element, for example `aria-label` to the table and `colSpan` to a cell.
 
-## Known issues
-
-- [#176 Dense size, scroll container and a hideable caption](https://github.com/Tampere/Tampere-design-system/issues/176)
-- [#69 Table use cases and scope](https://github.com/Tampere/Tampere-design-system/issues/69)
-- [#220 `TableFooter` breaks the columns](https://github.com/Tampere/Tampere-design-system/issues/220)
-- [#221 Selectable rows only work with a mouse](https://github.com/Tampere/Tampere-design-system/issues/221)
+<KnownIssues name="Table" also={[69]} lang="en" />
 
 ## Related components
 

@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 
 # RadioButton
@@ -34,7 +35,7 @@ Use radio buttons when the user must choose exactly one option, and there are fe
 
 Radio buttons always come in a group. Group them with <ComponentRef name="Fieldset" lang="en" />, as in the example at the top of the page: `legend` states the question, and the `fieldsetSelectionGroup` class stacks the options. Give the group's radio buttons the same `name`.
 
-Keep the selected value in state and give each radio button `checked` and `onChange`. Without `checked`, a radio button doesn't show the selection, even though the browser selects it (#198).
+Keep the selected value in state and give each radio button `checked` and `onChange`.
 
 ### Error
 
@@ -69,8 +70,7 @@ Keep the selected value in state and give each radio button `checked` and `onCha
 - Group radio buttons with Fieldset, so the group has a name screen readers announce.
 - Give each group its own `name`. Groups on the same page that share a `name` act as one group in the browser, so the selection and the arrow keys jump from one group to the other.
 - Give every radio button a `label`. TypeScript doesn't require it, but without one the radio button has no name unless it gets an `aria-label`.
-- `error` only changes the colour. Always give an error message with Fieldset's `error` prop and set `aria-invalid` on the radio buttons (#197).
-- Don't combine `error` and `disabled`: the radio button then shows red even though it can't be chosen (#137).
+- Always give an error message with Fieldset's `error` prop.
 - When a form is submitted with errors, move focus to the first invalid field or to an error summary.
 
 WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.1 Use of Color](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html), [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [3.3.1 Error Identification](https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html), [3.3.2 Labels or Instructions](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
@@ -130,12 +130,7 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
 
 The last six rows are native `<input>` attributes. `className` goes to the element around the radio button, other attributes to the `<input>`.
 
-## Known issues
-
-- [#198 A radio button doesn't show the selection without `checked`](https://github.com/Tampere/Tampere-design-system/issues/198)
-- [#137 `error` outranks `disabled`](https://github.com/Tampere/Tampere-design-system/issues/137)
-- [#139 React warns when `checked` is given without an `onChange` handler](https://github.com/Tampere/Tampere-design-system/issues/139)
-- [#197 `error` doesn't set `aria-invalid`](https://github.com/Tampere/Tampere-design-system/issues/197)
+<KnownIssues name="RadioButton" lang="en" />
 
 ## Related components
 

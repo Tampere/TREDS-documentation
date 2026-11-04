@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import paginationProps from '@/generated/Pagination.props.json';
 
@@ -39,17 +40,15 @@ The buttons are `<button>` elements, not links. If the pages have their own URLs
 
 ### When the page changes
 
-When the page changes, move focus to the content's heading. Keyboard and screen reader users then start the new page from the top, and focus isn't lost when the next button is disabled on the last page (#218). In the example the heading has `tabIndex={-1}` so it can be focused from code. The heading also states the page number.
+When the page changes, move focus to the content's heading. Keyboard and screen reader users then start the new page from the top. In the example the heading has `tabIndex={-1}` so it can be focused from code. The heading also states the page number.
 
 <Example name="pagination/Results" lang="en" scroll />
 
 ### Many pages
 
-`maxVisiblePages` is the maximum number of items shown (default 5). It counts the first and last page and the ellipses. With the default, only the current page is shown in the middle of the range, for example "1 … 10 … 20" (#216). With 7 the neighbouring pages show too.
+`maxVisiblePages` is the maximum number of items shown (default 5). It counts the first and last page and the ellipses.
 
 <Example name="pagination/MaxVisible" lang="en" scroll />
-
-Seven items don't fit a 320px screen. Even the default five items are about 300px wide there, so the pagination overflows the column (#217).
 
 ## Content guidelines
 
@@ -70,8 +69,7 @@ Seven items don't fit a 320px screen. Even the default five items are about 300p
 
 - Name the page buttons with `getAriaLabelForButton`. Without it their names are bare numbers.
 - Move focus to the content's heading when the page changes.
-- The `nav` element can't be given a name (#218). If the page has other navigations, screen reader users can't tell them apart.
-- Check the pagination on a 320px wide screen (#217).
+- Check the pagination on a 320px wide screen.
 
 WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.10 Reflow](https://www.w3.org/WAI/WCAG21/Understanding/reflow.html), [2.4.3 Focus Order](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
 
@@ -99,11 +97,7 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
 
 No other props can be passed, not even `className` or `aria-label`.
 
-## Known issues
-
-- [#216 With the default setting only the current page shows in the middle of the range](https://github.com/Tampere/Tampere-design-system/issues/216)
-- [#217 Pagination doesn't fit a 320px screen](https://github.com/Tampere/Tampere-design-system/issues/217)
-- [#218 Unnamed navigation, and focus is lost on the last page](https://github.com/Tampere/Tampere-design-system/issues/218)
+<KnownIssues name="Pagination" lang="en" />
 
 ## Related components
 

@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 
 # LoadingSpinner
@@ -32,7 +33,7 @@ Use LoadingSpinner when content is loading or an action is in progress and the d
 
 ### Always with text
 
-A spinning shape alone doesn't say what is loading. Write a short text next to it, as in the example at the top of the page. LoadingSpinner has no name of its own and can't be given one (#219), so hide it from screen readers with an `aria-hidden` wrapper and let the text tell the state.
+A spinning shape alone doesn't say what is loading. Write a short text next to it, as in the example at the top of the page, and hide the spinner from screen readers with an `aria-hidden` wrapper.
 
 ### Sizes
 
@@ -61,7 +62,7 @@ When loading starts from a user action, announce its start and end to screen rea
 
 **Your responsibility**
 
-- The component has no name and can't be given one (#219). Hide it with an `aria-hidden` wrapper and tell the state in visible text.
+- Hide the spinner with an `aria-hidden` wrapper and tell the state in visible text.
 - Announce the start and result of loading in a `role="status"` region when loading starts from a user action.
 - Don't disable the button the user just pressed: focus is lost from the page. Ignore repeats in the handler, as in the example.
 
@@ -92,9 +93,7 @@ WCAG criteria: [1.1.1 Non-text Content](https://www.w3.org/WAI/WCAG21/Understand
 
 No other props can be passed. The root element is a `<span role="progressbar">`.
 
-## Known issues
-
-- [#219 LoadingSpinner can't be given a name](https://github.com/Tampere/Tampere-design-system/issues/219)
+<KnownIssues name="LoadingSpinner" lang="en" />
 
 ## Related components
 

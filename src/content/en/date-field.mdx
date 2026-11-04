@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import dateFieldProps from '@/generated/DateField.props.json';
 
@@ -44,11 +45,9 @@ The calendar's three buttons need names: `calendarButtonLabel`, `prevMonthLabel`
 
 <Example name="date-field/Range" lang="en" />
 
-### Value in state and form submission
+### Value in state
 
 `value` and `onChange` hold the value in state. `onChange` receives a `Date` object, or `null` when the field is cleared. It is called as soon as the typed date is valid, not on every keystroke.
-
-DateField doesn't pass on a `name` prop, so it doesn't travel in a normal form submission (#226). If needed, add a hidden input whose value comes from state.
 
 <Example name="date-field/Controlled" lang="en" />
 
@@ -93,8 +92,6 @@ The field checks the typed date itself when the user leaves it. An invalid date,
 
 - Always give the field a visible `label`. If that isn't possible, give `aria-label` or `aria-labelledby`.
 - Give the calendar's buttons descriptive names.
-- If there is no room for the calendar below the field, it opens above it, and near the top of the page part of it can end up outside the view (#228). Don't place a date field at the very top of a page.
-- Screen readers read the calendar's days in Finnish as "16 lokakuu 2026", without the weekday and not inflected (#227).
 - The error message is not announced when it appears. When a form is submitted with errors, move focus to the first invalid field or to an error summary.
 
 WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [3.3.1 Error Identification](https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html), [3.3.2 Labels or Instructions](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
@@ -177,19 +174,14 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
     },
     classNames: {
       description:
-        'Extra classes for the parts `root`, `input` and `calendar`. `input` targets the field’s frame, not the `<input>` element (#129).',
+        'Extra classes for the parts `root`, `input` and `calendar`. `input` targets the field’s frame, not the `<input>` element.',
     },
   }}
 />
 
 DateField passes no other props on. For example `name`, `id` and `defaultValue` are TypeScript errors.
 
-## Known issues
-
-- [#226 The `name` and `id` props are missing](https://github.com/Tampere/Tampere-design-system/issues/226)
-- [#228 The calendar can open partly above the top of the page](https://github.com/Tampere/Tampere-design-system/issues/228)
-- [#227 The calendar's day names are not inflected and lack the weekday](https://github.com/Tampere/Tampere-design-system/issues/227)
-- [#129 `classNames.input` targets a different element than in TimeField](https://github.com/Tampere/Tampere-design-system/issues/129)
+<KnownIssues name="DateField" lang="en" />
 
 ## Related components
 

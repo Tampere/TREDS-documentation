@@ -3,6 +3,7 @@ import { componentSlug, findComponent, repoUrl, sourceHref, storybookHref } from
 import { href } from '@/nav';
 import type { Lang } from '@/i18n';
 import changes from '@/generated/changes.json';
+import issues from '@/generated/issues.json';
 import { inlineCode } from './inlineCode';
 
 const text = {
@@ -18,6 +19,7 @@ const text = {
     fullHistory: 'Full change history',
     openIssues: 'Open issues',
     feedback: 'Report a problem or suggest a change',
+    knownIssues: 'Known issues',
   },
 } satisfies Record<Lang, Record<string, string>>;
 
@@ -160,6 +162,42 @@ export function ComponentChanges({
             {t.feedback}
           </External>
         </li>
+      </ul>
+    </>
+  );
+}
+
+/**
+ * Open issues whose title names the component, plus any in `also`, generated at build time so a
+ * closed issue drops off by itself. Renders nothing when none are open.
+ */
+export function KnownIssues({
+  name,
+  also = [],
+  lang,
+}: {
+  name?: string;
+  also?: number[];
+  lang: Lang;
+}) {
+  const open: Record<string, string> = issues.open;
+  const own: number[] = name ? ((issues.byComponent as Record<string, number[]>)[name] ?? []) : [];
+  const numbers = [...new Set([...own, ...also])].filter((n) => open[n]).sort((a, b) => a - b);
+  if (!numbers.length) return null;
+  return (
+    <>
+      <Typography variant="h2" id="known-issues">
+        {text[lang].knownIssues}
+      </Typography>
+      <ul className="list">
+        {numbers.map((n) => (
+          <li key={n}>
+            <TextLink href={`${repoUrl}/issues/${n}`}>
+              {`#${n} `}
+              {inlineCode(open[n])}
+            </TextLink>
+          </li>
+        ))}
       </ul>
     </>
   );

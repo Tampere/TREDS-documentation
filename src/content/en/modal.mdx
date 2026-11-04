@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import modalProps from '@/generated/Modal.props.json';
 
@@ -38,7 +39,7 @@ The example at the top of the page asks to confirm a deletion. Name the buttons 
 
 ### Form
 
-When it opens, Modal moves focus to the first focusable element, which is the close button. In a form, move focus to the first field with the `data-autofocus` attribute. Button doesn't accept `type="submit"` yet (#223), so the example saves in both the button's `onClick` and the form's `onSubmit` handler. The latter handles the Enter key.
+When it opens, Modal moves focus to the first focusable element, which is the close button. In a form, move focus to the first field with the `data-autofocus` attribute.
 
 <Example name="modal/Form" lang="en" />
 
@@ -50,7 +51,7 @@ When it opens, Modal moves focus to the first focusable element, which is the cl
 
 ### Title
 
-`title` is shown as an `h2` heading, and it is also the dialog's name. Always give Modal a title: without one the dialog has no name (#222).
+`title` is shown as an `h2` heading, and it is also the dialog's name. Always give Modal a title.
 
 ## Content guidelines
 
@@ -70,7 +71,7 @@ When it opens, Modal moves focus to the first focusable element, which is the cl
 
 **Your responsibility**
 
-- Always give a `title` (#222).
+- Always give a `title`.
 - Give the close button a name in the page language, for example "Close".
 - `onClose` is the only way Modal closes. Update the `opened` state in it, or Esc, the backdrop click and the close button do nothing.
 - Move focus to a form's first field with the `data-autofocus` attribute.
@@ -143,9 +144,7 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
 
 Modal inherits the other props of Mantine's `Modal.Root`. Don't turn off `trapFocus` or `lockScroll`.
 
-## Known issues
-
-- [#222 A Modal without a title is an unnamed dialog](https://github.com/Tampere/Tampere-design-system/issues/222)
+<KnownIssues name="Modal" lang="en" />
 
 ## Related components
 

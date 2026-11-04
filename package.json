@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "props": "node scripts/props.mjs && node scripts/changes.mjs",
+    "props": "node scripts/props.mjs && node scripts/changes.mjs && node scripts/issues.mjs",
     "dev": "npm run props && next dev",
     "build": "npm run props && next build && pagefind --site out",
     "serve": "npx --yes serve out -l 3000"

@@ -1,3 +1,5 @@
+import { KnownIssues } from '@/docs-ui/ComponentPage';
+
 # Design tokens
 
 Every colour, size and spacing value in TREDS comes from a named token. Components never contain a raw hex code or pixel value, and neither should the code you write on top of them. A token is how a decision made once in Figma reaches every Tampere service at the same time.
@@ -32,7 +34,7 @@ const field = {
 
 The variables are rebound by media queries, so a theme token always resolves to the value for the current screen width.
 
-Plain CSS files can't reference tokens yet: the variable names carry a build hash. This is tracked in #180.
+Plain CSS files can't reference tokens yet: the variable names carry a build hash.
 
 ## Why not just use the hex code?
 
@@ -40,8 +42,4 @@ Because tokens carry decisions that aren't visible in the value. `states.visited
 
 **If a value you need has no token, that's a gap worth reporting** rather than a reason to inline a literal.
 
-## Known issues
-
-- [#180 Tokens can't be referenced from plain CSS, and there is no token for text-block spacing](https://github.com/Tampere/Tampere-design-system/issues/180)
-- [#89 The tokens aren't available as JSON](https://github.com/Tampere/Tampere-design-system/issues/89)
-- [#177 Importing the package from a React Server Component fails](https://github.com/Tampere/Tampere-design-system/issues/177)
+<KnownIssues also={[180, 89, 177]} lang="en" />

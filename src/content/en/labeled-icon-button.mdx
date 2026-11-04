@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import labeledIconButtonProps from '@/generated/LabeledIconButton.props.json';
 
@@ -33,7 +34,7 @@ Use a labeled icon button in toolbars and in the app header's actions, when the 
 
 ### On a dark background
 
-`variant="inverted"` makes the icon and the label light. The focus ring stays dark (#201). Use it only on a dark or coloured background.
+`variant="inverted"` makes the icon and the label light. Use it only on a dark or coloured background.
 
 <Example name="labeled-icon-button/Inverted" lang="en" />
 
@@ -67,7 +68,6 @@ Use a labeled icon button in toolbars and in the app header's actions, when the 
 
 - Write the `label` so that it states the action even without the icon.
 - For a button used as a link, the label names the destination: "Home", not "Go".
-- The `inverted` variant's focus ring is dark, with only 1.7:1 contrast against a dark background (#201). Check with the keyboard that focus stands out from your background.
 
 WCAG criteria: [1.4.11 Non-text Contrast](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html), [2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html), [2.5.3 Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
 
@@ -96,9 +96,7 @@ WCAG criteria: [1.4.11 Non-text Contrast](https://www.w3.org/WAI/WCAG21/Understa
 
 Other `<button>` attributes, such as `id` and `title`, are passed to the button. `aria-label` and `aria-labelledby` are removed.
 
-## Known issues
-
-- [#201 The `inverted` variant's focus ring is dark on a dark background](https://github.com/Tampere/Tampere-design-system/issues/201)
+<KnownIssues name="LabeledIconButton" lang="en" />
 
 ## Related components
 

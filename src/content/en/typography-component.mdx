@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import typographyProps from '@/generated/Typography.props.json';
 
@@ -68,7 +69,7 @@ Typography removes the element's default margins. Space between texts comes from
 **Your responsibility**
 
 - Keep heading levels in order: one `h1` per page, and no skipped levels. Choose the level with `component`, not by the look.
-- Long Finnish compound words don't wrap and can overflow a narrow screen (#184). Check long headings at a 320px width.
+- Check long headings at a 320px width.
 - The text colour doesn't change on a coloured background. Check the contrast yourself.
 
 WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.3 Contrast (Minimum)](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html), [1.4.4 Resize Text](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html), [1.4.10 Reflow](https://www.w3.org/WAI/WCAG21/Understanding/reflow.html), [2.4.6 Headings and Labels](https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html)
@@ -92,9 +93,7 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
 
 Other props, such as `id`, `className`, `ref` and `aria-*` attributes, are passed to the element.
 
-## Known issues
-
-- [#184 Long words overflow narrow screens](https://github.com/Tampere/Tampere-design-system/issues/184)
+<KnownIssues name="Typography" lang="en" />
 
 ## Related components
 

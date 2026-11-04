@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 
 # Fieldset
@@ -70,7 +71,6 @@ Wrap the group's <ComponentRef name="Checkbox" lang="en">checkboxes</ComponentRe
 - State the requirement in text. Screen readers don't hear the asterisk, and a checkbox group has no native way to be required. Mark individual required fields with their own `required` prop.
 - Not every screen reader reads the group's description. Don't leave essential information only in the helper text or error message: when a form is submitted with errors, move focus to the first invalid field or to an error summary.
 - Set `aria-invalid` on the invalid checkboxes and radio buttons, so screen readers say which of the group's fields the error concerns. TextField doesn't accept `aria-invalid` but sets it from its own `error` prop, so give an invalid text field its own error message.
-- Don't use `disabled` when the group contains checkboxes or radio buttons. They are disabled but still look selectable (#199). Disable them one by one instead.
 
 WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [3.3.1 Error Identification](https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html), [3.3.2 Labels or Instructions](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html)
 
@@ -120,16 +120,14 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
       name: 'disabled',
       type: 'boolean',
       defaultValue: 'false',
-      description: 'Disables every field in the group. See #199.',
+      description: 'Disables every field in the group.',
     },
   ]}
 />
 
 Other Mantine `Fieldset` props and `<fieldset>` attributes are passed to the group. The package also exports the `fieldsetSelectionGroup` class for laying out choice groups.
 
-## Known issues
-
-- [#199 Checkboxes and radio buttons look selectable in a disabled group](https://github.com/Tampere/Tampere-design-system/issues/199)
+<KnownIssues name="Fieldset" lang="en" />
 
 ## Related components
 

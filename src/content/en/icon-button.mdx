@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import iconButtonProps from '@/generated/IconButton.props.json';
 
@@ -45,7 +46,7 @@ Use an icon button for a recurring action whose icon is unambiguous and where th
 
 ### As a link
 
-`component="a"` and `href` make the icon button a link, for example to social media channels. Put link buttons in a flex row: in normal block layout the link stretches to its container's width and becomes just as tall (#202).
+`component="a"` and `href` make the icon button a link, for example to social media channels. Put link buttons in a flex row.
 
 <Example name="icon-button/AsLink" lang="en" />
 
@@ -72,7 +73,7 @@ Use an icon button for a recurring action whose icon is unambiguous and where th
 
 **Your responsibility**
 
-- Always give `aria-label`. It is the button's only name, but TypeScript doesn't require it: without it, screen readers hear just "button" (#203).
+- Always give `aria-label`. It is the button's only name: without it, screen readers hear just "button".
 - Not everyone recognises an icon. If the action is rare or important, show text with <ComponentRef name="LabeledIconButton" lang="en" />.
 - For an icon button used as a link, the `aria-label` names the destination, not an action: "City of Tampere on Facebook".
 
@@ -116,10 +117,7 @@ WCAG criteria: [1.1.1 Non-text Content](https://www.w3.org/WAI/WCAG21/Understand
 
 The last four rows are inherited from Mantine's `ActionIcon`. Its other props and the root element's attributes are passed to the button.
 
-## Known issues
-
-- [#203 An icon button without `aria-label` has no name](https://github.com/Tampere/Tampere-design-system/issues/203)
-- [#202 An icon button used as a link stretches to its container's width in block layout](https://github.com/Tampere/Tampere-design-system/issues/202)
+<KnownIssues name="IconButton" lang="en" />
 
 ## Related components
 

@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 
 # Tabs
@@ -44,8 +45,6 @@ Tabs has four parts: `Tabs` holds the state, `TabsList` contains the tabs, `Tabs
 ### Scrollable tabs
 
 `scrollable` shows arrow buttons when the tabs don't fit on one row. The selected tab is scrolled into view. Without `scrollable` the tabs don't wrap, so use it whenever there are many tabs or long names.
-
-Inside a flex or grid layout, scrollable tabs don't shrink; they widen past the page instead (#214). Wrap them in an element with `min-width: 0`, as in the example.
 
 <Example name="tabs/Scrollable" lang="en" />
 
@@ -208,9 +207,7 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
 
 Every part also takes a `classNames` prop. TabsList passes on `aria-*` attributes; the other parts pass no other props on.
 
-## Known issues
-
-- [#214 Scrollable tabs widen past the page in a flex or grid layout](https://github.com/Tampere/Tampere-design-system/issues/214)
+<KnownIssues name="Tabs" lang="en" />
 
 ## Related components
 

@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import accordionProps from '@/generated/Accordion.props.json';
 
@@ -45,7 +46,7 @@ Use an accordion when a page has several separate sections of content and users 
 
 ### Several sections open
 
-Users can open several sections at once. All sections start closed, and none can be opened in advance (#213). `onChange` reports the `value`s of the open sections.
+Users can open several sections at once, and all sections start closed. `onChange` reports the `value`s of the open sections.
 
 ### Disabled
 
@@ -68,10 +69,9 @@ Users can open several sections at once. All sections start closed, and none can
 
 **Your responsibility**
 
-- The headings aren't heading elements, so screen reader users can't find the sections by browsing headings (#212). Put a real heading above the accordion that says what the sections are about.
+- Put a real heading above the accordion that says what the sections are about.
 - The content of closed sections isn't on the page, so the browser's find (Ctrl+F) doesn't find it.
 - The open and close texts become part of the button's name. If you use them, keep them short.
-- The heading's chevron is exposed to screen readers as an unnamed image (#212).
 
 WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [2.4.6 Headings and Labels](https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
 
@@ -152,10 +152,7 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
 
 Accordion and AccordionItem pass no other props on.
 
-## Known issues
-
-- [#212 Headers aren't heading elements, the chevron is an unnamed image, and `aria-controls` points at missing panels](https://github.com/Tampere/Tampere-design-system/issues/212)
-- [#213 Sections can't be opened in advance or controlled](https://github.com/Tampere/Tampere-design-system/issues/213)
+<KnownIssues name="Accordion" lang="en" />
 
 ## Related components
 

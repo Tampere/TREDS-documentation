@@ -1,3 +1,4 @@
+import { KnownIssues } from '@/docs-ui/ComponentPage';
 import { BrandColors } from '@/docs-ui/tokens/BrandColors';
 import { ColorPalette } from '@/docs-ui/tokens/ColorPalette';
 import { ContrastMatrix } from '@/docs-ui/tokens/ContrastMatrix';
@@ -49,7 +50,4 @@ The raw primitives behind everything above. Reach for one only when no semantic 
 
 <ColorPalette />
 
-## Known issues
-
-- [#183 Status colours (info, success, warning, error) exist only as Badge tokens, and there is no notification component](https://github.com/Tampere/Tampere-design-system/issues/183)
-- [#180 Tokens can't be referenced from plain CSS](https://github.com/Tampere/Tampere-design-system/issues/180)
+<KnownIssues also={[183, 180]} lang="en" />

@@ -1,6 +1,6 @@
 import { IconGallery } from '@/docs-ui/IconGallery';
 import { IconSizes } from '@/docs-ui/IconSizes';
-import { ComponentRef } from '@/docs-ui/ComponentPage';
+import { ComponentRef, KnownIssues } from '@/docs-ui/ComponentPage';
 
 # Icons
 
@@ -49,9 +49,4 @@ Select an icon to download it as an image or copy its JSX. The PNG is 512 × 512
 
 <IconGallery lang="en" />
 
-## Known issues
-
-Icons don't hide themselves from screen readers, and some components render an icon without `aria-hidden`:
-
-- [#193 TextField's search icon is exposed to screen readers as an unnamed image](https://github.com/Tampere/Tampere-design-system/issues/193)
-- [#209 NavigationLink's `startIcon` and `endIcon` are exposed to screen readers as unnamed images](https://github.com/Tampere/Tampere-design-system/issues/209)
+<KnownIssues also={[193, 209]} lang="en" />

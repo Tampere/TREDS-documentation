@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import timeFieldProps from '@/generated/TimeField.props.json';
 
@@ -169,11 +170,7 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
 
 The last five props in the table are passed to the `<input>` element. TimeField passes no other props on.
 
-## Known issues
-
-- [#153 Typed digits show in the placeholder colour until the field is left](https://github.com/Tampere/Tampere-design-system/issues/153)
-- [#130 `aria-describedby` is not passed on, so an error summary can't be connected to the field](https://github.com/Tampere/Tampere-design-system/issues/130)
-- [#129 The `classNames` keys differ from DateField](https://github.com/Tampere/Tampere-design-system/issues/129)
+<KnownIssues name="TimeField" lang="en" />
 
 ## Related components
 

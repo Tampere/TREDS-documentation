@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 
 # TextArea
@@ -59,7 +60,7 @@ Use a text area when the answer can run to several sentences or paragraphs, for 
 
 ### Pre-filled text
 
-Give pre-filled text with `value` and keep the value in state, as in the error example. `defaultValue` shows the text, but only by accident: the component always sets its own `value` too, and React warns in development (#200).
+Give pre-filled text with `value` and keep the value in state, as in the error example.
 
 ## Content guidelines
 
@@ -80,7 +81,7 @@ Give pre-filled text with `value` and keep the value in state, as in the error e
 
 **Your responsibility**
 
-- Always give the text area a visible `inputLabel`. If that isn't possible, give `aria-label`. Mantine's `label` and `description` props don't work: use `inputLabel` and `helperText` instead (#178).
+- Always give the text area a visible `inputLabel`. If that isn't possible, give `aria-label`.
 - If you limit the length with `maxLength`, give the limit in the helper text. The browser stops input at the limit without saying so.
 - The error message doesn't announce itself when it appears. When a form is submitted with errors, move focus to the first invalid field or to an error summary.
 
@@ -167,10 +168,7 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
 
 Mantine's other `Textarea` props and the `<textarea>` element's attributes, such as `name`, `maxLength` and `aria-label`, are passed to the text area.
 
-## Known issues
-
-- [#178 Mantine's `label` and `description` props are accepted but not shown](https://github.com/Tampere/Tampere-design-system/issues/178)
-- [#200 `defaultValue` works only by accident, and React warns in development](https://github.com/Tampere/Tampere-design-system/issues/200)
+<KnownIssues name="TextArea" also={[200]} lang="en" />
 
 ## Related components
 

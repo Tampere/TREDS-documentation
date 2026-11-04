@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ComponentChanges,
   RelatedComponents,
+  KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import checkboxProps from '@/generated/Checkbox.props.json';
 
@@ -62,7 +63,6 @@ A single checkbox doesn't need a group. Its label alone says what the choice mea
 ## Content guidelines
 
 - Write the label in the positive: "Send a confirmation to my email", not "Don't send a confirmation".
-- Keep the label on one line. A long label that wraps overlaps the next option (#196).
 - Phrase the group's `legend` as a question that the options answer.
 - Order the options logically, for example alphabetically or from most to least common.
 - Avoid links in the label. Give terms or further information above the checkbox.
@@ -79,7 +79,7 @@ A single checkbox doesn't need a group. Its label alone says what the choice mea
 **Your responsibility**
 
 - Group related checkboxes with Fieldset, so the group has a name screen readers announce.
-- `error` only changes the colour. Screen readers don't hear the error, and it can't be seen without colour vision. Always give an error message with Fieldset's `error` prop and set `aria-invalid` on the checkboxes (#197).
+- Always give an error message with Fieldset's `error` prop.
 - When a form is submitted with errors, move focus to the first invalid field or to an error summary.
 - If at least one option in a group must be selected, check it yourself: native `required` requires each checkbox separately. Mark the group with Fieldset's `showRequiredMarker` prop and state the requirement with `helperText`.
 - Derive a "select all" checkbox's `checked` and `indeterminate` from the options below, so the state screen readers announce is correct.
@@ -144,10 +144,7 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
 
 The last seven rows are native `<input>` attributes. All other `<input>` attributes are passed to the checkbox as well.
 
-## Known issues
-
-- [#196 A long label overlaps the next checkbox](https://github.com/Tampere/Tampere-design-system/issues/196)
-- [#197 `error` doesn't set `aria-invalid`](https://github.com/Tampere/Tampere-design-system/issues/197)
+<KnownIssues name="Checkbox" lang="en" />
 
 ## Related components
 

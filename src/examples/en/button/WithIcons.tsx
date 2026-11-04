@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, ArrowRightIcon, DownloadIcon } from '@tampere/treds';
+import { Button, ArrowRightIcon, DownloadIcon, SearchIcon } from '@tampere/treds';
 
 export default function WithIcons() {
   return (
@@ -9,6 +9,9 @@ export default function WithIcons() {
         Download PDF
       </Button>
       <Button rightIcon={<ArrowRightIcon />}>Next step</Button>
+      <Button iconOnly aria-label="Search">
+        <SearchIcon />
+      </Button>
     </>
   );
 }

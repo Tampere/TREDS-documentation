@@ -2,11 +2,12 @@
 
 import { Button } from '@tampere/treds';
 
-export default function Secondary() {
+export default function Emphasis() {
   return (
     <>
-      <Button variant="primary">Submit application</Button>
+      <Button>Submit application</Button>
       <Button variant="secondary">Save draft</Button>
+      <Button variant="tertiary">Show more</Button>
     </>
   );
 }

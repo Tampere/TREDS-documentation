@@ -1,12 +1,7 @@
 import type { ComponentType } from 'react';
 import type { Lang } from '@/i18n';
-import EnDisabled from './en/button/Disabled';
+import EnEmphasis from './en/button/Emphasis';
 import EnHero from './en/button/Hero';
-import EnIconOnly from './en/button/IconOnly';
-import EnPill from './en/button/Pill';
-import EnPrimary from './en/button/Primary';
-import EnSecondary from './en/button/Secondary';
-import EnTertiary from './en/button/Tertiary';
 import EnWithIcons from './en/button/WithIcons';
 import EnHeroTL from './en/text-link/Hero';
 import EnInTextTL from './en/text-link/InText';
@@ -284,13 +279,8 @@ const en = {
   'text-link/Visited': EnVisitedTL,
   'text-link/HeadingSize': EnHeadingSizeTL,
   'text-link/RouterLink': EnRouterLinkTL,
-  'button/Disabled': EnDisabled,
+  'button/Emphasis': EnEmphasis,
   'button/Hero': EnHero,
-  'button/IconOnly': EnIconOnly,
-  'button/Pill': EnPill,
-  'button/Primary': EnPrimary,
-  'button/Secondary': EnSecondary,
-  'button/Tertiary': EnTertiary,
   'button/WithIcons': EnWithIcons,
 };
 

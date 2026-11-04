@@ -4,7 +4,7 @@ import path from 'node:path';
 import { Linkbox, TextLink, Typography } from '@/treds';
 import { componentSlug, components, findComponent, groups, storybookHref } from '@/components';
 import { content } from '@/content';
-import { href } from '@/nav';
+import { href, sections } from '@/nav';
 import type { Lang } from '@/i18n';
 import { ComponentBadges, ComponentChanges, ComponentLinks } from './ComponentPage';
 import { PropsTable } from './PropsTable';
@@ -24,6 +24,8 @@ const text = {
       'Components marked "Guidance coming" have only their props and change history for now.',
     stub: 'Guidance coming',
     overviewTitle: 'Components',
+    foundationsTitle: 'Foundations',
+    foundationsIntro: 'The visual basics every TREDS component is built from.',
   },
 } satisfies Record<Lang, Record<string, string>>;
 
@@ -51,8 +53,9 @@ function StorybookLink({ name, lang }: { name: string; lang: Lang }) {
   );
 }
 
-// The overview card shows the first sentence of the page's own lead, so the text lives in one
-// place. MDX paths are read from content.ts, which maps slugs to files.
+// Overview cards show the first sentence of each page's own lead (its first text paragraph after
+// the h1), so the text lives in one place. MDX paths are read from content.ts, which maps slugs
+// to files.
 async function pageLeads(lang: Lang): Promise<Record<string, string>> {
   const loaders = await readFile(path.join(process.cwd(), 'src/content.ts'), 'utf8');
   const files = [
@@ -63,12 +66,17 @@ async function pageLeads(lang: Lang): Promise<Record<string, string>> {
   const leads: Record<string, string> = {};
   for (const [, slug, file] of files) {
     const mdx = await readFile(path.join(process.cwd(), 'src', file), 'utf8');
-    const lead = mdx.match(/<ComponentBadges[^\n]*\/>\n\n(.+)\n/)?.[1];
+    const lead = mdx
+      .split(/^# .+$/m)[1]
+      ?.split(/\n\n+/)
+      .map((p) => p.trim())
+      .find((p) => p && !/^[<>`]/.test(p));
     if (!lead) continue;
     const plain = lead
       .replace(/<ComponentRef name="(\w+)"[^>]*\/>/g, '$1')
       .replace(/<ComponentRef[^>]*>([^<]*)<\/ComponentRef>/g, '$1')
-      .replace(/`/g, '');
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/[`*]/g, '');
     leads[slug] = plain.match(/^.+?\.(?=\s|$)/)?.[0] ?? plain;
   }
   return leads;
@@ -147,6 +155,30 @@ export async function ComponentOverview({ lang }: { lang: Lang }) {
           </div>
         </Fragment>
       ))}
+    </Prose>
+  );
+}
+
+export async function FoundationsOverview({ lang }: { lang: Lang }) {
+  const t = text[lang];
+  const leads = await pageLeads(lang);
+  const pages =
+    sections.find((s) => s.id === 'foundations')?.pages.filter((p) => content[p.slug]) ?? [];
+  return (
+    <Prose>
+      <Typography variant="h1">{t.foundationsTitle}</Typography>
+      <Typography variant="p1">{t.foundationsIntro}</Typography>
+      <div className="overview-grid">
+        {pages.map((p) => (
+          <Linkbox
+            key={p.slug}
+            href={href(lang, p.slug)}
+            title={p.title[lang]}
+            description={leads[p.slug]}
+            inverted
+          />
+        ))}
+      </div>
     </Prose>
   );
 }

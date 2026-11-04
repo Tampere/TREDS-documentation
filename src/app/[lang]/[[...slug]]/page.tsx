@@ -5,7 +5,7 @@ import { dict, type Lang } from '@/i18n';
 import { Breadcrumbs } from '@/treds';
 import { OnThisPage } from '@/docs-ui/OnThisPage';
 import { PrevNext } from '@/docs-ui/PrevNext';
-import { ComponentOverview, ComponentStub } from '@/docs-ui/GeneratedPages';
+import { ComponentOverview, ComponentStub, FoundationsOverview } from '@/docs-ui/GeneratedPages';
 import { components, componentSlug } from '@/components';
 
 type Params = Promise<{ lang: Lang; slug?: string[] }>;
@@ -30,7 +30,8 @@ export default async function Page({ params }: { params: Params }) {
   const loader = content[page.slug]?.[lang];
   const Content = loader && (await loader()).default;
   const component = components.find((c) => componentSlug(c.name) === page.slug);
-  if (!Content && !component && page.slug !== 'components') notFound();
+  if (!Content && !component && page.slug !== 'components' && page.slug !== 'foundations')
+    notFound();
   const t = dict[lang];
 
   const crumbs = [
@@ -61,6 +62,8 @@ export default async function Page({ params }: { params: Params }) {
             <Content />
           ) : component ? (
             <ComponentStub name={component.name} lang={lang} />
+          ) : page.slug === 'foundations' ? (
+            <FoundationsOverview lang={lang} />
           ) : (
             <ComponentOverview lang={lang} />
           )}

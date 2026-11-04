@@ -107,6 +107,8 @@ components in `src/docs-ui/tokens/`, so:
   `<KnownIssues also={[…]} lang="en" />` for the open issues that affect it.
 - Keep the design reasoning (why tokens, look vs. level, decorative icons): it is what these
   pages are for.
+- The first paragraph after the h1 is the page's lead, and its first sentence is the card text on
+  the generated Foundations overview: make it stand on its own.
 
 ## Verify
 

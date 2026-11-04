@@ -33,7 +33,7 @@ export function StartCards({ lang }: { lang: Lang }) {
         inverted
       />
       <Linkbox
-        href={href(lang, 'foundations/colours')}
+        href={href(lang, 'foundations')}
         title={t.designers}
         description={t.designersText}
         inverted

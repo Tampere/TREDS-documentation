@@ -26,10 +26,6 @@ export const sections: DocSection[] = [
     title: { en: 'Getting started' },
     pages: [
       {
-        slug: '',
-        title: { en: 'Home' },
-      },
-      {
         slug: 'introduction',
         title: { en: 'Introduction' },
       },
@@ -80,8 +76,13 @@ export const sections: DocSection[] = [
   },
 ];
 
-// Linked from the footer, not the sidebar.
+// Outside the sections: the front page (linked from the header logo and the breadcrumbs) and the
+// accessibility statement (linked from the footer). No sidebar entry or prev/next.
 export const standalonePages: DocPage[] = [
+  {
+    slug: '',
+    title: { en: 'Home' },
+  },
   {
     slug: 'accessibility',
     title: { en: 'Accessibility statement' },

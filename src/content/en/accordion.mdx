@@ -5,7 +5,6 @@ import {
   ComponentLinks,
   ComponentRef,
   ComponentChanges,
-  RelatedComponents,
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import accordionProps from '@/generated/Accordion.props.json';
@@ -48,114 +47,20 @@ Use an accordion when a page has several separate sections of content and users 
 
 Users can open several sections at once, and all sections start closed. `onChange` reports the `value`s of the open sections.
 
-### Disabled
-
-`disabled` prevents opening the section and greys out its heading. Explain elsewhere why the content isn't available.
-
-## Content guidelines
-
-- Write the heading so users know what's in the section before opening it. Questions suit FAQs.
-- Don't hide information every user needs, like deadlines, in an accordion.
-- Keep the headings short so they fit on one line on a phone too.
-
 ## Accessibility
 
-**The component handles**
-
-- The heading is a native `<button>` with `aria-expanded`. Screen readers say whether the section is open.
-- Enter and Space open and close the section. The up and down arrow keys move focus from heading to heading.
-- An open section is a `region` named after its heading.
-- A focused heading gets the TREDS focus ring.
-
-**Your responsibility**
-
 - Put a real heading above the accordion that says what the sections are about.
-- The content of closed sections isn't on the page, so the browser's find (Ctrl+F) doesn't find it.
+- Write each section's heading so users know what's in the section before opening it. Questions suit FAQs. Keep the headings short so they fit on one line on a phone too.
+- Don't hide information every user needs, like deadlines, in an accordion. The content of closed sections isn't on the page, so the browser's find (Ctrl+F) doesn't find it.
 - The open and close texts become part of the button's name. If you use them, keep them short.
-
-WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [2.4.6 Headings and Labels](https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+- `disabled` on a section prevents opening it. Explain elsewhere why the content isn't available.
 
 ## API
 
-### Accordion
+<PropsTable props={accordionProps} label="Accordion props" lang="en" />
 
-<PropsTable
-  props={accordionProps}
-  label="Accordion props"
-  lang="en"
-  overrides={{
-    spacing: {
-      type: "'default' | 'none'",
-      description: 'Gaps between the sections: `default` or `none`.',
-    },
-    onChange: { description: 'Called when a section opens or closes. Receives the open values.' },
-    transitionDuration: { description: 'Duration of the opening animation in milliseconds.' },
-    classNames: {
-      description:
-        'Extra classes for the parts `root`, `item`, `control`, `label`, `chevron` and `content`.',
-    },
-    role: { description: 'Role for the whole accordion: `list`, `region` or `group`.' },
-  }}
-/>
-
-### AccordionItem
-
-<PropsTable
-  label="AccordionItem props"
-  lang="en"
-  props={[
-    {
-      name: 'value',
-      type: 'string',
-      required: true,
-      description: 'A unique value for the section. `onChange` returns these.',
-    },
-    {
-      name: 'label',
-      type: 'ReactNode',
-      required: true,
-      description: "The section's heading and the button's name.",
-    },
-    {
-      name: 'children',
-      type: 'ReactNode',
-      required: false,
-      description: "The section's content.",
-    },
-    {
-      name: 'openLabel',
-      type: 'ReactNode',
-      required: false,
-      description: 'Text at the right edge of the heading while the section is closed.',
-    },
-    {
-      name: 'closeLabel',
-      type: 'ReactNode',
-      required: false,
-      description: 'Text at the right edge of the heading while the section is open.',
-    },
-    {
-      name: 'disabled',
-      type: 'boolean',
-      required: false,
-      defaultValue: 'false',
-      description: 'Prevents opening the section.',
-    },
-    {
-      name: 'role',
-      type: "'listitem'",
-      required: false,
-      description: "Use when the accordion's `role` is `list`.",
-    },
-  ]}
-/>
-
-Accordion and AccordionItem pass no other props on.
+Each section is an `AccordionItem` with a unique `value`, a `label` for the heading, optional `openLabel` and `closeLabel`, and `disabled`. Accordion and AccordionItem pass no other props on.
 
 <KnownIssues name="Accordion" lang="en" />
-
-## Related components
-
-<RelatedComponents names={['Tabs', 'Card']} lang="en" />
 
 <ComponentChanges name="Accordion" lang="en" />

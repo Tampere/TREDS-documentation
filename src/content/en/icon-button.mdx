@@ -5,7 +5,6 @@ import {
   ComponentLinks,
   ComponentRef,
   ComponentChanges,
-  RelatedComponents,
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import iconButtonProps from '@/generated/IconButton.props.json';
@@ -32,12 +31,6 @@ Use an icon button for a recurring action whose icon is unambiguous and where th
 
 ## Variants and situations
 
-### Sizes
-
-`size` sets the icon size: `xs` 16px, `sm` 18px, `md` 20px, `lg` 24px and `xl` 28px. The touch target is always at least 24 × 24px.
-
-<Example name="icon-button/Sizes" lang="en" />
-
 ### On a dark background
 
 `variant="inverted"` makes the icon and the focus ring light. Use it only on a dark or coloured background.
@@ -50,77 +43,21 @@ Use an icon button for a recurring action whose icon is unambiguous and where th
 
 <Example name="icon-button/AsLink" lang="en" />
 
-### Disabled
-
-`disabled` prevents pressing and greys out the icon. A disabled button can't be focused with the keyboard, so explain elsewhere why the action isn't available.
-
-<Example name="icon-button/Disabled" lang="en" />
-
-## Content guidelines
-
-- Write the `aria-label` as the action: "Edit", "Delete", "Close".
-- Make the name unique when there are several similar buttons: "Delete attachment application.pdf", not just "Delete".
-- Use the same icon for the same action across the service.
-
 ## Accessibility
 
-**The component handles**
-
-- The icon button is a native `<button type="button">`, so it doesn't submit a form by accident.
-- The touch target is at least 24 × 24px (WCAG 2.5.8).
-- A focused button gets the TREDS focus ring and background. In the `inverted` variant the ring is light.
-- `disabled` is native, so screen readers announce the button as unavailable.
-
-**Your responsibility**
-
 - Always give `aria-label`. It is the button's only name: without it, screen readers hear just "button".
+- Write the `aria-label` as the action: "Edit", "Delete", "Close". For an icon button used as a link, name the destination instead: "City of Tampere on Facebook".
+- Make the name unique when there are several similar buttons: "Delete attachment application.pdf", not just "Delete".
+- Use the same icon for the same action across the service.
 - Not everyone recognises an icon. If the action is rare or important, show text with <ComponentRef name="LabeledIconButton" lang="en" />.
-- For an icon button used as a link, the `aria-label` names the destination, not an action: "City of Tampere on Facebook".
-
-WCAG criteria: [1.1.1 Non-text Content](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html), [2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html), [2.5.8 Target Size (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+- A disabled button can't be focused with the keyboard, so explain elsewhere why the action isn't available.
 
 ## API
 
-<PropsTable
-  props={iconButtonProps}
-  label="IconButton props"
-  lang="en"
-  overrides={{
-    size: { description: 'Icon size. The touch target is at least 24 × 24px.' },
-    variant: {
-      defaultValue: "'default'",
-      description: '`inverted` for a dark or coloured background.',
-    },
-    children: { description: 'The icon, for example `<EditIcon />`.' },
-    classNames: { description: 'Extra classes for the root (`root`) and the icon (`icon`).' },
-  }}
-  inherited={[
-    {
-      name: 'aria-label',
-      type: 'string',
-      description: "The button's name. Required in practice, since the button has no text.",
-    },
-    {
-      name: 'component',
-      type: 'ElementType',
-      defaultValue: "'button'",
-      description: 'Root element, for example `a` for a link.',
-    },
-    {
-      name: 'onClick',
-      type: 'MouseEventHandler',
-      description: 'Called when the button is pressed.',
-    },
-    { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Prevents pressing.' },
-  ]}
-/>
+<PropsTable props={iconButtonProps} label="IconButton props" lang="en" />
 
-The last four rows are inherited from Mantine's `ActionIcon`. Its other props and the root element's attributes are passed to the button.
+`aria-label`, `component`, `onClick` and `disabled` come from Mantine's `ActionIcon`. Its other props and the root element's attributes are passed to the button.
 
 <KnownIssues name="IconButton" lang="en" />
-
-## Related components
-
-<RelatedComponents names={['LabeledIconButton', 'Button']} lang="en" />
 
 <ComponentChanges name="IconButton" lang="en" />

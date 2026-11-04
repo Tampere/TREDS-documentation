@@ -5,9 +5,10 @@ import {
   ComponentLinks,
   ComponentRef,
   ComponentChanges,
-  RelatedComponents,
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
+
+import radioButtonProps from '@/generated/RadioButton.props.json';
 
 # RadioButton
 
@@ -37,103 +38,23 @@ Radio buttons always come in a group. Group them with <ComponentRef name="Fields
 
 Keep the selected value in state and give each radio button `checked` and `onChange`.
 
-### Error
-
-`error` colours the radio button in the error colour but shows no message. Give the group an error message with Fieldset's `error` prop and set `aria-invalid` on the radio buttons. Remove the error once the user chooses an option.
-
-<Example name="radio-button/Error" lang="en" />
-
-### Disabled
-
-`disabled` prevents choosing a single option and greys out its label. Explain in the group's helper text why the option isn't available, because a disabled radio button can't be focused with the keyboard.
-
-<Example name="radio-button/Disabled" lang="en" />
-
-## Content guidelines
-
-- Phrase the group's `legend` as a question that the options answer.
-- Keep the options short and parallel, for example "By email", "By phone", "By letter".
-- Order the options logically, for example along a scale or from most to least common.
-- Preselect an option only when it is a safe default. If the user must make a deliberate choice, leave all unselected.
-
 ## Accessibility
 
-**The component handles**
-
-- The radio button is a native `<input type="radio">`, and `label` is its `<label>`. Screen readers read the label as the radio button's name, and clicking the label selects the option.
-- Within a group sharing a `name`, the arrow keys move the selection, and Tab enters the group at the selected option.
-- A focused radio button gets the TREDS focus ring.
-- The selection also shows as the icon's shape, not only as colour.
-
-**Your responsibility**
-
+- Phrase the group's `legend` as a question that the options answer. Keep the options short and parallel, for example "By email", "By phone", "By letter", and order them logically, for example along a scale or from most to least common.
+- Preselect an option only when it is a safe default. If the user must make a deliberate choice, leave all unselected.
 - Group radio buttons with Fieldset, so the group has a name screen readers announce.
 - Give each group its own `name`. Groups on the same page that share a `name` act as one group in the browser, so the selection and the arrow keys jump from one group to the other.
 - Give every radio button a `label`. TypeScript doesn't require it, but without one the radio button has no name unless it gets an `aria-label`.
-- Always give an error message with Fieldset's `error` prop.
+- `error` only colours the radio button. Give the group an error message with Fieldset's `error` prop, set `aria-invalid` on the radio buttons and remove the error once the user chooses an option.
 - When a form is submitted with errors, move focus to the first invalid field or to an error summary.
-
-WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.1 Use of Color](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html), [2.1.1 Keyboard](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html), [3.3.1 Error Identification](https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html), [3.3.2 Labels or Instructions](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+- A disabled radio button can't be focused with the keyboard. Explain in the group's helper text why the option isn't available.
 
 ## API
 
-<PropsTable
-  label="RadioButton props"
-  lang="en"
-  props={[
-    {
-      name: 'label',
-      type: 'string',
-      required: false,
-      description:
-        "The radio button's visible label and accessible name. Without it, give `aria-label`.",
-    },
-    {
-      name: 'error',
-      type: 'boolean',
-      required: false,
-      defaultValue: 'false',
-      description: 'Error colour. Shows no message and does not set `aria-invalid`.',
-    },
-  ]}
-  inherited={[
-    {
-      name: 'checked',
-      type: 'boolean',
-      description: 'Whether the option is selected. Needed for the selection to show.',
-    },
-    {
-      name: 'onChange',
-      type: 'ChangeEventHandler<HTMLInputElement>',
-      description: 'Called when the option is chosen.',
-    },
-    {
-      name: 'name',
-      type: 'string',
-      description: 'Group name. The same for every radio button in the group.',
-    },
-    { name: 'value', type: 'string', description: 'Value submitted when the option is selected.' },
-    {
-      name: 'disabled',
-      type: 'boolean',
-      defaultValue: 'false',
-      description: 'Prevents choosing the option.',
-    },
-    {
-      name: 'required',
-      type: 'boolean',
-      defaultValue: 'false',
-      description: 'An option in the group must be chosen before submitting.',
-    },
-  ]}
-/>
+<PropsTable props={radioButtonProps} label="RadioButton props" lang="en" />
 
-The last six rows are native `<input>` attributes. `className` goes to the element around the radio button, other attributes to the `<input>`.
+Native `<input>` attributes such as `checked`, `onChange`, `name`, `value`, `disabled` and `required` are also supported.
 
 <KnownIssues name="RadioButton" lang="en" />
-
-## Related components
-
-<RelatedComponents names={['Checkbox', 'Select', 'Fieldset']} lang="en" />
 
 <ComponentChanges name="RadioButton" lang="en" />

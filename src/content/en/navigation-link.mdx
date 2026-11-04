@@ -5,7 +5,6 @@ import {
   ComponentLinks,
   ComponentRef,
   ComponentChanges,
-  RelatedComponents,
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import navigationLinkProps from '@/generated/NavigationLink.props.json';
@@ -35,21 +34,13 @@ Use navigation links in link lists that move the user between the service's page
 
 ### Link list
 
-A navigation link is an inline element with no spacing of its own. Lay the links out yourself, for example with flex and a TREDS spacing token, as in the examples. Without a layout the links sit on one line with no gaps.
-
-### Current page
-
-`isSelected` underlines the link and sets `aria-current="page"` on it, as in the example at the top of the page. Mark only one link per navigation as selected.
-
-### Small size
-
-`size="sm"` is smaller and lighter. Use it for secondary link lists, like the footer's legal links.
+A navigation link is an inline element with no spacing of its own. Lay the links out yourself, for example with flex and a TREDS spacing token. Mark only one link per navigation as selected with `isSelected`. `size="sm"` is for secondary link lists, like the footer's legal links.
 
 <Example name="navigation-link/Small" lang="en" />
 
 ### Icons
 
-`startIcon` adds an icon before the text and `endIcon` after it. The icon is always 18px, whatever the size.
+`startIcon` adds an icon before the text and `endIcon` after it. Give the icons `aria-hidden`, as in the example.
 
 <Example name="navigation-link/WithIcons" lang="en" />
 
@@ -65,27 +56,12 @@ A navigation link is an inline element with no spacing of its own. Lay the links
 
 <Example name="navigation-link/RouterLink" lang="en" />
 
-## Content guidelines
-
-- Write the link text as the name of the target page: "Housing advice", not "Read more".
-- Use the same name in the link and in the target page's heading.
-
 ## Accessibility
 
-**The component handles**
-
-- A navigation link is a native `<a>` element, so it works with the keyboard and the browser's link features.
-- `isSelected` sets `aria-current="page"`, so screen readers announce the current page. The selection shows as an underline, not by colour alone.
-- A focused link gets the TREDS focus ring. In the `inverted` variant the ring is light.
-
-**Your responsibility**
-
 - Wrap navigation links in a `<nav>` element and give it an `aria-label` that tells it apart from the page's other navigations.
-- Always give `href` or `renderLink`. Without them the link is an `<a>` with no address: it can't be focused, and screen readers don't recognise it as a link.
+- Always give `href` or `renderLink`. Without them the link has no address: it can't be focused, and screen readers don't recognise it as a link.
+- Write the link text as the name of the target page: "Housing advice", not "Read more". Use the same name in the link and in the target page's heading.
 - With `renderLink`, set the `aria-current` the function receives on your own element. Otherwise the current page isn't announced.
-- Give `startIcon` and `endIcon` icons `aria-hidden`, as in the example.
-
-WCAG criteria: [1.1.1 Non-text Content](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html), [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.4.4 Link Purpose (In Context)](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html), [2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
 
 ## API
 
@@ -94,32 +70,13 @@ WCAG criteria: [1.1.1 Non-text Content](https://www.w3.org/WAI/WCAG21/Understand
   label="NavigationLink props"
   lang="en"
   overrides={{
-    href: {
-      requiredWhen: '`renderLink` is not given',
-      description: "The target page's address.",
-    },
-    isSelected: {
-      description: 'The current page. Underlines the link and sets `aria-current="page"`.',
-    },
-    className: { description: 'Extra class for the link.' },
-    variant: { description: '`inverted` for a dark or coloured background.' },
-    size: { description: '`sm` for secondary link lists.' },
-    startIcon: { description: 'Icon before the text, always 18px.' },
-    endIcon: { description: 'Icon after the text, always 18px.' },
-    renderLink: {
-      type: '(className, ariaCurrent) => ReactElement',
-      description:
-        'Renders your own link element, for example a router link. Apply the class and `aria-current` yourself.',
-    },
+    href: { requiredWhen: '`renderLink` is not given' },
+    className: { hidden: true },
   }}
 />
 
-All `<a>` attributes, like `target` and `aria-current`, are passed to the link. An `aria-current` you give overrides the value from `isSelected`.
+All `<a>` attributes, like `target` and `aria-current`, are passed to the link.
 
 <KnownIssues name="NavigationLink" lang="en" />
-
-## Related components
-
-<RelatedComponents names={['TextLink', 'AppHeader', 'Footer', 'Breadcrumbs']} lang="en" />
 
 <ComponentChanges name="NavigationLink" lang="en" />

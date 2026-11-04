@@ -5,7 +5,6 @@ import {
   ComponentLinks,
   ComponentRef,
   ComponentChanges,
-  RelatedComponents,
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import chipProps from '@/generated/Chip.props.json';
@@ -49,35 +48,13 @@ Use a chip when the user filters or narrows content by selecting one or more opt
 
 <Example name="chip/Removable" lang="en" />
 
-### Disabled
-
-`disabled` prevents selection and removal in both forms.
-
-<Example name="chip/Disabled" lang="en" />
-
-## Content guidelines
-
-- Keep the text short, one or two words.
-- Name the remove button after the tag: "Remove Hervanta", not a bare "Remove".
-- Order filter chips logically, for example alphabetically or by how often they are used.
-
 ## Accessibility
 
-**The component handles**
-
-- A filter chip is a native checkbox (`<input type="checkbox">`). Screen readers announce whether it is selected, and Space toggles it.
-- The selected state also shows as a checkmark, not by colour alone.
-- A removable tag's remove button is a button of its own, named by `removeLabel`. TypeScript won't compile a tag without it.
-- `disabled` prevents selection and removal.
-
-**Your responsibility**
-
+- Keep the text short, one or two words. Order filter chips logically, for example alphabetically or by how often they are used.
 - Group related filter chips with <ComponentRef name="Fieldset" lang="en" /> so the group has a name screen readers announce, such as "Show on map".
-- Each `removeLabel` is unique, so the remove buttons can be told apart.
+- Name the remove button after the tag: "Remove Hervanta", not a bare "Remove". Each `removeLabel` is unique, so the remove buttons can be told apart.
 - When a tag is removed, move focus somewhere sensible, such as the next tag or the search field. Otherwise focus is lost with the removed button.
 - If a selection changes the results on the page, announce the change to screen readers, for example the number of results in a live region.
-
-WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.4.3 Focus Order](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html), [4.1.3 Status Messages](https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html)
 
 ## API
 
@@ -86,28 +63,10 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
   label="Chip props"
   lang="en"
   overrides={{
-    checked: { requiredWhen: 'it is a filter chip', description: 'Whether the chip is selected.' },
-    onChange: {
-      requiredWhen: 'it is a filter chip',
-      description: 'Called with the new selected state.',
-    },
-    onRemove: {
-      requiredWhen: 'it is a removable tag',
-      description: 'Called when the remove button is pressed.',
-    },
-    removeLabel: {
-      requiredWhen: 'it is a removable tag',
-      description: "The remove button's accessible name.",
-    },
-    icon: {
-      type: 'ReactElement',
-      description: "Icon at the start of the chip. On a filter chip, only while it isn't selected.",
-    },
-    selectedIcon: {
-      type: 'ReactElement',
-      description: 'Icon of a selected filter chip, in place of the checkmark.',
-    },
-    disabled: { description: 'Prevents selection and removal.' },
+    checked: { requiredWhen: 'it is a filter chip' },
+    onChange: { requiredWhen: 'it is a filter chip' },
+    onRemove: { requiredWhen: 'it is a removable tag' },
+    removeLabel: { requiredWhen: 'it is a removable tag' },
     className: { hidden: true },
   }}
 />
@@ -115,9 +74,5 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
 Other props are passed to the `<input>` element on a filter chip and to the `<span>` element on a removable tag.
 
 <KnownIssues name="Chip" lang="en" />
-
-## Related components
-
-<RelatedComponents names={['Badge', 'Fieldset']} lang="en" />
 
 <ComponentChanges name="Chip" lang="en" />

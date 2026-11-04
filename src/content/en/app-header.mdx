@@ -5,10 +5,8 @@ import {
   ComponentLinks,
   ComponentRef,
   ComponentChanges,
-  RelatedComponents,
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
-import { HeaderCollapseTable } from '@/docs-ui/HeaderCollapseTable';
 import appHeaderProps from '@/generated/AppHeader.props.json';
 
 # AppHeader
@@ -21,8 +19,6 @@ The app header is the bar at the top of the site: the Tampere logo, the service 
 
 <Example name="app-header/Hero" lang="en" scroll />
 
-The header of this site is also an AppHeader. The header adapts to the browser window's width, not to the example box, so in the examples its row can wrap onto two lines. Resize the browser window to see how this page's header adapts.
-
 ## When to use
 
 Use the app header on every page of every City of Tampere web service, always the same way. It is the page's `<header>`, followed by the main content.
@@ -34,25 +30,15 @@ Use the app header on every page of every City of Tampere web service, always th
 
 ## Variants and situations
 
-### Single-row header
-
-In the default layout everything is on one row, as in the example at the top of the page. Parts move behind the Menu button as the screen narrows:
-
-<HeaderCollapseTable lang="en" />
-
-The service name (`siteName`) is hidden on screens under 768 pixels. Without `navigation` there is no Menu button, and the languages and actions stay on the row at every width.
-
 ### Multi-row header and search
 
-`layout="multi-row"` adds a second row with a search field (`search`) and the main menu. The first row can also hold a secondary navigation (`secondaryNavigation`), which moves into the menu on screens under 1024 pixels. Use <ComponentRef name="SearchField" lang="en" /> without a visible label for the search.
+`layout="multi-row"` adds a second row with a search field (`search`) and the main menu. Use <ComponentRef name="SearchField" lang="en" /> without a visible label for the search. The single-row layout has no search slot. Put a button that leads to search in the actions instead.
 
 <Example name="app-header/MultiRow" lang="en" scroll />
 
-The single-row layout has no search slot. Put a button that leads to search in the actions instead.
-
 ### Actions and login
 
-`actions` adds actions with icons, like help. They move into the menu on screens under 768 pixels. `login` is always visible. Once the user has logged in, show the user's name and the `UserIcon` icon in the same place.
+`actions` adds actions with icons, like help. `login` is always visible. Once the user has logged in, show the user's name and the `UserIcon` icon in the same place.
 
 <Example name="app-header/Actions" lang="en" scroll />
 
@@ -62,29 +48,14 @@ When the app uses its own router, like Next.js's `Link` component, give the menu
 
 <Example name="app-header/RouterLinks" lang="en" scroll />
 
-## Content guidelines
-
-- Keep the service name short: "e-Services", "Libraries".
-- Keep the main menu short, with few items: all of them must fit on one row on a 1440-pixel screen.
-- In Figma the languages are uppercase language codes: "FI", "SV", "EN". Each language's `code` and `currentLanguage` are lowercase, like `fi`.
-- **The built-in texts are Finnish:** the Menu button ("Valikko"), the language switcher's name ("Kieli") and the secondary navigation's name. On an English page, pass `menuButtonLabel`, `languagesAriaLabel` and `secondaryNavAriaLabel`.
-
 ## Accessibility
-
-**The component handles**
-
-- The header is a `<header>` landmark. The main menu, the language switcher and the secondary navigation are named `<nav>` landmarks.
-- The logo is a link to the home page, named "Tampere".
-- The selected menu item gets `aria-current="page"` and the selected language `aria-current="true"`.
-- The Menu button tells with `aria-expanded` whether the menu is open. Tab moves from the button to the first link in the menu, and Esc closes the menu and returns focus to the button. The menu also closes on a click outside it or when a link is chosen.
-- Each link is in the accessibility tree only once: on the row or in the menu.
-
-**Your responsibility**
 
 - Name the main menu with `navAriaLabel`, for example "Main menu".
 - Add a <ComponentRef name="SkipLink" lang="en" /> at the start of the page so keyboard users can skip the header.
-
-WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.4.1 Bypass Blocks](https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html), [2.4.3 Focus Order](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html), [3.1.2 Language of Parts](https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts.html), [3.2.3 Consistent Navigation](https://www.w3.org/WAI/WCAG21/Understanding/consistent-navigation.html)
+- The built-in texts are Finnish: the Menu button ("Valikko"), the language switcher's name ("Kieli") and the secondary navigation's name. On an English page, pass `menuButtonLabel`, `languagesAriaLabel` and `secondaryNavAriaLabel`.
+- Keep the service name short: "e-Services", "Libraries".
+- Keep the main menu short: all items must fit on one row on a 1440-pixel screen.
+- In Figma the languages are uppercase language codes: "FI", "SV", "EN". Each language's `code` and `currentLanguage` are lowercase, like `fi`.
 
 ## API
 
@@ -92,50 +63,9 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
   props={appHeaderProps}
   label="AppHeader props"
   lang="en"
-  overrides={{
-    siteName: { description: 'Service name next to the logo. Hidden on screens under 768 pixels.' },
-    homeHref: { description: 'Address of the logo link.', defaultValue: "'/'" },
-    navigation: {
-      description:
-        'Main menu items: `{ label, href }` or `{ label, renderLink }`, plus `isSelected`. Without it there is no Menu button.',
-    },
-    navAriaLabel: { description: 'Name of the main menu’s `<nav>` landmark.' },
-    languages: { description: 'Languages: `{ code, label, href }` or `{ code, label, onClick }`.' },
-    currentLanguage: { description: 'The selected language’s `code`.' },
-    languagesAriaLabel: {
-      description: 'Name of the language switcher’s `<nav>` landmark.',
-      defaultValue: "'Kieli'",
-    },
-    secondaryNavAriaLabel: {
-      description: 'Name of the secondary navigation.',
-      defaultValue: "'Toissijainen navigaatio'",
-    },
-    actions: {
-      description: 'Actions with icons: `{ label, icon, href }` or `{ label, icon, onClick }`.',
-    },
-    login: {
-      description:
-        'Login: `{ label, icon?, href }`, `{ label, icon?, onClick }` or `{ label, icon?, renderRoot }`. Always visible.',
-    },
-    menuButtonLabel: { description: 'Text of the Menu button.', defaultValue: "'Valikko'" },
-    menuButtonLabelOpen: {
-      description: 'Text of the Menu button while the menu is open. Defaults to `menuButtonLabel`.',
-    },
-    className: { description: 'Extra class for the `<header>` element.' },
-    layout: { description: 'Single- or multi-row layout.', defaultValue: "'single-row'" },
-    search: { description: 'Search field on the second row. `multi-row` only.' },
-    secondaryNavigation: {
-      description: 'Secondary navigation items on the first row. `multi-row` only.',
-    },
-  }}
+  overrides={{ className: { hidden: true } }}
 />
 
-AppHeader passes no other props on.
-
 <KnownIssues name="AppHeader" also={[187, 209]} lang="en" />
-
-## Related components
-
-<RelatedComponents names={['SkipLink', 'NavigationLink', 'SearchField', 'Footer']} lang="en" />
 
 <ComponentChanges name="AppHeader" lang="en" />

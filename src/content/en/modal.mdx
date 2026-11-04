@@ -5,7 +5,6 @@ import {
   ComponentLinks,
   ComponentRef,
   ComponentChanges,
-  RelatedComponents,
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import modalProps from '@/generated/Modal.props.json';
@@ -33,121 +32,27 @@ Use Modal when the user must answer or do a short task before they can continue,
 
 ## Variants and situations
 
-### Confirmation
-
-The example at the top of the page asks to confirm a deletion. Name the buttons after the action, such as "Delete" and "Cancel", not "Yes" and "No". Modal doesn't lay out a button row for you; you place the buttons.
-
 ### Form
 
 When it opens, Modal moves focus to the first focusable element, which is the close button. In a form, move focus to the first field with the `data-autofocus` attribute.
 
 <Example name="modal/Form" lang="en" />
 
-### Size
-
-`size` is `xs`, `sm`, `md` (default), `lg` or `xl`, or a width as a number or a percentage. On a narrow screen Modal shrinks to the screen width.
-
-<Example name="modal/Size" lang="en" />
-
-### Title
-
-`title` is shown as an `h2` heading, and it is also the dialog's name. Always give Modal a title.
-
-## Content guidelines
-
-- Write the title as a question or an action: "Delete the application?"
-- Say what happens in the text: "A deleted application cannot be restored."
-- Keep the content short. If it needs scrolling, consider a page of its own.
-
 ## Accessibility
 
-**The component handles**
-
-- Modal has the `dialog` role and `aria-modal`. The title is its name and the content its description.
-- Focus moves into the dialog when it opens and returns to the opening button when it closes.
-- The Tab key cycles only inside the dialog. Esc and a click on the backdrop close it.
-- Page scrolling is locked while the dialog is open.
-- The close button's name is required in `closeButtonProps`.
-
-**Your responsibility**
-
-- Always give a `title`.
-- Give the close button a name in the page language, for example "Close".
+- Always give a `title`. It is the dialog's name, so write it as a question or an action: "Delete the application?"
+- Say what happens in the text: "A deleted application cannot be restored." Keep the content short. If it needs scrolling, consider a page of its own.
+- Name the buttons after the action, such as "Delete" and "Cancel", not "Yes" and "No".
+- Give the close button a name in the page language through `closeButtonProps`, for example "Close".
 - `onClose` is the only way Modal closes. Update the `opened` state in it, or Esc, the backdrop click and the close button do nothing.
-- Move focus to a form's first field with the `data-autofocus` attribute.
-
-WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.1.2 No Keyboard Trap](https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html), [2.4.3 Focus Order](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+- In a form, move focus to the first field with the `data-autofocus` attribute.
 
 ## API
 
-<PropsTable
-  props={modalProps}
-  label="Modal props"
-  lang="en"
-  overrides={{
-    closeButtonProps: {
-      description: "The close button's name, for example `{ 'aria-label': 'Close' }`.",
-    },
-    children: { description: 'Dialog content.' },
-  }}
-  inherited={[
-    { name: 'opened', type: 'boolean', required: true, description: 'Whether the dialog is open.' },
-    {
-      name: 'onClose',
-      type: '() => void',
-      required: true,
-      description: 'Called when the user closes the dialog. Set `opened` to false in it.',
-    },
-    {
-      name: 'title',
-      type: 'ReactNode',
-      description: "Title and the dialog's name. Required in practice.",
-    },
-    {
-      name: 'size',
-      type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number | string",
-      defaultValue: "'md'",
-      description: 'Width.',
-    },
-    {
-      name: 'centered',
-      type: 'boolean',
-      defaultValue: 'false',
-      description: 'Centres the dialog vertically.',
-    },
-    {
-      name: 'fullScreen',
-      type: 'boolean',
-      defaultValue: 'false',
-      description: 'The dialog fills the whole screen.',
-    },
-    {
-      name: 'closeOnClickOutside',
-      type: 'boolean',
-      defaultValue: 'true',
-      description: 'A click on the backdrop closes the dialog.',
-    },
-    {
-      name: 'closeOnEscape',
-      type: 'boolean',
-      defaultValue: 'true',
-      description: 'Esc closes the dialog.',
-    },
-    {
-      name: 'returnFocus',
-      type: 'boolean',
-      defaultValue: 'true',
-      description: 'Focus returns to the opening element on close.',
-    },
-  ]}
-/>
+<PropsTable props={modalProps} label="Modal props" lang="en" />
 
-Modal inherits the other props of Mantine's `Modal.Root`. Don't turn off `trapFocus` or `lockScroll`.
+Modal also needs the Mantine props `opened`, `onClose` and `title`. Its other props come from Mantine's `Modal.Root`. Don't turn off `trapFocus` or `lockScroll`.
 
 <KnownIssues name="Modal" lang="en" />
-
-## Related components
-
-<RelatedComponents names={['Button', 'IconButton']} lang="en" />
 
 <ComponentChanges name="Modal" lang="en" />

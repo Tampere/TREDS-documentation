@@ -5,9 +5,9 @@ import {
   ComponentLinks,
   ComponentRef,
   ComponentChanges,
-  RelatedComponents,
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
+import fileListProps from '@/generated/FileList.props.json';
 
 # FileList
 
@@ -39,86 +39,24 @@ for example the attachments of a saved application, and the user can remove them
 
 When the very last file is removed, the list disappears and has nothing left to focus. Pass `onEmptied` and move focus somewhere sensible in it, as the example at the top of the page does with the "Restore files" button. Otherwise focus drops to the start of the page.
 
-### Disabled
-
-`disabled` disables the remove buttons. The file names stay visible.
-
-<Example name="file-list/Disabled" lang="en" />
-
-## Content guidelines
-
-- The file name is shown as is. A long name wraps and is not shortened.
-- The remove button's name is `"Poista tiedosto: <file name>"` by default. On an English page, pass `removeLabel`.
-
 ## Accessibility
-
-**The component handles**
-
-- The files are in a `<ul>` list, so screen readers announce how many there are.
-- Each remove button's name includes the file name, for example "Remove file: site-plan.pdf".
-- After a removal, focus moves to the next or previous remove button.
-
-**Your responsibility**
 
 - Pass `onEmptied` and move focus in it when the list empties.
 - Say what the files are next to the list, for example with a heading "Saved attachments". The list has no heading of its own.
+- The remove button's name is `"Poista tiedosto: <file name>"` by default. On an English page, pass `removeLabel`.
 - If removal can't be undone, ask for confirmation before you remove the file from your state.
-
-WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [2.4.3 Focus Order](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html), [2.4.6 Headings and Labels](https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html)
 
 ## API
 
 <PropsTable
+  props={fileListProps}
   label="FileList props"
   lang="en"
-  props={[
-    {
-      name: 'files',
-      type: 'File[]',
-      required: true,
-      description: 'The files to show.',
-    },
-    {
-      name: 'onRemove',
-      type: '(index: number) => void',
-      required: true,
-      description: 'Called with the index of the file to remove.',
-    },
-    {
-      name: 'onEmptied',
-      type: '() => void',
-      required: false,
-      description: 'Called when a removal empties the list. Move focus here.',
-    },
-    {
-      name: 'removeLabel',
-      type: 'string',
-      required: false,
-      defaultValue: "'Poista tiedosto'",
-      description: 'Start of each remove button’s name. The file name is appended.',
-    },
-    {
-      name: 'disabled',
-      type: 'boolean',
-      required: false,
-      defaultValue: 'false',
-      description: 'Disables the remove buttons.',
-    },
-    {
-      name: 'className',
-      type: 'string',
-      required: false,
-      description: 'Extra class for the `<ul>` element.',
-    },
-  ]}
+  overrides={{ 'data-testid': { hidden: true } }}
 />
 
 With an empty `files` array FileList renders nothing.
 
 <KnownIssues name="FileList" lang="en" />
-
-## Related components
-
-<RelatedComponents names={['Dropzone', 'FileInput']} lang="en" />
 
 <ComponentChanges name="FileList" lang="en" />

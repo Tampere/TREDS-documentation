@@ -5,7 +5,6 @@ import {
   ComponentLinks,
   ComponentRef,
   ComponentChanges,
-  RelatedComponents,
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import breadcrumbsProps from '@/generated/Breadcrumbs.props.json';
@@ -22,7 +21,7 @@ A breadcrumb shows where in the service's page hierarchy the user is, and leads 
 
 ## When to use
 
-Use a breadcrumb in services whose pages are at least two levels deep. Place it at the top of the page, below the header and before the page's main heading. This site's breadcrumb is an example.
+Use a breadcrumb in services whose pages are at least two levels deep. Place it at the top of the page, below the header and before the page's main heading.
 
 **Don't use a breadcrumb when**
 
@@ -32,15 +31,9 @@ Use a breadcrumb in services whose pages are at least two levels deep. Place it 
 
 ## Variants and situations
 
-### Trail
-
-Give `items` in order from the top level to the current page, as in the example at the top of the page. Leave `href` out of the current page: it shows as bold text, not a link.
-
-A breadcrumb shows at most the last five levels. The first levels, the home page included, are dropped without any marker.
-
 ### Mobile view
 
-`isMobile` shows only a link to the previous level, with an arrow. The component doesn't detect the screen width, so you decide the mode.
+`isMobile` shows only a link to the previous level, with an arrow. The component doesn't detect the screen width, so you decide the mode. Check that the trail fits the narrowest view, or use `isMobile` there.
 
 <Example name="breadcrumbs/Mobile" lang="en" />
 
@@ -50,26 +43,11 @@ A breadcrumb shows at most the last five levels. The first levels, the home page
 
 <Example name="breadcrumbs/RouterLink" lang="en" />
 
-## Content guidelines
-
-- Use the pages' headings, or short forms of them, as the level names.
-- Keep the names short.
-- Set `ariaLabel` to "Breadcrumb" ("Murupolku" in Finnish).
-
 ## Accessibility
 
-**The component handles**
-
-- The breadcrumb is a `<nav>` region with the levels in an ordered list `<ol>`. Screen readers announce the number of levels.
-- The upper levels are native links.
-
-**Your responsibility**
-
-- Always give `ariaLabel`, so the breadcrumb can be told apart from the page's other navigations.
-- Leave `href` out of the current page.
-- Check that the trail fits the narrowest view, or use `isMobile` there.
-
-WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html), [1.4.10 Reflow](https://www.w3.org/WAI/WCAG21/Understanding/reflow.html), [2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html), [2.4.8 Location](https://www.w3.org/WAI/WCAG21/Understanding/location.html), [4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+- Always give `ariaLabel`, so the breadcrumb can be told apart from the page's other navigations. Set it to "Breadcrumb" ("Murupolku" in Finnish).
+- Give `items` in order from the top level to the current page, and leave `href` out of the current page.
+- Use the pages' headings, or short forms of them, as the level names.
 
 ## API
 
@@ -77,29 +55,9 @@ WCAG criteria: [1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Unde
   props={breadcrumbsProps}
   label="Breadcrumbs props"
   lang="en"
-  overrides={{
-    items: {
-      type: '{ label: string; href?: string; linkComponent?: (props) => ReactNode }[]',
-      description:
-        'The levels from the top to the current page. At most the last five are shown. Leave `href` out of the current page.',
-    },
-    ariaLabel: {
-      description: 'The navigation region\'s name, for example "Breadcrumb". Required in practice.',
-    },
-    className: { description: 'Extra class.' },
-    isMobile: {
-      defaultValue: 'false',
-      description: 'Shows only a link to the previous level.',
-    },
-  }}
+  overrides={{ className: { hidden: true } }}
 />
 
-Breadcrumbs passes no other props on.
-
 <KnownIssues name="Breadcrumbs" lang="en" />
-
-## Related components
-
-<RelatedComponents names={['NavigationLink', 'AppHeader', 'TextLink']} lang="en" />
 
 <ComponentChanges name="Breadcrumbs" lang="en" />

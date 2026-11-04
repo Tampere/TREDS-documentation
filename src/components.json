@@ -258,7 +258,7 @@
   {
     "name": "LoadingSpinner",
     "group": "feedback",
-    "since": "0.4.0",
+    "since": "0.0.1",
     "description": {
       "en": "A loading indicator that shows content is loading."
     }

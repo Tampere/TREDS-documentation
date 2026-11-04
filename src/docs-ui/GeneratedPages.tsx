@@ -19,8 +19,9 @@ const text = {
       "The table lists only the props TREDS defines itself. Props inherited from Mantine aren't shown.",
     noProps: "Props couldn't be read from the published package's types. See the props in",
     propsLabel: 'props',
-    overviewIntro:
-      'TREDS components grouped by purpose. Components marked "Guidance coming" have only their props and change history for now.',
+    overviewIntro: 'TREDS components grouped by purpose.',
+    overviewStubs:
+      'Components marked "Guidance coming" have only their props and change history for now.',
     stub: 'Guidance coming',
     overviewTitle: 'Components',
   },
@@ -48,6 +49,29 @@ function StorybookLink({ name, lang }: { name: string; lang: Lang }) {
       {text[lang].storybook}
     </TextLink>
   );
+}
+
+// The overview card shows the first sentence of the page's own lead, so the text lives in one
+// place. MDX paths are read from content.ts, which maps slugs to files.
+async function pageLeads(lang: Lang): Promise<Record<string, string>> {
+  const loaders = await readFile(path.join(process.cwd(), 'src/content.ts'), 'utf8');
+  const files = [
+    ...loaders.matchAll(
+      new RegExp(`'([^']+)': \\{\\s*${lang}: \\(\\) => import\\('\\./([^']+)'\\)`, 'g')
+    ),
+  ];
+  const leads: Record<string, string> = {};
+  for (const [, slug, file] of files) {
+    const mdx = await readFile(path.join(process.cwd(), 'src', file), 'utf8');
+    const lead = mdx.match(/<ComponentBadges[^\n]*\/>\n\n(.+)\n/)?.[1];
+    if (!lead) continue;
+    const plain = lead
+      .replace(/<ComponentRef name="(\w+)"[^>]*\/>/g, '$1')
+      .replace(/<ComponentRef[^>]*>([^<]*)<\/ComponentRef>/g, '$1')
+      .replace(/`/g, '');
+    leads[slug] = plain.match(/^.+?\.(?=\s|$)/)?.[0] ?? plain;
+  }
+  return leads;
 }
 
 /** A component page generated from components.json, until a hand-written page replaces it. */
@@ -83,12 +107,17 @@ export async function ComponentStub({ name, lang }: { name: string; lang: Lang }
   );
 }
 
-export function ComponentOverview({ lang }: { lang: Lang }) {
+export async function ComponentOverview({ lang }: { lang: Lang }) {
   const t = text[lang];
+  const leads = await pageLeads(lang);
+  const anyStub = components.some((c) => !content[componentSlug(c.name)]);
   return (
     <Prose>
       <Typography variant="h1">{t.overviewTitle}</Typography>
-      <Typography variant="p1">{t.overviewIntro}</Typography>
+      <Typography variant="p1">
+        {t.overviewIntro}
+        {anyStub && ` ${t.overviewStubs}`}
+      </Typography>
       {Object.entries(groups).map(([id, group]) => (
         <Fragment key={id}>
           <Typography variant="h2" id={id}>
@@ -106,7 +135,7 @@ export function ComponentOverview({ lang }: { lang: Lang }) {
                     key={c.name}
                     href={href(lang, slug)}
                     title={breakable(c.name)}
-                    description={c.description[lang]}
+                    description={leads[slug] ?? c.description[lang]}
                     inverted
                     eyebrow={stub ? t.stub : undefined}
                     // Linkbox names the link with aria-label = title, which hides the eyebrow

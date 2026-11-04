@@ -5,6 +5,10 @@
  * can't read a variable inside @media.
  */
 .docs-root {
+  /* At least the window's height, so the footer sits at the bottom of short pages. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   --space-xs: var(--space-xs-narrow);
   --space-sm: var(--space-sm-narrow);
   --space-md: var(--space-md-narrow);
@@ -24,6 +28,9 @@
 
 /* Page layout */
 .docs-layout {
+  flex: 1 0 auto;
+  width: 100%;
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: 15rem minmax(0, 1fr);
   gap: var(--space-lg);

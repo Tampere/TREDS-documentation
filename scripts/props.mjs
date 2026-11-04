@@ -66,9 +66,19 @@ const parser = docgen.withCustomConfig('tsconfig.json', {
 
 // One component per parse: parsing the whole bundled index.d.ts at once cross-wires
 // same-named props between components (TextLink got Card's `size`, Chip got Badge's `icon`).
+// react-docgen skips components the d.ts declares as an arrow-typed const, so those are
+// retyped as FC of their own props.
 const stub = 'scripts/.props-stub.tsx';
 const docs = COMPONENTS.flatMap((name) => {
   writeFileSync(stub, `export { ${name} } from '@tampere/treds';\n`);
+  const direct = parser.parse(stub);
+  if (direct.some((d) => d.displayName === name)) return direct;
+  writeFileSync(
+    stub,
+    `import type { ComponentProps, FC } from 'react';\n` +
+      `import { ${name} as C } from '@tampere/treds';\n` +
+      `export const ${name}: FC<ComponentProps<typeof C>> = C;\n`
+  );
   return parser.parse(stub);
 });
 rmSync(stub);

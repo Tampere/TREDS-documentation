@@ -2,6 +2,7 @@ import type { ComponentType } from 'react';
 import type { Lang } from '@/i18n';
 import EnEmphasis from './en/button/Emphasis';
 import EnHero from './en/button/Hero';
+import EnPill from './en/button/Pill';
 import EnWithIcons from './en/button/WithIcons';
 import EnHeroTL from './en/text-link/Hero';
 import EnInTextTL from './en/text-link/InText';
@@ -281,6 +282,7 @@ const en = {
   'text-link/RouterLink': EnRouterLinkTL,
   'button/Emphasis': EnEmphasis,
   'button/Hero': EnHero,
+  'button/Pill': EnPill,
   'button/WithIcons': EnWithIcons,
 };
 

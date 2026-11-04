@@ -36,6 +36,10 @@ In this order:
    when it reads as maintainer-facing: improving it is a library task, and a hand-written copy
    drifts. If `npm run props` says it couldn't read the component's props, don't write a table
    by hand; write one sentence pointing to Storybook (the link row already has it).
+   A component with exported sub-parts (`TabsTab`, `AccordionItem`, `TableRow`) gets one
+   `###` per part with props, each with its own generated table
+   (`@/generated/<SubPart>.props.json`); see `tabs.mdx`. Parts with no props of their own
+   share one sentence instead.
    The generated table only lists props TREDS declares itself. When the component relies on
    props inherited from Mantine that a developer can't do without (Modal's `opened`,
    `onClose`, `title`), add one sentence under the table naming them. Name only those; the

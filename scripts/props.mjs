@@ -8,11 +8,12 @@ const COMPONENTS = JSON.parse(readFileSync('src/components.json', 'utf8')).map((
 // AccordionItem…) belong to their parent's page; icons have their own gallery.
 const NOT_PAGES = ['ThemeProvider'];
 const dts = readFileSync('node_modules/@tampere/treds/dist/index.d.ts', 'utf8');
-const exported = dts
+const exportedAll = dts
   .match(/^export \{ ([^}]+) \};$/m)[1]
   .split(', ')
-  .filter((n) => /^[A-Z]/.test(n) && !n.endsWith('Icon') && !NOT_PAGES.includes(n))
-  .filter((n) => !COMPONENTS.some((c) => n !== c && n.startsWith(c)));
+  .filter((n) => /^[A-Z]/.test(n) && !n.endsWith('Icon') && !NOT_PAGES.includes(n));
+const SUBPARTS = exportedAll.filter((n) => COMPONENTS.some((c) => n !== c && n.startsWith(c)));
+const exported = exportedAll.filter((n) => !SUBPARTS.includes(n));
 for (const name of exported.filter((n) => !COMPONENTS.includes(n))) {
   console.warn(
     `coverage: ${name} is exported by @tampere/treds but missing from src/components.json`
@@ -69,7 +70,7 @@ const parser = docgen.withCustomConfig('tsconfig.json', {
 // react-docgen skips components the d.ts declares as an arrow-typed const, so those are
 // retyped as FC of their own props.
 const stub = 'scripts/.props-stub.tsx';
-const docs = COMPONENTS.flatMap((name) => {
+const docs = [...COMPONENTS, ...SUBPARTS].flatMap((name) => {
   writeFileSync(stub, `export { ${name} } from '@tampere/treds';\n`);
   const direct = parser.parse(stub);
   if (direct.some((d) => d.displayName === name)) return direct;
@@ -83,11 +84,13 @@ const docs = COMPONENTS.flatMap((name) => {
 });
 rmSync(stub);
 const found = Object.fromEntries(
-  docs.filter((d) => COMPONENTS.includes(d.displayName)).map((d) => [d.displayName, d])
+  docs
+    .filter((d) => COMPONENTS.includes(d.displayName) || SUBPARTS.includes(d.displayName))
+    .map((d) => [d.displayName, d])
 );
 
 mkdirSync('src/generated', { recursive: true });
-for (const name of COMPONENTS) {
+for (const name of [...COMPONENTS, ...SUBPARTS]) {
   if (!found[name]) {
     console.warn(`props: ${name}: no props could be read, its page links to Storybook instead`);
     continue;

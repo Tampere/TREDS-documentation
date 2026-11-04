@@ -8,6 +8,7 @@ import {
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import accordionProps from '@/generated/Accordion.props.json';
+import accordionItemProps from '@/generated/AccordionItem.props.json';
 
 # Accordion
 
@@ -57,9 +58,13 @@ Users can open several sections at once, and all sections start closed. `onChang
 
 ## API
 
+### Accordion
+
 <PropsTable props={accordionProps} label="Accordion props" lang="en" />
 
-Each section is an `AccordionItem` with a unique `value`, a `label` for the heading, optional `openLabel` and `closeLabel`, and `disabled`. Accordion and AccordionItem pass no other props on.
+### AccordionItem
+
+<PropsTable props={accordionItemProps} label="AccordionItem props" lang="en" />
 
 <KnownIssues name="Accordion" lang="en" />
 

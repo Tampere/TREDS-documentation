@@ -8,6 +8,8 @@ import {
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
 import tabsProps from '@/generated/Tabs.props.json';
+import tabsTabProps from '@/generated/TabsTab.props.json';
+import tabsPanelProps from '@/generated/TabsPanel.props.json';
 
 # Tabs
 
@@ -54,7 +56,29 @@ Give tabs short names of one or two words, and keep them parallel: "Borrowing, E
 
 ## API
 
+### Tabs
+
 <PropsTable props={tabsProps} label="Tabs props" lang="en" />
+
+### TabsTab
+
+<PropsTable
+  props={tabsTabProps}
+  label="TabsTab props"
+  lang="en"
+  overrides={{ classNames: { hidden: true } }}
+/>
+
+### TabsPanel
+
+<PropsTable
+  props={tabsPanelProps}
+  label="TabsPanel props"
+  lang="en"
+  overrides={{ classNames: { hidden: true } }}
+/>
+
+`TabsList` has no props of its own.
 
 <KnownIssues name="Tabs" lang="en" />
 

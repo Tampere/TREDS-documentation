@@ -7,6 +7,7 @@ import {
   ComponentChanges,
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
+import { HeaderCollapseTable } from '@/docs-ui/HeaderCollapseTable';
 import appHeaderProps from '@/generated/AppHeader.props.json';
 
 # AppHeader
@@ -29,6 +30,14 @@ Use the app header on every page of every City of Tampere web service, always th
 - you need a breadcrumb trail – use <ComponentRef name="Breadcrumbs" lang="en" /> below the header
 
 ## Variants and situations
+
+### Narrow screens
+
+Parts move behind the Menu button as the screen narrows:
+
+<HeaderCollapseTable lang="en" />
+
+The service name (`siteName`) is hidden on screens under 768 pixels. Without `navigation` there is no Menu button, and the languages and actions stay on the row at every width.
 
 ### Multi-row header and search
 

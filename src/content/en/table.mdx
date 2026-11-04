@@ -1,3 +1,4 @@
+import { PropsTable } from '@/docs-ui/PropsTable';
 import { Example } from '@/docs-ui/Example';
 import {
   ComponentBadges,
@@ -6,6 +7,9 @@ import {
   ComponentChanges,
   KnownIssues,
 } from '@/docs-ui/ComponentPage';
+import tableHeaderProps from '@/generated/TableHeader.props.json';
+import tableRowProps from '@/generated/TableRow.props.json';
+import tableFooterProps from '@/generated/TableFooter.props.json';
 
 # Table
 
@@ -56,7 +60,19 @@ A long table can be split into pages with <ComponentRef name="Pagination" lang="
 
 ## API
 
-Table has no props of its own. Each part passes its props to its HTML element, for example `aria-label` to the table and `colSpan` to a cell. The parts add a few: `title` on `TableHeader`, `scope` on `TableHeaderCell`, `selected` with `onSelectedChange` on `TableRow`, and `variant` on `TableFooter`.
+Table, `TableBody`, `TableHeaderCell` and `TableCell` have no props of their own. Each part passes its props to its HTML element, for example `aria-label` to the table, `scope` to a header cell and `colSpan` to a cell.
+
+### TableHeader
+
+<PropsTable props={tableHeaderProps} label="TableHeader props" lang="en" />
+
+### TableRow
+
+<PropsTable props={tableRowProps} label="TableRow props" lang="en" />
+
+### TableFooter
+
+<PropsTable props={tableFooterProps} label="TableFooter props" lang="en" />
 
 <KnownIssues name="Table" also={[69]} lang="en" />
 

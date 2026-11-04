@@ -49,16 +49,11 @@ import EnDisabledTF from './en/text-field/Disabled';
 import EnSearchTF from './en/text-field/Search';
 import EnClearButtonTF from './en/text-field/ClearButton';
 import EnHeroSE from './en/select/Hero';
-import EnHelperRequiredSE from './en/select/HelperRequired';
-import EnErrorSE from './en/select/Error';
 import EnGroupedSE from './en/select/Grouped';
 import EnSearchSE from './en/select/Search';
-import EnDisabledSE from './en/select/Disabled';
 import EnControlledSE from './en/select/Controlled';
 import EnHeroTA from './en/text-area/Hero';
 import EnAutosizeTA from './en/text-area/Autosize';
-import EnRequiredTA from './en/text-area/Required';
-import EnErrorTA from './en/text-area/Error';
 import EnDisabledTA from './en/text-area/Disabled';
 import EnHeroSW from './en/switch/Hero';
 import EnGroupSW from './en/switch/Group';
@@ -118,14 +113,9 @@ import EnDisabledFL from './en/file-list/Disabled';
 import EnHeroDF from './en/date-field/Hero';
 import EnRangeDF from './en/date-field/Range';
 import EnControlledDF from './en/date-field/Controlled';
-import EnRequiredDF from './en/date-field/Required';
-import EnErrorDF from './en/date-field/Error';
-import EnDisabledDF from './en/date-field/Disabled';
 import EnHeroTMF from './en/time-field/Hero';
 import EnRangeStepTMF from './en/time-field/RangeStep';
 import EnDateAndTimeTMF from './en/time-field/DateAndTime';
-import EnErrorTMF from './en/time-field/Error';
-import EnDisabledTMF from './en/time-field/Disabled';
 import EnHeroSRF from './en/search-field/Hero';
 import EnSearchOnSelectSRF from './en/search-field/SearchOnSelect';
 import EnLoadingSRF from './en/search-field/Loading';
@@ -163,14 +153,9 @@ const en = {
   'date-field/Hero': EnHeroDF,
   'date-field/Range': EnRangeDF,
   'date-field/Controlled': EnControlledDF,
-  'date-field/Required': EnRequiredDF,
-  'date-field/Error': EnErrorDF,
-  'date-field/Disabled': EnDisabledDF,
   'time-field/Hero': EnHeroTMF,
   'time-field/RangeStep': EnRangeStepTMF,
   'time-field/DateAndTime': EnDateAndTimeTMF,
-  'time-field/Error': EnErrorTMF,
-  'time-field/Disabled': EnDisabledTMF,
   'typography/Hero': EnHeroTY,
   'typography/Scale': EnScaleTY,
   'typography/Level': EnLevelTY,
@@ -205,8 +190,6 @@ const en = {
   'tabs/Scrollable': EnScrollableTB,
   'text-area/Hero': EnHeroTA,
   'text-area/Autosize': EnAutosizeTA,
-  'text-area/Required': EnRequiredTA,
-  'text-area/Error': EnErrorTA,
   'text-area/Disabled': EnDisabledTA,
   'switch/Hero': EnHeroSW,
   'switch/Group': EnGroupSW,
@@ -241,11 +224,8 @@ const en = {
   'checkbox/Error': EnErrorCB,
   'checkbox/Disabled': EnDisabledCB,
   'select/Hero': EnHeroSE,
-  'select/HelperRequired': EnHelperRequiredSE,
-  'select/Error': EnErrorSE,
   'select/Grouped': EnGroupedSE,
   'select/Search': EnSearchSE,
-  'select/Disabled': EnDisabledSE,
   'select/Controlled': EnControlledSE,
   'text-field/Hero': EnHeroTF,
   'text-field/HelperText': EnHelperTextTF,

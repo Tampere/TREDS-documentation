@@ -47,8 +47,11 @@ export default async function Page({ params }: { params: Params }) {
     ...(page.slug ? [{ label: page.title[lang] }] : []),
   ];
 
+  // The front page has no table of contents or reading order.
+  const isHome = page.slug === '';
+
   return (
-    <div className="doc">
+    <div className={isHome ? 'doc doc-home' : 'doc'}>
       <div className="doc-main">
         {crumbs.length > 1 && (
           // Wrapper, not className: Breadcrumbs ignores className outside its mobile mode.
@@ -68,9 +71,9 @@ export default async function Page({ params }: { params: Params }) {
             <ComponentOverview lang={lang} />
           )}
         </article>
-        <PrevNext lang={lang} prev={prev} next={next} />
+        {!isHome && <PrevNext lang={lang} prev={prev} next={next} />}
       </div>
-      <OnThisPage label={t.onThisPage} />
+      {!isHome && <OnThisPage label={t.onThisPage} />}
     </div>
   );
 }

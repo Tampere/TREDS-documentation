@@ -12,6 +12,8 @@ import { tokenVars } from '@/docs-ui/tokenVars';
 export function SiteChrome({ lang, children }: { lang: Lang; children: ReactNode }) {
   const pathname = usePathname();
   const current = slugFromPath(pathname);
+  // The front page is itself the navigation, so it has no sidebar.
+  const isHome = current === '';
   const t = dict[lang];
 
   return (
@@ -26,7 +28,7 @@ export function SiteChrome({ lang, children }: { lang: Lang; children: ReactNode
             const path = href(lang, section.pages[0].slug);
             return {
               label: section.title[lang],
-              isSelected: section.pages.some((p) => p.slug === current),
+              isSelected: !isHome && section.pages.some((p) => p.slug === current),
               renderLink: (className, ariaCurrent) => (
                 <Link href={path} className={className} aria-current={ariaCurrent}>
                   {section.title[lang]}
@@ -48,8 +50,8 @@ export function SiteChrome({ lang, children }: { lang: Lang; children: ReactNode
           languagesAriaLabel={t.languagesAriaLabel}
           menuButtonLabel={t.menu}
         />
-        <div className="docs-layout">
-          <Sidebar lang={lang} />
+        <div className={isHome ? 'docs-layout docs-layout-home' : 'docs-layout'}>
+          {!isHome && <Sidebar lang={lang} />}
           <main id="main-content" className="docs-content">
             {children}
           </main>

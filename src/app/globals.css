@@ -34,6 +34,9 @@
 .docs-content {
   min-width: 0;
 }
+.docs-layout-home {
+  grid-template-columns: minmax(0, 1fr);
+}
 .doc {
   display: grid;
   grid-template-columns: minmax(0, 52rem) 13rem;
@@ -44,6 +47,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+}
+.doc-home {
+  grid-template-columns: minmax(0, 52rem);
+  justify-content: center;
 }
 @media (max-width: 1439px) {
   .doc {

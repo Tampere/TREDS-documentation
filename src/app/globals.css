@@ -179,6 +179,9 @@
 .prose > :where(*) + :where(.example, .code-block, .table-wrap) {
   margin-top: var(--space-md);
 }
+.prose > :where(p) + :where(.overview-grid) {
+  margin-top: var(--space-lg);
+}
 .prose > :where(.example, .code-block, .table-wrap) + :where(*) {
   margin-top: var(--space-lg);
 }

@@ -25,7 +25,7 @@ const text = {
 
 const changesId = { en: 'changes-and-feedback' };
 
-function External({
+export function External({
   href,
   lang,
   size = 'p1',

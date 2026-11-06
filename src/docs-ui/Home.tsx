@@ -11,7 +11,7 @@ const text = {
     developers: 'For developers',
     developersText: 'Install the package, set up the theme and see how versions work.',
     designers: 'For designers',
-    designersText: 'Colours, typography, spacing and icons, all read from the real tokens.',
+    designersText: 'Colours, typography, spacing and icons.',
     whatsNew: "What's new",
     released: 'released',
     newComponents: 'New components:',

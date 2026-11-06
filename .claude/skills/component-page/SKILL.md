@@ -103,6 +103,8 @@ components in `src/docs-ui/tokens/`, so:
 - Don't repeat in the text what a generated table shows: no counts ("nine styles"), sizes or
   pixel values. Describe the behaviour instead ("the same step is smaller on narrow screens").
 - A new value goes into the renderer, read from the package exports, not into the MDX.
+- Don't tell the reader that values are generated or read from the package: that's how the site
+  works, not something they need.
 - No issue numbers, gap descriptions or WCAG criteria lines; end the page with
   `<KnownIssues also={[…]} lang="en" />` for the open issues that affect it.
 - Keep the design reasoning (look vs. level, decorative icons): it is what these pages are for.

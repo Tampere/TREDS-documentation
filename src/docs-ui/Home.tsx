@@ -9,7 +9,7 @@ import { ComponentRef } from './ComponentPage';
 const text = {
   en: {
     developers: 'For developers',
-    developersText: 'Install the package, set up the theme and see how versions work.',
+    developersText: 'Installation, theme setup and versioning.',
     designers: 'For designers',
     designersText: 'Colours, typography, spacing and icons.',
     whatsNew: "What's new",

@@ -105,8 +105,11 @@ components in `src/docs-ui/tokens/`, so:
 - A new value goes into the renderer, read from the package exports, not into the MDX.
 - No issue numbers, gap descriptions or WCAG criteria lines; end the page with
   `<KnownIssues also={[…]} lang="en" />` for the open issues that affect it.
-- Keep the design reasoning (why tokens, look vs. level, decorative icons): it is what these
-  pages are for.
+- Keep the design reasoning (look vs. level, decorative icons): it is what these pages are for.
+  The tokens page gives its reason in the lead only; no separate "why tokens" section.
+- The tokens page's "All theme tokens" table is `ThemeTokens`. Usage text comes from
+  `colorUsage.ts` for colours and the `usage` map in `ThemeTokens.tsx` for the rest; each needs a
+  source (code comment, component usage, Figma), and a token without one shows "–".
 - The first paragraph after the h1 is the page's lead, and its first sentence is the card text on
   the generated Foundations overview: make it stand on its own.
 

@@ -1,10 +1,9 @@
 import { KnownIssues } from '@/docs-ui/ComponentPage';
+import { ThemeTokens } from '@/docs-ui/tokens/ThemeTokens';
 
 # Design tokens
 
-Every colour, size and spacing value in TREDS comes from a named token. Components never contain a raw hex code or pixel value, and neither should the code you write on top of them. A token is how a decision made once in Figma reaches every Tampere service at the same time.
-
-This page is for developers. The values themselves are on [Colours](/en/foundations/colours/), [Typography](/en/foundations/typography/) and [Spacing and layout](/en/foundations/spacing-and-layout/).
+Every colour, size and spacing value in TREDS comes from a named token. Components never contain a raw hex code or pixel value, and neither should the code you write on top of them.
 
 ## The four tiers
 
@@ -34,10 +33,10 @@ const field = {
 
 The variables are rebound by media queries, so a theme token always resolves to the value for the current screen width.
 
-## Why not just use the hex code?
+## All theme tokens
 
-Because tokens carry decisions that aren't visible in the value. `states.visited` is the clearest example: Figma's link colour reaches only 3.24:1 against white, below the 4.5:1 WCAG AA needs for text, so the token uses a darker blue. Copying the hex from Figma would ship an inaccessible link with no way to know.
+Every theme token outside `components`. None of them change with the breakpoint. Colour tokens are on [Colours](/en/foundations/colours/) too, with their primitive and contrast, the type styles on [Typography](/en/foundations/typography/) and the spacing scale on [Spacing and layout](/en/foundations/spacing-and-layout/).
 
-**If a value you need has no token, that's a gap worth reporting** rather than a reason to inline a literal.
+<ThemeTokens lang="en" />
 
 <KnownIssues also={[180, 89, 177]} lang="en" />

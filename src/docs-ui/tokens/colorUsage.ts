@@ -28,7 +28,7 @@ export const colorUsage: Record<string, Record<Lang, string>> = {
     en: 'Error messages and invalid fields.',
   },
   'states.visited': {
-    en: "Visited links. Darker than Figma's link colour, which fails AA.",
+    en: 'Visited links.',
   },
   'inputStates.default': {
     en: 'Form field borders at rest.',

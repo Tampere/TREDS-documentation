@@ -23,10 +23,11 @@ Environment variables read by `npm run build`:
 
 - `DOCS_INDEXABLE=true`: lets search engines index the site. Set it for the production build
   only. Without it, every page gets `<meta name="robots" content="noindex, nofollow">`.
-- `TREDS_CHANGELOG`: path to the TREDS `CHANGELOG.md`, the source of the front page's
-  "What's new" and each component's change history. Defaults to `../../CHANGELOG.md`, which
-  only exists when this repo sits inside a TREDS checkout. If the file is missing, the build
-  still succeeds but those sections are empty.
+- `TREDS_CHANGELOG`: path to a local TREDS `CHANGELOG.md`, the source of the front page's
+  "What's new" and each component's change history. Optional: by default the build downloads
+  the CHANGELOG from the TREDS release tag matching the installed `@tampere/treds` version, and
+  falls back to `../../CHANGELOG.md` when offline. If neither works, the build still succeeds
+  with a warning and those sections are empty.
 
 ## Pages
 

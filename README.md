@@ -17,6 +17,17 @@ Search only works in the built site: `npm run build` runs Pagefind over `out/` a
 `next build`, and `next dev` has no index. Search is currently not in the header (single-row
 AppHeader has no search slot); `DocsSearch` is kept for when it returns.
 
+## Build settings
+
+Environment variables read by `npm run build`:
+
+- `DOCS_INDEXABLE=true`: lets search engines index the site. Set it for the production build
+  only. Without it, every page gets `<meta name="robots" content="noindex, nofollow">`.
+- `TREDS_CHANGELOG`: path to the TREDS `CHANGELOG.md`, the source of the front page's
+  "What's new" and each component's change history. Defaults to `../../CHANGELOG.md`, which
+  only exists when this repo sits inside a TREDS checkout. If the file is missing, the build
+  still succeeds but those sections are empty.
+
 ## Pages
 
 - Getting started: Introduction

@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
 import { languages, type Lang } from '@/i18n';
+import { robots } from '@/robots';
 import { SiteChrome } from './site-chrome';
 import '../globals.css';
 
@@ -12,6 +13,7 @@ export function generateStaticParams() {
 
 export const metadata = {
   title: 'TREDS',
+  robots,
   icons: { icon: '/favicon.svg' },
 };
 

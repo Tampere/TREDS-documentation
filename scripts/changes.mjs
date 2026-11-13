@@ -1,14 +1,32 @@
-// Per-component change history from the TREDS CHANGELOG. The package doesn't ship the
-// CHANGELOG, so it is read from the repo this demo sits in.
+// Per-component change history from the TREDS CHANGELOG, which the package doesn't ship. Read
+// from TREDS_CHANGELOG if set, else from the release tag of the installed package (so the
+// history never runs ahead of the documented version), else from a TREDS checkout around this repo.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 
-const file = process.env.TREDS_CHANGELOG ?? '../../CHANGELOG.md';
-const entries = [];
+const out = 'src/generated/changes.json';
+const local = '../../CHANGELOG.md';
+const { version } = JSON.parse(readFileSync('node_modules/@tampere/treds/package.json', 'utf8'));
+const url = `https://raw.githubusercontent.com/Tampere/Tampere-design-system/v${version}/CHANGELOG.md`;
 
-if (existsSync(file)) {
+async function readChangelog() {
+  const file = process.env.TREDS_CHANGELOG;
+  if (file) return [readFileSync(file, 'utf8'), file];
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`${url} ${res.status}`);
+    return [await res.text(), `the v${version} tag`];
+  } catch (error) {
+    if (!existsSync(local)) throw error;
+    console.warn(`changes: ${error.message}, using ${local}`);
+    return [readFileSync(local, 'utf8'), local];
+  }
+}
+
+function parse(changelog) {
+  const entries = [];
   let release;
   let section;
-  for (const line of readFileSync(file, 'utf8').split('\n')) {
+  for (const line of changelog.split('\n')) {
     const heading = line.match(/^## \[(\d+\.\d+\.\d+)\] - (\S+)/);
     if (heading) release = { version: heading[1], date: heading[2] };
     else if (line.startsWith('## ')) release = undefined; // [Unreleased]
@@ -46,10 +64,21 @@ if (existsSync(file)) {
           : [],
     });
   }
-} else {
-  console.warn(`changes: ${file} not found, component pages show no change history`);
+  return entries;
 }
 
-mkdirSync('src/generated', { recursive: true });
-writeFileSync('src/generated/changes.json', JSON.stringify(entries, null, 2) + '\n');
-console.log(`changes: ${entries.length} entries`);
+try {
+  const [changelog, source] = await readChangelog();
+  const entries = parse(changelog);
+  mkdirSync('src/generated', { recursive: true });
+  writeFileSync(out, JSON.stringify(entries, null, 2) + '\n');
+  console.log(`changes: ${entries.length} entries from ${source}`);
+} catch (error) {
+  if (existsSync(out)) {
+    console.warn(`changes: ${error.message}, keeping the previous ${out}`);
+  } else {
+    console.warn(`changes: ${error.message}, pages show no change history`);
+    mkdirSync('src/generated', { recursive: true });
+    writeFileSync(out, '[]\n');
+  }
+}

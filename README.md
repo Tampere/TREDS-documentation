@@ -2,7 +2,7 @@
 
 Prototype, started 2026-10-08: a TREDS documentation site as a Next.js static export, built
 on the *published* `@tampere/treds` package and using TREDS components for its own UI.
-Lives under the gitignored `docs/`, so it is not in git.
+The library itself lives in [Tampere/Tampere-design-system](https://github.com/Tampere/Tampere-design-system).
 
 `@tampere/treds` comes from `vendor/tampere-treds-1.0.0.tgz` (`npm pack` of tag v1.0.0), so
 no GitHub Packages token is needed.
@@ -53,3 +53,9 @@ descriptions are cast rather than type-checked, so check those by hand.
 - `src/examples/` — example components; `<Example>` renders one *and* shows its source (Shiki).
 - `scripts/props.mjs` — props from the published `dist/index.d.ts` → `src/generated/*.json`.
 - `src/treds.ts` — client-boundary re-export of TREDS for Server Components (TREDS #177).
+
+## License
+
+The source code of the TREDS documentation site is licensed under the EUPL-1.2. See the `LICENSE` file for the full licence text.
+
+The City of Tampere branding assets (name, logo, coat of arms and wave pattern) are not covered by the EUPL-1.2 licence. All rights to these assets are reserved by the City of Tampere. Their use must not imply endorsement, sponsorship, affiliation, or any official connection with the City of Tampere without prior written permission.

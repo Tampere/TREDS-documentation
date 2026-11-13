@@ -2,7 +2,7 @@
 
 Prototype, started 2026-10-08: a TREDS documentation site as a Next.js static export, built
 on the *published* `@tampere/treds` package and using TREDS components for its own UI.
-Lives under the gitignored `docs/`, so it is not in git.
+The library itself lives in [Tampere/Tampere-design-system](https://github.com/Tampere/Tampere-design-system).
 
 `@tampere/treds` comes from `vendor/tampere-treds-1.0.0.tgz` (`npm pack` of tag v1.0.0), so
 no GitHub Packages token is needed.

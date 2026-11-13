@@ -1,13 +1,13 @@
-# TREDS docs site prototype (Next.js)
+# TREDS documentation site
 
-Prototype, started 2026-10-08: a TREDS documentation site as a Next.js static export, built
+The documentation site for the Tampere Design System (TREDS): a Next.js static export, built
 on the *published* `@tampere/treds` package and using TREDS components for its own UI.
 The library itself lives in [Tampere/Tampere-design-system](https://github.com/Tampere/Tampere-design-system).
 
 `@tampere/treds` comes from `vendor/tampere-treds-1.0.0.tgz` (`npm pack` of tag v1.0.0), so
 no GitHub Packages token is needed.
 
-## Run (on the Mac)
+## Run locally
 
     npm install
     npm run dev                     # http://localhost:3000/ → /en/

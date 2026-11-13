@@ -11,7 +11,7 @@ export function generateStaticParams() {
 }
 
 export const metadata = {
-  title: 'TREDS docs demo',
+  title: 'TREDS',
   icons: { icon: '/favicon.svg' },
 };
 

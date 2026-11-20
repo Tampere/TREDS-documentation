@@ -9,8 +9,8 @@
     "dev": "npm run props && next dev",
     "build": "npm run props && next build && pagefind --site out",
     "serve": "npx --yes serve out -l 3000",
-    "prettier": "prettier --write \"{src,scripts}/**/*.{ts,tsx,mjs,json,css,mdx}\"",
-    "prettier:check": "prettier --check \"{src,scripts}/**/*.{ts,tsx,mjs,json,css,mdx}\""
+    "prettier": "prettier --write \"{src,scripts}/**/*.{ts,tsx,mjs,json,css,mdx}\" \"*.mjs\"",
+    "prettier:check": "prettier --check \"{src,scripts}/**/*.{ts,tsx,mjs,json,css,mdx}\" \"*.mjs\""
   },
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.2.8",

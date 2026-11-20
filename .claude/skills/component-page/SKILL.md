@@ -140,7 +140,7 @@ Check:
   equals the viewport width, the examples render, and "On this page" lists exactly the page's
   `h2`s.
 - The page under `npm run dev` with no console errors: the static build is production React,
-  so dev-only warnings never show there.
+  so dev-only warnings and errors never show there.
 - `grep -n '#[0-9]' src/content/en/<slug>.mdx` finds nothing outside `also={[…]}`.
 
 Finish by telling the user what you couldn't source (and so left out or asked about), and

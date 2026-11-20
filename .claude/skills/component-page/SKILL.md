@@ -78,7 +78,8 @@ placeholders.
 ## Files to touch
 
 - `src/content/en/<slug>.mdx`. The slug is the name in kebab case (`LabeledIconButton` →
-  `labeled-icon-button`).
+  `labeled-icon-button`). The folder also holds the Foundations pages, so check the file
+  doesn't exist yet: component Typography uses `typography-component.mdx`.
 - `src/content.ts`: a loader entry `'components/<slug>'` if the page is new (without one the
   site serves a generated stub).
 - `src/examples/en/<slug>/<Name>.tsx`: one default-exported component per example, starting
@@ -123,10 +124,9 @@ Mac. In a sandbox, work in a copy:
 ```bash
 SP=<scratchpad>/demo
 rsync -a --exclude node_modules --exclude .next --exclude out --exclude .git ./ $SP/
-cp ../../.prettierrc $SP/            # without it prettier switches to double quotes
 cd $SP && npm ci
 TREDS_CHANGELOG=<treds repo>/CHANGELOG.md npm run props
-npx prettier --check src && npx tsc --noEmit -p . && npx next build
+npm run prettier:check && npx tsc --noEmit -p . && npx next build
 ```
 
 Then copy your changed files (not `src/generated/`) back. On the Mac, run `npm run dev` or
@@ -139,6 +139,8 @@ Check:
 - The built page at 1440px and 320px: no console errors, `document.documentElement.scrollWidth`
   equals the viewport width, the examples render, and "On this page" lists exactly the page's
   `h2`s.
+- The page under `npm run dev` with no console errors: the static build is production React,
+  so dev-only warnings and errors never show there.
 - `grep -n '#[0-9]' src/content/en/<slug>.mdx` finds nothing outside `also={[…]}`.
 
 Finish by telling the user what you couldn't source (and so left out or asked about), and

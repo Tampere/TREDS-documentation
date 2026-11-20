@@ -17,8 +17,9 @@ The site is built on the **published package**, never the library's source, so i
 - `npm run serve`: serves `out/` on port 3000 too, so stop `next dev` first.
 - `npm run props`: regenerates the gitignored `src/generated/`: props tables from the installed package, change history and open issues from GitHub (kept from the previous run when the fetch fails). Run it before `tsc` on a fresh clone.
 - `npx tsc --noEmit -p .`: type-check, including every example against the installed package.
+- `npm run prettier` formats `src/` and `scripts/`; `npm run prettier:check` only checks. `.prettierrc` matches the library's.
 
-There is no ESLint or test setup. Code is formatted with the library's `.prettierrc` (`npx prettier --check src`). Prettier finds it when this repo is nested in the library; a standalone clone needs a copy.
+There is no ESLint or test setup.
 
 **Sandbox:** never run `npm install` in this folder from a Linux sandbox, because `node_modules` belongs to the Mac. Use the copy-to-scratchpad recipe in the `component-page` skill's Verify section.
 
@@ -44,7 +45,7 @@ There is no ESLint or test setup. Code is formatted with the library's `.prettie
 
 Before opening a PR:
 
-1. `npm run props`, then `npx tsc --noEmit -p .` and `npx prettier --check src`.
+1. `npm run props`, then `npx tsc --noEmit -p .` and `npm run prettier:check`.
 2. `npm run build`, then `npm run serve`, and check the changed pages, including at 320px width.
 3. Stop the server, then load the changed pages under `npm run dev` and check the console. The static build is production React, so dev-only errors never show there.
 

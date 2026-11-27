@@ -24,7 +24,7 @@
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^16.4.2",
     "@shikijs/rehype": "^4.5.0",
-    "@tampere/treds": "file:vendor/tampere-treds-1.0.0.tgz",
+    "@tampere/treds": "file:vendor/tampere-treds-1.0.1.tgz",
     "@types/mdx": "^2.0.13",
     "dayjs": "^1.11.13",
     "next": "^16.4.2",

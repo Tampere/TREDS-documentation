@@ -45,8 +45,8 @@ Use a breadcrumb in services whose pages are at least two levels deep. Place it 
 
 ## Accessibility
 
-- Always give `ariaLabel`, so the breadcrumb can be told apart from the page's other navigations. Set it to "Breadcrumb" ("Murupolku" in Finnish).
-- Give `items` in order from the top level to the current page, and leave `href` out of the current page.
+- The breadcrumb's navigation is named "Murupolku" by default, which tells it apart from the page's other navigations. In a service that isn't in Finnish, give `ariaLabel` in the page's language, for example "Breadcrumb".
+- Give `items` in order from the top level to the current page. The last item is the current page: it is shown as plain text and marked with `aria-current="page"`, so it needs no `href`.
 - Use the pages' headings, or short forms of them, as the level names.
 
 ## API

@@ -45,7 +45,7 @@ Keep the selected value in state and give each radio button `checked` and `onCha
 - Group radio buttons with Fieldset, so the group has a name screen readers announce.
 - Give each group its own `name`. Groups on the same page that share a `name` act as one group in the browser, so the selection and the arrow keys jump from one group to the other.
 - Give every radio button a `label`. TypeScript doesn't require it, but without one the radio button has no name unless it gets an `aria-label`.
-- `error` only colours the radio button. Give the group an error message with Fieldset's `error` prop, set `aria-invalid` on the radio buttons and remove the error once the user chooses an option.
+- `error` colours the radio button and sets `aria-invalid`, but shows no message. Give the group an error message with Fieldset's `error` prop, and remove the error once the user chooses an option.
 - When a form is submitted with errors, move focus to the first invalid field or to an error summary.
 - A disabled radio button can't be focused with the keyboard. Explain in the group's helper text why the option isn't available.
 

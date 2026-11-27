@@ -1,6 +1,6 @@
 'use client';
 
-// TREDS 1.0.0's dist has no 'use client' directive, so importing it from a Server
+// TREDS 1.0.1's dist has no 'use client' directive, so importing it from a Server
 // Component crashes (createContext is not a function). This file is the client boundary.
 // `export *` is not allowed across a client boundary, hence the explicit list.
 export {

@@ -51,13 +51,21 @@ Before opening a PR:
 
 ## Updating to a new TREDS release
 
-Do this after the TREDS GitHub Release exists, because the change history is fetched from the `v<version>` tag.
+Start as soon as the TREDS release PR (`chore/release-vX.Y.Z`) is open, not after publishing. The docs build is the release candidate's acceptance test, and a published version can't be withdrawn from GitHub Packages, so the release PR isn't merged until this repo's PR builds.
 
-1. Build the tarball from the tag, since the library has no `prepack` and packs whatever `dist/` is on disk. In a clean checkout of the tag: `npm ci && npm run build && npm pack`.
+**Prepare, on a `chore/treds-vX.Y.Z` branch, while the release PR is open:**
+
+1. Build the tarball from the release branch's head, since the library has no `prepack` and packs whatever `dist/` is on disk. In a clean checkout of that commit: `npm ci && npm run build && npm pack`.
 2. Replace the tarball in `vendor/`, then update `@tampere/treds` in `package.json` and the tarball name in the README.
-3. Install and run `npm run build`. In a sandbox, use the skill's scratchpad copy but run `npm install` instead of `npm ci` (the lockfile no longer matches), and copy `package-lock.json` back. Props tables, change history, "What's new" and known issues update themselves. Type errors in `src/examples/` point at breaking changes.
+3. Install and run `npm run build` with `TREDS_CHANGELOG` pointing at the release branch's `CHANGELOG.md`, because the `vX.Y.Z` tag doesn't exist yet. In a sandbox, use the skill's scratchpad copy but run `npm install` instead of `npm ci` (the lockfile no longer matches), and copy `package-lock.json` back. Props tables, change history, "What's new" and known issues update themselves. Type errors in `src/examples/` point at breaking changes: update the examples for one the CHANGELOG announces, and report any other one on the release PR before it merges.
 4. Add each new component export to `src/components.json`; `npm run props` warns about missing ones. Until you do, it has no page or props table. Once it's in `components.json`, it gets a generated stub page until its MDX is written. If a Server Component uses it, add it to the export list in `src/treds.ts` too.
 5. Read the release's CHANGELOG entry and update the guidance it affects by hand: changed defaults, behaviour and accessibility. The published d.ts has no defaults (#179), so props-table defaults come from the hand-kept `DEFAULTS` map in `scripts/props.mjs`: update changed ones and add new components there. Re-check comments that name a TREDS version (e.g. in `src/treds.ts` and `globals.css`).
+6. Open the PR as a draft, and link it from the release PR and back. If the release PR gets new commits, repeat from step 1.
+
+**Finish, after the GitHub Release and the publish run:**
+
+7. Pack the `vX.Y.Z` tag the same way and compare it with the vendored tarball (`diff -r` of the two extracted `package/` folders). If they differ, replace the vendored one and rebuild.
+8. Run `npm run build` without `TREDS_CHANGELOG`, so the history comes from the tag, then mark the PR ready and merge it.
 
 ## Git and pull requests
 

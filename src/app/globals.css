@@ -143,7 +143,7 @@
 .prev-next-next {
   margin-left: auto;
 }
-/* TREDS 1.0.0 Breadcrumbs leaves the browser's default <ol> padding and margins in place (#181). */
+/* TREDS 1.0.1 Breadcrumbs leaves the browser's default <ol> padding and margins in place (#181). */
 .crumbs ol {
   margin: 0;
   padding: 0;

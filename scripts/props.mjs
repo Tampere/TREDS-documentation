@@ -33,6 +33,7 @@ const DEFAULTS = {
   Badge: { inverted: 'false', showIcon: 'false' },
   Chip: { disabled: 'false' },
   TextField: { showSearchIcon: 'false', showClearButton: 'false' },
+  Breadcrumbs: { ariaLabel: "'Murupolku'" },
   NavigationLink: { isSelected: 'false', variant: "'default'", size: "'md'" },
   SkipLink: { href: "'#main-content'", children: "'Hyppää pääsisältöön'" },
   Paper: {

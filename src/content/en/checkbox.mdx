@@ -48,7 +48,7 @@ Group related checkboxes with <ComponentRef name="Fieldset" lang="en" />, as in 
 - Write the label in the positive: "Send a confirmation to my email", not "Don't send a confirmation". Avoid links in the label. Give terms or further information above the checkbox.
 - Phrase the group's `legend` as a question that the options answer, and order the options logically, for example alphabetically or from most to least common.
 - Group related checkboxes with Fieldset, so the group has a name screen readers announce.
-- `error` only colours the checkbox. Give the group an error message with Fieldset's `error` prop and set `aria-invalid` on the checkboxes.
+- `error` colours the checkbox and sets `aria-invalid`, but shows no message. Give the group an error message with Fieldset's `error` prop.
 - When a form is submitted with errors, move focus to the first invalid field or to an error summary.
 - If at least one option in a group must be selected, check it yourself: native `required` requires each checkbox separately. Mark the group with Fieldset's `showRequiredMarker` prop and state the requirement with `helperText`.
 - A disabled checkbox can't be focused with the keyboard, so explain elsewhere why the choice isn't available.

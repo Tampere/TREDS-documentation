@@ -19,7 +19,7 @@ interface Pagefind {
   ) => Promise<{ results: { data: () => Promise<PagefindResult> }[] } | null>;
 }
 
-// Matches SearchField's SearchFieldData constraint, which TREDS 1.0.0 doesn't export.
+// Matches SearchField's SearchFieldData constraint, which TREDS 1.0.1 doesn't export.
 interface Hit {
   value: string;
   label: string;

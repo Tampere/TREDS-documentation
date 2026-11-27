@@ -8,7 +8,9 @@
     "props": "node scripts/props.mjs && node scripts/changes.mjs && node scripts/issues.mjs",
     "dev": "npm run props && next dev",
     "build": "npm run props && next build && pagefind --site out",
-    "serve": "npx --yes serve out -l 3000"
+    "serve": "npx --yes serve out -l 3000",
+    "prettier": "prettier --write \"{src,scripts}/**/*.{ts,tsx,mjs,json,css,mdx}\" \"*.mjs\"",
+    "prettier:check": "prettier --check \"{src,scripts}/**/*.{ts,tsx,mjs,json,css,mdx}\" \"*.mjs\""
   },
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.2.8",
@@ -37,6 +39,7 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "prettier": "^3.6.2",
     "react-docgen-typescript": "^2.4.0",
     "typescript": "~5.9.3"
   }
